@@ -98,9 +98,9 @@ GameObject:
   - 33: {fileID: 30496719}
   - 65: {fileID: 30496718}
   - 23: {fileID: 30496717}
-  m_Layer: 8
+  m_Layer: 11
   m_Name: PlacementPlane
-  m_TagString: PlacementPlaneOpen
+  m_TagString: PlacementTileAvailable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -174,9 +174,9 @@ GameObject:
   - 33: {fileID: 111005379}
   - 65: {fileID: 111005378}
   - 23: {fileID: 111005377}
-  m_Layer: 8
+  m_Layer: 11
   m_Name: PlacementPlane
-  m_TagString: PlacementPlaneOpen
+  m_TagString: PlacementTileAvailable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -250,9 +250,9 @@ GameObject:
   - 33: {fileID: 118501786}
   - 65: {fileID: 118501785}
   - 23: {fileID: 118501784}
-  m_Layer: 8
+  m_Layer: 11
   m_Name: PlacementPlane
-  m_TagString: PlacementPlaneOpen
+  m_TagString: PlacementTileAvailable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -326,9 +326,9 @@ GameObject:
   - 33: {fileID: 122942967}
   - 65: {fileID: 122942966}
   - 23: {fileID: 122942965}
-  m_Layer: 8
+  m_Layer: 11
   m_Name: PlacementPlane
-  m_TagString: PlacementPlaneOpen
+  m_TagString: PlacementTileAvailable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -402,9 +402,9 @@ GameObject:
   - 33: {fileID: 145697548}
   - 65: {fileID: 145697547}
   - 23: {fileID: 145697546}
-  m_Layer: 8
+  m_Layer: 11
   m_Name: PlacementPlane
-  m_TagString: PlacementPlaneOpen
+  m_TagString: PlacementTileAvailable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -478,9 +478,9 @@ GameObject:
   - 33: {fileID: 249122256}
   - 65: {fileID: 249122255}
   - 23: {fileID: 249122254}
-  m_Layer: 8
+  m_Layer: 11
   m_Name: PlacementPlane
-  m_TagString: PlacementPlaneOpen
+  m_TagString: PlacementTileAvailable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -554,9 +554,9 @@ GameObject:
   - 33: {fileID: 374737913}
   - 65: {fileID: 374737912}
   - 23: {fileID: 374737911}
-  m_Layer: 8
+  m_Layer: 11
   m_Name: PlacementPlane
-  m_TagString: PlacementPlaneOpen
+  m_TagString: PlacementTileAvailable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -630,9 +630,9 @@ GameObject:
   - 33: {fileID: 396953240}
   - 65: {fileID: 396953239}
   - 23: {fileID: 396953238}
-  m_Layer: 8
+  m_Layer: 11
   m_Name: PlacementPlane
-  m_TagString: PlacementPlaneOpen
+  m_TagString: PlacementTileAvailable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -706,9 +706,9 @@ GameObject:
   - 33: {fileID: 401313143}
   - 65: {fileID: 401313142}
   - 23: {fileID: 401313141}
-  m_Layer: 8
+  m_Layer: 11
   m_Name: PlacementPlane
-  m_TagString: PlacementPlaneOpen
+  m_TagString: PlacementTileAvailable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -782,9 +782,9 @@ GameObject:
   - 33: {fileID: 410504599}
   - 65: {fileID: 410504598}
   - 23: {fileID: 410504597}
-  m_Layer: 8
+  m_Layer: 11
   m_Name: PlacementPlane
-  m_TagString: PlacementPlaneOpen
+  m_TagString: PlacementTileAvailable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -858,9 +858,9 @@ GameObject:
   - 33: {fileID: 438423617}
   - 65: {fileID: 438423616}
   - 23: {fileID: 438423615}
-  m_Layer: 8
+  m_Layer: 11
   m_Name: PlacementPlane
-  m_TagString: PlacementPlaneOpen
+  m_TagString: PlacementTileAvailable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -932,7 +932,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 442384785}
   m_Layer: 8
-  m_Name: PlacementPlanes
+  m_Name: PlacementTiles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -988,6 +988,117 @@ Transform:
   - {fileID: 1991705906}
   m_Father: {fileID: 0}
   m_RootOrder: 4
+--- !u!1 &492778888
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 100000, guid: f385d1606319dd849ac4bd1937ef173e, type: 2}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 492778894}
+  - 33: {fileID: 492778893}
+  - 65: {fileID: 492778892}
+  - 23: {fileID: 492778891}
+  - 54: {fileID: 492778890}
+  - 114: {fileID: 492778889}
+  m_Layer: 10
+  m_Name: enemy
+  m_TagString: Enemy
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &492778889
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 492778888}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72c2f4245947a8f44bc322d55a27df0c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _currentHP: 1e+06
+  _maxHP: 1e+06
+  _cost: 0
+  _attackingRange: 0
+  _nextLevel: {fileID: 0}
+  _damage: 0
+--- !u!54 &492778890
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 5400000, guid: f385d1606319dd849ac4bd1937ef173e,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 492778888}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: .0500000007
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0
+--- !u!23 &492778891
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 2300000, guid: f385d1606319dd849ac4bd1937ef173e,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 492778888}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_Materials:
+  - {fileID: 2100000, guid: 75799e54008b6494bb1442b0d62ef9e5, type: 2}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 0
+  m_ReflectionProbeUsage: 1
+  m_ProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_ImportantGI: 0
+  m_AutoUVMaxDistance: .5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+--- !u!65 &492778892
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 6500000, guid: f385d1606319dd849ac4bd1937ef173e,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 492778888}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!33 &492778893
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 3300000, guid: f385d1606319dd849ac4bd1937ef173e,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 492778888}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &492778894
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 400000, guid: f385d1606319dd849ac4bd1937ef173e, type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 492778888}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 61}
+  m_LocalScale: {x: 20, y: .00100000005, z: 20}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
 --- !u!1 &496694575
 GameObject:
   m_ObjectHideFlags: 0
@@ -999,9 +1110,9 @@ GameObject:
   - 33: {fileID: 496694579}
   - 65: {fileID: 496694578}
   - 23: {fileID: 496694577}
-  m_Layer: 8
+  m_Layer: 11
   m_Name: PlacementPlane
-  m_TagString: PlacementPlaneOpen
+  m_TagString: PlacementTileAvailable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1139,6 +1250,10 @@ Prefab:
       propertyPath: hitSound
       value: 
       objectReference: {fileID: 8300000, guid: 2d8847fb4f417c14899e6459e972babc, type: 3}
+    - target: {fileID: 400000, guid: c1e800a2334d97a488f213df3ff82943, type: 2}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c1e800a2334d97a488f213df3ff82943, type: 2}
   m_IsPrefabParent: 0
@@ -1153,9 +1268,9 @@ GameObject:
   - 33: {fileID: 596439157}
   - 65: {fileID: 596439156}
   - 23: {fileID: 596439155}
-  m_Layer: 8
+  m_Layer: 11
   m_Name: PlacementPlane
-  m_TagString: PlacementPlaneOpen
+  m_TagString: PlacementTileAvailable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1229,9 +1344,9 @@ GameObject:
   - 33: {fileID: 678922470}
   - 65: {fileID: 678922469}
   - 23: {fileID: 678922468}
-  m_Layer: 8
+  m_Layer: 11
   m_Name: PlacementPlane
-  m_TagString: PlacementPlaneOpen
+  m_TagString: PlacementTileAvailable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1305,9 +1420,9 @@ GameObject:
   - 33: {fileID: 734180911}
   - 65: {fileID: 734180910}
   - 23: {fileID: 734180909}
-  m_Layer: 8
+  m_Layer: 11
   m_Name: PlacementPlane
-  m_TagString: PlacementPlaneOpen
+  m_TagString: PlacementTileAvailable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1381,9 +1496,9 @@ GameObject:
   - 33: {fileID: 735048343}
   - 65: {fileID: 735048342}
   - 23: {fileID: 735048341}
-  m_Layer: 8
+  m_Layer: 11
   m_Name: PlacementPlane
-  m_TagString: PlacementPlaneOpen
+  m_TagString: PlacementTileAvailable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1457,9 +1572,9 @@ GameObject:
   - 33: {fileID: 763473119}
   - 65: {fileID: 763473118}
   - 23: {fileID: 763473117}
-  m_Layer: 8
+  m_Layer: 11
   m_Name: PlacementPlane
-  m_TagString: PlacementPlaneOpen
+  m_TagString: PlacementTileAvailable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1533,9 +1648,9 @@ GameObject:
   - 33: {fileID: 774043177}
   - 65: {fileID: 774043176}
   - 23: {fileID: 774043175}
-  m_Layer: 8
+  m_Layer: 11
   m_Name: PlacementPlane
-  m_TagString: PlacementPlaneOpen
+  m_TagString: PlacementTileAvailable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1609,9 +1724,9 @@ GameObject:
   - 33: {fileID: 825922337}
   - 65: {fileID: 825922336}
   - 23: {fileID: 825922335}
-  m_Layer: 8
+  m_Layer: 11
   m_Name: PlacementPlane
-  m_TagString: PlacementPlaneOpen
+  m_TagString: PlacementTileAvailable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1685,9 +1800,9 @@ GameObject:
   - 33: {fileID: 968874142}
   - 65: {fileID: 968874141}
   - 23: {fileID: 968874140}
-  m_Layer: 8
+  m_Layer: 11
   m_Name: PlacementPlane
-  m_TagString: PlacementPlaneOpen
+  m_TagString: PlacementTileAvailable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1761,9 +1876,9 @@ GameObject:
   - 33: {fileID: 1021959317}
   - 65: {fileID: 1021959316}
   - 23: {fileID: 1021959315}
-  m_Layer: 8
+  m_Layer: 11
   m_Name: PlacementPlane
-  m_TagString: PlacementPlaneOpen
+  m_TagString: PlacementTileAvailable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1837,9 +1952,9 @@ GameObject:
   - 33: {fileID: 1047547859}
   - 65: {fileID: 1047547858}
   - 23: {fileID: 1047547857}
-  m_Layer: 8
+  m_Layer: 11
   m_Name: PlacementPlane
-  m_TagString: PlacementPlaneOpen
+  m_TagString: PlacementTileAvailable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1913,9 +2028,9 @@ GameObject:
   - 33: {fileID: 1221631412}
   - 65: {fileID: 1221631411}
   - 23: {fileID: 1221631410}
-  m_Layer: 8
+  m_Layer: 11
   m_Name: PlacementPlane
-  m_TagString: PlacementPlaneOpen
+  m_TagString: PlacementTileAvailable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1989,9 +2104,9 @@ GameObject:
   - 33: {fileID: 1226075508}
   - 65: {fileID: 1226075507}
   - 23: {fileID: 1226075506}
-  m_Layer: 8
+  m_Layer: 11
   m_Name: PlacementPlane
-  m_TagString: PlacementPlaneOpen
+  m_TagString: PlacementTileAvailable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2125,9 +2240,9 @@ GameObject:
   - 33: {fileID: 1360468822}
   - 65: {fileID: 1360468821}
   - 23: {fileID: 1360468820}
-  m_Layer: 8
+  m_Layer: 11
   m_Name: PlacementPlane
-  m_TagString: PlacementPlaneOpen
+  m_TagString: PlacementTileAvailable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2201,9 +2316,9 @@ GameObject:
   - 33: {fileID: 1368398193}
   - 65: {fileID: 1368398192}
   - 23: {fileID: 1368398191}
-  m_Layer: 8
+  m_Layer: 11
   m_Name: PlacementPlane
-  m_TagString: PlacementPlaneOpen
+  m_TagString: PlacementTileAvailable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2277,9 +2392,9 @@ GameObject:
   - 33: {fileID: 1397774885}
   - 65: {fileID: 1397774884}
   - 23: {fileID: 1397774883}
-  m_Layer: 8
+  m_Layer: 11
   m_Name: PlacementPlane
-  m_TagString: PlacementPlaneOpen
+  m_TagString: PlacementTileAvailable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2391,9 +2506,9 @@ GameObject:
   - 33: {fileID: 1528979527}
   - 65: {fileID: 1528979526}
   - 23: {fileID: 1528979525}
-  m_Layer: 8
+  m_Layer: 11
   m_Name: PlacementPlane
-  m_TagString: PlacementPlaneOpen
+  m_TagString: PlacementTileAvailable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2467,9 +2582,9 @@ GameObject:
   - 33: {fileID: 1539510795}
   - 65: {fileID: 1539510794}
   - 23: {fileID: 1539510793}
-  m_Layer: 8
+  m_Layer: 11
   m_Name: PlacementPlane
-  m_TagString: PlacementPlaneOpen
+  m_TagString: PlacementTileAvailable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2543,9 +2658,9 @@ GameObject:
   - 33: {fileID: 1585236510}
   - 65: {fileID: 1585236509}
   - 23: {fileID: 1585236508}
-  m_Layer: 8
+  m_Layer: 11
   m_Name: PlacementPlane
-  m_TagString: PlacementPlaneOpen
+  m_TagString: PlacementTileAvailable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2619,9 +2734,9 @@ GameObject:
   - 33: {fileID: 1593170063}
   - 65: {fileID: 1593170062}
   - 23: {fileID: 1593170061}
-  m_Layer: 8
+  m_Layer: 11
   m_Name: PlacementPlane
-  m_TagString: PlacementPlaneOpen
+  m_TagString: PlacementTileAvailable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2688,7 +2803,7 @@ MeshFilter:
 GameObject:
   m_PrefabParentObject: {fileID: 100000, guid: 8dbcfe432ee18a44cbb8e69aed9b6565, type: 2}
   m_PrefabInternal: {fileID: 2095209044}
---- !u!114 &1598098492
+--- !u!114 &1598098480
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
@@ -2696,17 +2811,43 @@ MonoBehaviour:
   m_GameObject: {fileID: 1598098479}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e43d576786d233542bc906384b3b7933, type: 3}
+  m_Script: {fileID: 11500000, guid: 89241ca232486be41a8bf3d4273560d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buildingTexture:
-  - {fileID: 2800000, guid: a0b4db95b3614e340a7a572ea06109a9, type: 3}
-  - {fileID: 2800000, guid: 23f6bc7ab815ac94e86e6376d9e0aa71, type: 3}
-  - {fileID: 2800000, guid: 13a1eb92f9461684f8ed2b06aa9209df, type: 3}
-  - {fileID: 2800000, guid: 5a14c2db68d11c841a3d5bff0ac14237, type: 3}
-  buildingIndex: 0
-  background: {fileID: 2800000, guid: 217a8da9089e4764ebf25ed0b8eff79f, type: 3}
---- !u!114 &1598098493
+  gameGUISkin: {fileID: 11400000, guid: c084641405a13a34c8e0f450f1672dc7, type: 2}
+  gameGUITexture: {fileID: 2800000, guid: 195f969c74b7b834c8f3d2a7fe2e970a, type: 3}
+  highlightTexture: {fileID: 2800000, guid: e39e20165caf8e6499528db1e070ae28, type: 3}
+  towerFrameTexture: {fileID: 0}
+  statsHUD: {fileID: 2800000, guid: e80b74e599a470848af4c878aaf03b77, type: 3}
+  buildingHUD: {fileID: 2800000, guid: 5d697b688afb98f438bf2ad977b148ce, type: 3}
+  maskTexture: {fileID: 2800000, guid: 2da6875b7e78dbd47b20ba450882b5d6, type: 3}
+  nurseCheer: {fileID: 0}
+  buttonSound: {fileID: 8300000, guid: 0b69f984762f3ea40bc960be209a8071, type: 3}
+  buildSound: {fileID: 8300000, guid: a1400e9e8b3e2094ebe8d3a5ea4ce9f9, type: 3}
+  errorSound: {fileID: 8300000, guid: f57abb889ead7144f889feef6a0eacb2, type: 3}
+  deniedSound: {fileID: 0}
+  sellSound: {fileID: 0}
+  researchSound: {fileID: 0}
+  tileOriginalMaterial: {fileID: 2100000, guid: bee464de893888443865c05853b5ca1f,
+    type: 2}
+  tileOnHoverMaterial: {fileID: 2100000, guid: ba18e7192190d76488095f2c58f41080, type: 2}
+  placementTilesRoot: {fileID: 442384785}
+  placementLayerMask:
+    serializedVersion: 2
+    m_Bits: 2048
+  coreGameObject: {fileID: 0}
+  buildingList:
+  - {fileID: 100008, guid: dd5fd3af433d1f440b30e3cfe750af7c, type: 2}
+  - {fileID: 0}
+  maxBuildingNumber: 10
+  buildingLayerMask:
+    serializedVersion: 2
+    m_Bits: 512
+  fireCannon: {fileID: 0}
+  laserCannon: {fileID: 0}
+  superBurningTower: {fileID: 0}
+  basicMoney: 10000
+--- !u!114 &1598098481
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
@@ -2714,11 +2855,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1598098479}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 31c31bdb1a50d2b45a1eb0055b8f1bf7, type: 3}
+  m_Script: {fileID: 11500000, guid: 6df3a9dd56e4fad4988f27ca2e1ad4d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  researchIndex: 0
-  background: {fileID: 2800000, guid: e340b02bd24d6b44cbaaecb9296ea7b5, type: 3}
 --- !u!1 &1618090643
 GameObject:
   m_ObjectHideFlags: 0
@@ -2730,9 +2869,9 @@ GameObject:
   - 33: {fileID: 1618090647}
   - 65: {fileID: 1618090646}
   - 23: {fileID: 1618090645}
-  m_Layer: 8
+  m_Layer: 11
   m_Name: PlacementPlane
-  m_TagString: PlacementPlaneOpen
+  m_TagString: PlacementTileAvailable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2806,9 +2945,9 @@ GameObject:
   - 33: {fileID: 1695721785}
   - 65: {fileID: 1695721784}
   - 23: {fileID: 1695721783}
-  m_Layer: 8
+  m_Layer: 11
   m_Name: PlacementPlane
-  m_TagString: PlacementPlaneOpen
+  m_TagString: PlacementTileAvailable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2882,9 +3021,9 @@ GameObject:
   - 33: {fileID: 1725932354}
   - 65: {fileID: 1725932353}
   - 23: {fileID: 1725932352}
-  m_Layer: 8
+  m_Layer: 11
   m_Name: PlacementPlane
-  m_TagString: PlacementPlaneOpen
+  m_TagString: PlacementTileAvailable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3057,9 +3196,9 @@ GameObject:
   - 33: {fileID: 1802604055}
   - 65: {fileID: 1802604054}
   - 23: {fileID: 1802604053}
-  m_Layer: 8
+  m_Layer: 11
   m_Name: PlacementPlane
-  m_TagString: PlacementPlaneOpen
+  m_TagString: PlacementTileAvailable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3205,9 +3344,9 @@ GameObject:
   - 33: {fileID: 1844010409}
   - 65: {fileID: 1844010408}
   - 23: {fileID: 1844010407}
-  m_Layer: 8
+  m_Layer: 11
   m_Name: PlacementPlane
-  m_TagString: PlacementPlaneOpen
+  m_TagString: PlacementTileAvailable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3281,9 +3420,9 @@ GameObject:
   - 33: {fileID: 1990180088}
   - 65: {fileID: 1990180087}
   - 23: {fileID: 1990180086}
-  m_Layer: 8
+  m_Layer: 11
   m_Name: PlacementPlane
-  m_TagString: PlacementPlaneOpen
+  m_TagString: PlacementTileAvailable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3357,9 +3496,9 @@ GameObject:
   - 33: {fileID: 1991705909}
   - 65: {fileID: 1991705908}
   - 23: {fileID: 1991705907}
-  m_Layer: 8
+  m_Layer: 11
   m_Name: PlacementPlane
-  m_TagString: PlacementPlaneOpen
+  m_TagString: PlacementTileAvailable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3570,6 +3709,15 @@ Prefab:
       propertyPath: maxX
       value: 150
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 400000, guid: 8dbcfe432ee18a44cbb8e69aed9b6565, type: 2}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 11400000, guid: 8dbcfe432ee18a44cbb8e69aed9b6565, type: 2}
+    - {fileID: 11400006, guid: 8dbcfe432ee18a44cbb8e69aed9b6565, type: 2}
+    - {fileID: 8200000, guid: 8dbcfe432ee18a44cbb8e69aed9b6565, type: 2}
+    - {fileID: 11400004, guid: 8dbcfe432ee18a44cbb8e69aed9b6565, type: 2}
+    - {fileID: 11400008, guid: 8dbcfe432ee18a44cbb8e69aed9b6565, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 8dbcfe432ee18a44cbb8e69aed9b6565, type: 2}
   m_IsPrefabParent: 0
