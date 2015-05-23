@@ -2822,12 +2822,13 @@ MonoBehaviour:
   buildingHUD: {fileID: 2800000, guid: 5d697b688afb98f438bf2ad977b148ce, type: 3}
   maskTexture: {fileID: 2800000, guid: 2da6875b7e78dbd47b20ba450882b5d6, type: 3}
   nurseCheer: {fileID: 0}
+  researchTexture: {fileID: 0}
   buttonSound: {fileID: 8300000, guid: 0b69f984762f3ea40bc960be209a8071, type: 3}
   buildSound: {fileID: 8300000, guid: a1400e9e8b3e2094ebe8d3a5ea4ce9f9, type: 3}
   errorSound: {fileID: 8300000, guid: f57abb889ead7144f889feef6a0eacb2, type: 3}
   deniedSound: {fileID: 0}
   sellSound: {fileID: 0}
-  researchSound: {fileID: 0}
+  researchSound: {fileID: 8300000, guid: 28b0441fc738e9a4bb8091a7fc155b85, type: 3}
   tileOriginalMaterial: {fileID: 2100000, guid: bee464de893888443865c05853b5ca1f,
     type: 2}
   tileOnHoverMaterial: {fileID: 2100000, guid: ba18e7192190d76488095f2c58f41080, type: 2}
@@ -2838,7 +2839,7 @@ MonoBehaviour:
   coreGameObject: {fileID: 0}
   buildingList:
   - {fileID: 100008, guid: dd5fd3af433d1f440b30e3cfe750af7c, type: 2}
-  - {fileID: 0}
+  - {fileID: 167912, guid: d3d9b542f60dad94d94b5671ebf93842, type: 2}
   maxBuildingNumber: 10
   buildingLayerMask:
     serializedVersion: 2
@@ -2858,6 +2859,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6df3a9dd56e4fad4988f27ca2e1ad4d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1598098482
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1598098479}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c23676d67e1b70041a38bd60aae192fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  backgroundTexture: {fileID: 2800000, guid: 217a8da9089e4764ebf25ed0b8eff79f, type: 3}
+  maxDisplayMessageNumber: 10
 --- !u!1 &1618090643
 GameObject:
   m_ObjectHideFlags: 0
@@ -3712,6 +3726,10 @@ Prefab:
     - target: {fileID: 400000, guid: 8dbcfe432ee18a44cbb8e69aed9b6565, type: 2}
       propertyPath: m_RootOrder
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2000000, guid: 8dbcfe432ee18a44cbb8e69aed9b6565, type: 2}
+      propertyPath: orthographic
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 11400000, guid: 8dbcfe432ee18a44cbb8e69aed9b6565, type: 2}

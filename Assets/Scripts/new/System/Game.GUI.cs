@@ -18,7 +18,7 @@ public partial class Game : MonoBehaviour {
   void OnGUI() {
     GUI.skin = gameGUISkin;
     GUI.depth = 1;
-    if (GameConstants.playerStatus == GameConstants.PlayerStatus.Building || GameConstants.playerStatus == GameConstants.PlayerStatus.Building || GameConstants.playerStatus == GameConstants.PlayerStatus.Building) {
+    if (GameConstants.playerStatus != GameConstants.PlayerStatus.DoingNothing || GameConstants.gameStatus != GameConstants.GameStatus.Playing) {
       GUI.DrawTexture(new Rect(0, 0, Screen.width, Screen.height), maskTexture, ScaleMode.StretchToFill, true, 10);
     }
     if (GameConstants.gameStatus == GameConstants.GameStatus.Finished || GameConstants.gameStatus == GameConstants.GameStatus.Losed) {
@@ -60,6 +60,7 @@ public partial class Game : MonoBehaviour {
         }
         if (GUI.Button(new Rect((menuWidth - labelWidth) / 2, labelHeight * 2, labelWidth, labelHeight), "返回")) {
           AudioManager.PlayAudioClip(buttonSound);
+          Time.timeScale = 1;
           GameConstants.gameStatus = GameConstants.GameStatus.Playing;
         }
         if (GUI.Button(new Rect((menuWidth - labelWidth) / 2, labelHeight * 3, labelWidth, labelHeight), "離開")) {
@@ -137,10 +138,10 @@ public partial class Game : MonoBehaviour {
       if (technologyIndex == -1) {
         float technologyButtonWidth = Screen.width / 6.4f;
         float technologyButtonHeight = Screen.height / 20;
-        GUILayout.BeginArea(new Rect(Screen.width / 5.5f, Screen.height / 1.15f, Screen.width, Screen.height / 8));
+        GUILayout.BeginArea(new Rect(Screen.width / 9.6f, Screen.height / 1.1f, Screen.width, Screen.height));
         for (int i = 0; i < technologyManager.AvailableTechnology.Count; ++i) {
           Technology technology = technologyManager.AvailableTechnology[i];
-          if (GUI.Button(new Rect(technologyButtonWidth * (0.1f + i), 0, technologyButtonWidth, technologyButtonHeight), technology.Name + "(" + (i + 1) + ")")) {
+          if (GUI.Button(new Rect(technologyButtonWidth * (0.5f + i * 1.1f), 0, technologyButtonWidth, technologyButtonHeight), technology.Name + "(" + (i + 1) + ")")) {
             technologyIndex = i;
           }
         }
@@ -148,19 +149,23 @@ public partial class Game : MonoBehaviour {
       } else if (technologyIndex != -1) {
         float researchButtonWidth = Screen.width / 9.6f;
         float researchButtonHeight = researchButtonWidth / 4;
-        GameConstants.TechnologyID technologyID = technologyManager.AvailableTechnology[technologyIndex].ID;
         int technologyCost = technologyManager.AvailableTechnology[technologyIndex].Cost;
         if (GUI.Button(new Rect(Screen.width / 1.6f, Screen.height / 7.5f, researchButtonWidth, researchButtonHeight), "研究")) {
           if (money >= technologyCost) {
             AudioManager.PlayAudioClip(researchSound);
 
             money -= technologyCost;
+            MessageManager.AddMessage("研發完成 : " + technologyManager.AvailableTechnology[technologyIndex].Name);
             technologyManager.ResearchTechnology(technologyIndex);
+            for (int i = 0; i < technologyManager.NewTechnology.Count; ++i) {
+              MessageManager.AddMessage("獲得科技 : " + technologyManager.NewTechnology[i].Name);
+            }
+
 
             technologyIndex = -1;
           } else {
             AudioManager.PlayAudioClip(errorSound);
-            //ShowMessage("需要更多金錢");
+            MessageManager.AddMessage("需要更多金錢");
           }
         }
       }
@@ -168,15 +173,15 @@ public partial class Game : MonoBehaviour {
     }
 
     if (GameConstants.playerStatus == GameConstants.PlayerStatus.Building) {
-      GUILayout.BeginArea(new Rect(Screen.width / 9.6f, Screen.height / 1.07f, Screen.width, Screen.height));
+      GUILayout.BeginArea(new Rect(Screen.width / 9.6f, Screen.height / 1.1f, Screen.width, Screen.height));
 
       for (int i = 0; i < buildingList.Length; ++i) {
         float buildingButtonWidth = Screen.width / 6.4f;
         float buildingButtonHeight = Screen.height / 20;
-        if (GUI.Button(new Rect(buildingButtonWidth * (1.1f + i), 0, buildingButtonWidth, buildingButtonHeight), "name" + "(" + (i + 1) + ")")) {
+        if (GUI.Button(new Rect(buildingButtonWidth * (0.5f + i * 1.1f), 0, buildingButtonWidth, buildingButtonHeight), "name" + "(" + (i + 1) + ")")) {
           AudioManager.PlayAudioClip(buttonSound);
           if (i != buildingIndex) { // Prevent multiple click
-            //ShowMessage("請選擇放置區域");
+            MessageManager.AddMessage("請選擇放置區域");
             buildingIndex = i;
           }
         }

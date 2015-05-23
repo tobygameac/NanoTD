@@ -45,6 +45,7 @@ public partial class Game : MonoBehaviour {
 
   void Start() {
     Time.timeScale = 1;
+
     AudioManager.Volume = 0.5f;
 
     UpdateTilesMesh();
@@ -92,22 +93,29 @@ public partial class Game : MonoBehaviour {
       }
     }
 
-    GameObject newBuildingGameObject;
+    GameObject newBuilding;
 
     // Left click
     if (Input.GetMouseButtonDown(0) && GUIUtility.hotControl == 0) {
       if (lastHoverBuilding != null) {
         if (GameConstants.playerStatus == GameConstants.PlayerStatus.Combinating) {
         }
+        if (GameConstants.playerStatus == GameConstants.PlayerStatus.DoingNothing) {
+          if (selectedBuilding) {
+            selectedBuilding.GetComponent<RangeDisplayer>().enabled = false;
+          }
+          selectedBuilding = lastHoverBuilding;
+          selectedBuilding.GetComponent<RangeDisplayer>().enabled = true;
+        }
       }
       if (lastHoverBuilding == null) {
         if (selectedBuilding) {
-          //selectedBuilding.GetComponent<RangeDisplayer>().enabled = false;
+          selectedBuilding.GetComponent<RangeDisplayer>().enabled = false;
         }
         lastHoverBuilding = selectedBuilding = null;
         if (GameConstants.playerStatus == GameConstants.PlayerStatus.Combinating) {
           AudioManager.PlayAudioClip(errorSound);
-          //ShowMessage("請選擇正確的目標");
+          MessageManager.AddMessage("請選擇正確的目標");
           GameConstants.playerStatus = GameConstants.PlayerStatus.DoingNothing;
         }
       }
@@ -115,26 +123,26 @@ public partial class Game : MonoBehaviour {
         if (lastHoverTile.tag == "PlacementTileAvailable" && buildingIndex >= 0) {
           CharacterStats toBuildBuildingStat = buildingList[buildingIndex].GetComponent<CharacterStats>();
           if (money >= toBuildBuildingStat.Cost && nowBuildingNumber < maxBuildingNumber) {
-            newBuildingGameObject = Instantiate(buildingList[buildingIndex], lastHoverTile.transform.position + new Vector3(0, 1, 0), Quaternion.identity) as GameObject;
+            newBuilding = Instantiate(buildingList[buildingIndex], lastHoverTile.transform.position + new Vector3(0, 1, 0), Quaternion.identity) as GameObject;
             
             AudioManager.PlayAudioClip(buildSound);
 
-            newBuildingGameObject.GetComponent<CharacterStats>().TileOccupied = lastHoverTile;
+            newBuilding.GetComponent<CharacterStats>().TileOccupied = lastHoverTile;
             lastHoverTile.tag = "PlacementTileOccupied";
 
             money -= toBuildBuildingStat.Cost;
             nowBuildingNumber++;
 
             lastHoverTile.GetComponent<Renderer>().enabled = false;
-            //ShowMessage("建造完成 : " + newBuilding.tag);
+            MessageManager.AddMessage("建造完成 : " + newBuilding.tag);
           } else {
             if (money < toBuildBuildingStat.Cost) {
               AudioManager.PlayAudioClip(errorSound);
-              //ShowMessage("需要更多金錢");
+              MessageManager.AddMessage("需要更多金錢");
             }
             if (nowBuildingNumber >= maxBuildingNumber) {
               AudioManager.PlayAudioClip(errorSound);
-              //ShowMessage("機械數量超過上限");
+              MessageManager.AddMessage("機械數量超過上限");
             }
           }
         }
@@ -165,12 +173,12 @@ public partial class Game : MonoBehaviour {
     }
 
     // Upgrade
-    if (Input.GetKeyDown(KeyCode.U)/* && !isFinished && upgradeable */&& selectedBuilding != null) {
-      /*
-      if (selectedBuilding.GetComponents<CharacterStats>().nextLevel != null) {
-        Upgrade();
+    if (Input.GetKeyDown(KeyCode.U)) {
+      if (selectedBuilding != null && HasTechnology(GameConstants.TechnologyID.Upgrade)) {
+        if (selectedBuilding.GetComponent<CharacterStats>().NextLevel != null) {
+          Upgrade();
+        }
       }
-      */
     }
     
     if (Input.GetKeyDown(KeyCode.B)) {
@@ -191,7 +199,7 @@ public partial class Game : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.Keypad1 + i) || Input.GetKeyUp(KeyCode.Alpha1 + i)) {
           AudioManager.PlayAudioClip(buttonSound);
           if (buildingIndex != i) { // Prevent multiple click
- //           ShowMessage("請選擇放置區域");
+            MessageManager.AddMessage("請選擇放置區域");
             buildingIndex = i;
           }
         }
@@ -230,8 +238,27 @@ public partial class Game : MonoBehaviour {
     UpdateTilesMesh();
   }
 
-  void Upgrage() {
+  void Upgrade() {
+    GameObject newBuilding = selectedBuilding.GetComponent<CharacterStats>().NextLevel;
+    int upgradeCost = newBuilding.GetComponent<CharacterStats>().Cost - selectedBuilding.GetComponent<CharacterStats>().Cost;
+    if (money >= upgradeCost) {
+      MessageManager.AddMessage("升級完成 : " + selectedBuilding.tag);
+      AudioManager.PlayAudioClip(researchSound);
 
+      money -= upgradeCost;
+
+      newBuilding.GetComponent<CharacterStats>().TileOccupied = selectedBuilding.GetComponent<CharacterStats>().TileOccupied;
+      newBuilding.GetComponent<CharacterStats>().UnitKilled = selectedBuilding.GetComponent<CharacterStats>().UnitKilled;
+      newBuilding = Instantiate(newBuilding, selectedBuilding.transform.position, selectedBuilding.transform.rotation) as GameObject;
+
+      Destroy(selectedBuilding.gameObject);
+
+      selectedBuilding = newBuilding;
+      selectedBuilding.GetComponent<RangeDisplayer>().enabled = true;
+    } else {
+      AudioManager.PlayAudioClip(errorSound);
+      MessageManager.AddMessage("需要更多金錢");
+    }
   }
 
   void Research() {
@@ -250,6 +277,10 @@ public partial class Game : MonoBehaviour {
     }
 
     UpdateTilesMesh();
+  }
+
+  public bool HasTechnology(GameConstants.TechnologyID technologyID) {
+    return technologyManager.HasTechnology(technologyID);
   }
 
   void UpdateTilesMesh() {

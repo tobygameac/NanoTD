@@ -19,7 +19,6 @@ public class LaserCannon : MonoBehaviour {
   public Transform turretBall;
 
   private float nextFireTime;
-  private float nextTargetTime;
 
   private Transform target;
 
@@ -32,7 +31,7 @@ public class LaserCannon : MonoBehaviour {
 
     target = null;
 
-    nextTargetTime = nextFireTime = Time.time;
+    nextFireTime = Time.time;
   }
 
   void Update() {

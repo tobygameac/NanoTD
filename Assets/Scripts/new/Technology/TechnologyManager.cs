@@ -12,12 +12,20 @@ public class TechnologyManager {
     }
   }
 
+  private List<Technology> newTechnology;
+  public List<Technology> NewTechnology {
+    get {
+      return newTechnology;
+    }
+  }
+
   private bool[] addedToAvailableTechnology;
   private bool[] researchedTechnology;
 
   public TechnologyManager() {
     technologyList = new List<Technology>();
     availableTechnology = new List<Technology>();
+    newTechnology = new List<Technology>();
     addedToAvailableTechnology = new bool[Enum.GetNames(typeof(GameConstants.TechnologyID)).Length];
     researchedTechnology = new bool[Enum.GetNames(typeof(GameConstants.TechnologyID)).Length];
   }
@@ -61,15 +69,17 @@ public class TechnologyManager {
     UpdateAvailableTechnologyList();
   }
 
-  public bool hasTechnology(GameConstants.TechnologyID technologyID) {
+  public bool HasTechnology(GameConstants.TechnologyID technologyID) {
     return researchedTechnology[(int)technologyID];
   }
 
   private void UpdateAvailableTechnologyList() {
+    newTechnology.Clear();
     for (int i = 0; i < technologyList.Count; ++i) {
       if (!researchedTechnology[(int)technologyList[i].ID] && !addedToAvailableTechnology[(int)technologyList[i].ID] && !StillRequireOtherTechnology(technologyList[i])) {
         addedToAvailableTechnology[(int)technologyList[i].ID] = true;
         availableTechnology.Add(technologyList[i]);
+        newTechnology.Add(technologyList[i]);
       }
     }
   }
