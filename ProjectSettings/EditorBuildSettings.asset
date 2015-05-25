@@ -25,3 +25,5 @@ EditorBuildSettings:
     path: Assets/Scenes/Tutorial.unity
   - enabled: 0
     path: Assets/Scenes/Demo.unity
+  - enabled: 0
+    path: Assets/Scenes/RefactoringTest.unity

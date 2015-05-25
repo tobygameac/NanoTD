@@ -31,21 +31,21 @@ public class TechnologyManager {
   }
 
   public void Initiate() {
-    technologyList.Add(new Technology(GameConstants.TechnologyID.Upgrade, "升級技術", 300));
-    technologyList.Add(new Technology(GameConstants.TechnologyID.SelfLearning, "自我學習", 500));
-    technologyList.Add(new Technology(GameConstants.TechnologyID.Combinate, "組合技術", 2000,
-        new GameConstants.TechnologyID[]{GameConstants.TechnologyID.Upgrade
+    technologyList.Add(new Technology(GameConstants.TechnologyID.UPGRADE, 300));
+    technologyList.Add(new Technology(GameConstants.TechnologyID.SELF_LEARNING, 500));
+    technologyList.Add(new Technology(GameConstants.TechnologyID.COMBINATE, 2000,
+        new GameConstants.TechnologyID[]{GameConstants.TechnologyID.UPGRADE
       }
     ));
-    technologyList.Add(new Technology(GameConstants.TechnologyID.SelfHealing, "自癒", 1500,
+    technologyList.Add(new Technology(GameConstants.TechnologyID.SELF_HEALING, 1500,
       new GameConstants.TechnologyID[]{
-        GameConstants.TechnologyID.SelfLearning
+        GameConstants.TechnologyID.SELF_LEARNING
       }
     ));
-    technologyList.Add(new Technology(GameConstants.TechnologyID.AdditionalBuildingNumber, "額外機械數量", 5000, true,
+    technologyList.Add(new Technology(GameConstants.TechnologyID.ADDITIONAL_BUILDING_NUMBER, 5000, true,
       new GameConstants.TechnologyID[]{
-        GameConstants.TechnologyID.Combinate,
-        GameConstants.TechnologyID.SelfHealing
+        GameConstants.TechnologyID.COMBINATE,
+        GameConstants.TechnologyID.SELF_HEALING
       }
     ));
 

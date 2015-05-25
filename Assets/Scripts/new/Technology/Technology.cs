@@ -10,7 +10,6 @@ public class Technology {
     }
   }
 
-  [SerializeField]
   private string _name;
   public string Name {
     get {
@@ -42,12 +41,12 @@ public class Technology {
     }
   }
 
-  public Technology(GameConstants.TechnologyID id, string name, int cost, GameConstants.TechnologyID[] requiredTechnology) : this(id, name, cost, false, requiredTechnology) {
+  public Technology(GameConstants.TechnologyID id, int cost, GameConstants.TechnologyID[] requiredTechnology) : this(id, cost, false, requiredTechnology) {
   }
 
-  public Technology(GameConstants.TechnologyID id, string name, int cost, bool repeatable = false, GameConstants.TechnologyID[] requiredTechnology = null) {
+  public Technology(GameConstants.TechnologyID id, int cost, bool repeatable = false, GameConstants.TechnologyID[] requiredTechnology = null) {
     _id = id;
-    _name = name;
+    _name = GameConstants.NameOfTechnologyID[(int)id];
     _cost = cost;
     _repeatable = repeatable;
     _requiredTechnology = requiredTechnology;

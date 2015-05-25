@@ -4,6 +4,22 @@ using System.Collections;
 public class CharacterStats : MonoBehaviour {
 
   [SerializeField]
+  private GameConstants.BuildingID _buildingID;
+  public GameConstants.BuildingID BuildingID {
+    get {
+      return _buildingID;
+    }
+  }
+
+  [SerializeField]
+  private GameConstants.EnemyID _enemyID;
+  public GameConstants.EnemyID EnemyID {
+    get {
+      return _enemyID;
+    }
+  }
+
+  [SerializeField]
   private float _currentHP;
   public float CurrentHP {
     get {
