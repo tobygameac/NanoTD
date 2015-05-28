@@ -50,7 +50,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &179128
 GameObject:
   m_ObjectHideFlags: 1
@@ -308,10 +308,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72c2f4245947a8f44bc322d55a27df0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rangeDisplayer: {fileID: 0}
   _buildingID: 0
   _enemyID: 0
-  _currentHP: 100
-  _maxHP: 100
+  _currentHP: 20
+  _maxHP: 20
   _cost: 10
   _attackingRange: 0
   _nextLevel: {fileID: 0}
