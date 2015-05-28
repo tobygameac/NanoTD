@@ -1,7 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class CharacterStats : MonoBehaviour {
+
+  public GameObject rangeDisplayer;
 
   [SerializeField]
   private GameConstants.BuildingID _buildingID;
@@ -102,6 +105,28 @@ public class CharacterStats : MonoBehaviour {
     }
     set {
       _damage = value;
+    }
+  }
+
+  [SerializeField]
+  private float _movingSpeed;
+  public float MovingSpeed {
+    get {
+      return _movingSpeed;
+    }
+    set {
+      _movingSpeed = value;
+    }
+  }
+
+  [SerializeField]
+  private List<Vector3> _path;
+  public List<Vector3> Path {
+    get {
+      return _path;
+    }
+    set {
+      _path = value;
     }
   }
 

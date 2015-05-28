@@ -7,6 +7,11 @@ public partial class Game : MonoBehaviour {
 
   [SerializeField]
   private GameConstants.GameMode gameMode;
+  public GameConstants.GameMode GameMode {
+    get {
+      return gameMode;
+    }
+  }
 
   // Audio
   public AudioClip buttonSound;
@@ -37,7 +42,13 @@ public partial class Game : MonoBehaviour {
       return _selectedBuilding;
     }
     set {
+      if (_selectedBuilding != null) {
+        _selectedBuilding.GetComponent<CharacterStats>().rangeDisplayer.SetActive(false);
+      }
       _selectedBuilding = value;
+      if (_selectedBuilding != null) {
+        _selectedBuilding.GetComponent<CharacterStats>().rangeDisplayer.SetActive(true);
+      }
       buildingStatsCanvas.SetActive(value != null);
     }
   }
@@ -91,6 +102,15 @@ public partial class Game : MonoBehaviour {
     }
   }
 
+  public bool HasTechnology(GameConstants.TechnologyID technologyID) {
+    return technologyManager.HasTechnology(technologyID);
+  }
+
+  public void AddMoney(int moneyToAdd) {
+    money += moneyToAdd;
+  }
+
+
   void Start() {
     InitializeGame();
   }
@@ -100,7 +120,7 @@ public partial class Game : MonoBehaviour {
     RaycastHit raycastHit;
 
     // Hover
-    if (PlayerState == GameConstants.PlayerState.VIEWING_BUILDING_LIST) {
+    if (playerState == GameConstants.PlayerState.VIEWING_BUILDING_LIST) {
       lastHoverBuilding = null;
       if (Physics.Raycast(ray, out raycastHit, 1000, placementLayerMask)) {
         if (lastHoverTile) {
@@ -135,25 +155,18 @@ public partial class Game : MonoBehaviour {
     // Left click
     if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject()) {
       if (lastHoverBuilding != null) {
-        if (PlayerState == GameConstants.PlayerState.COMBINATING_BUILDINGS) {
+        if (playerState == GameConstants.PlayerState.COMBINATING_BUILDINGS) {
         }
-        if (PlayerState == GameConstants.PlayerState.IDLE) {
-          if (selectedBuilding) {
-            selectedBuilding.GetComponent<RangeDisplayer>().enabled = false;
-          }
+        if (playerState == GameConstants.PlayerState.IDLE) {
           selectedBuilding = lastHoverBuilding;
-          selectedBuilding.GetComponent<RangeDisplayer>().enabled = true;
         }
       }
       if (lastHoverBuilding == null) {
-        if (selectedBuilding) {
-          selectedBuilding.GetComponent<RangeDisplayer>().enabled = false;
-        }
         lastHoverBuilding = selectedBuilding = null;
-        if (PlayerState == GameConstants.PlayerState.COMBINATING_BUILDINGS) {
+        if (playerState == GameConstants.PlayerState.COMBINATING_BUILDINGS) {
           AudioManager.PlayAudioClip(errorSound);
           MessageManager.AddMessage("請選擇正確的目標");
-          PlayerState = GameConstants.PlayerState.IDLE;
+          playerState = GameConstants.PlayerState.IDLE;
         }
       }
       if (lastHoverTile != null) {
@@ -191,18 +204,17 @@ public partial class Game : MonoBehaviour {
 
     // Esc
     if (Input.GetKeyDown(KeyCode.Escape)) {
-      if (PlayerState == GameConstants.PlayerState.VIEWING_BUILDING_LIST) {
-        PlayerState = GameConstants.PlayerState.IDLE;
+      if (playerState == GameConstants.PlayerState.VIEWING_BUILDING_LIST) {
+        playerState = GameConstants.PlayerState.IDLE;
         viewingBuildingIndex = -1;
         UpdateTilesMesh();
-      } else if (PlayerState == GameConstants.PlayerState.VIEWING_TECHNOLOGY_LIST) {
-        PlayerState = GameConstants.PlayerState.IDLE;
+      } else if (playerState == GameConstants.PlayerState.VIEWING_TECHNOLOGY_LIST) {
+        playerState = GameConstants.PlayerState.IDLE;
         viewingTechnologyIndex = -1;
       } else if (selectedBuilding != null) {
-        if (PlayerState == GameConstants.PlayerState.COMBINATING_BUILDINGS) {
-          PlayerState = GameConstants.PlayerState.IDLE;
+        if (playerState == GameConstants.PlayerState.COMBINATING_BUILDINGS) {
+          playerState = GameConstants.PlayerState.IDLE;
         }
-        selectedBuilding.GetComponent<RangeDisplayer>().enabled = false;
         lastHoverBuilding = selectedBuilding = null;
       } else {
         OnPauseButtonClick();
@@ -219,13 +231,13 @@ public partial class Game : MonoBehaviour {
     }
     
     if (Input.GetKeyDown(KeyCode.B)) {
-      if (PlayerState == GameConstants.PlayerState.IDLE || PlayerState == GameConstants.PlayerState.VIEWING_BUILDING_LIST) {
+      if (playerState == GameConstants.PlayerState.IDLE || playerState == GameConstants.PlayerState.VIEWING_BUILDING_LIST) {
         OnViewBuildingListButtonClick();
       }
     }
 
     if (Input.GetKeyDown(KeyCode.R)) {
-      if (PlayerState == GameConstants.PlayerState.IDLE || PlayerState == GameConstants.PlayerState.VIEWING_TECHNOLOGY_LIST) {
+      if (playerState == GameConstants.PlayerState.IDLE || playerState == GameConstants.PlayerState.VIEWING_TECHNOLOGY_LIST) {
         OnViewTechnologyListButtonClick();
       }
     }
@@ -235,13 +247,13 @@ public partial class Game : MonoBehaviour {
       Combinate();
     }
 
-    if (PlayerState == GameConstants.PlayerState.VIEWING_BUILDING_LIST) {
+    if (playerState == GameConstants.PlayerState.VIEWING_BUILDING_LIST) {
       for (int i = 0; i < buildingList.Count; ++i) {
         if (Input.GetKeyDown(KeyCode.Keypad1 + i) || Input.GetKeyUp(KeyCode.Alpha1 + i)) {
           OnBuildingListButtonClick(i);
         }
       }
-    } else if (PlayerState == GameConstants.PlayerState.VIEWING_TECHNOLOGY_LIST) {
+    } else if (playerState == GameConstants.PlayerState.VIEWING_TECHNOLOGY_LIST) {
       for (int i = 0; i < technologyManager.AvailableTechnology.Count; ++i) {
         if (Input.GetKeyDown(KeyCode.Keypad1 + i) || Input.GetKeyUp(KeyCode.Alpha1 + i)) {
           OnTechnologyListButtonClick(i);
@@ -251,47 +263,39 @@ public partial class Game : MonoBehaviour {
 
   }
 
-  void ViewBuildingList() {
-    if (selectedBuilding != null) {
-      selectedBuilding.GetComponent<RangeDisplayer>().enabled = false;
-    }
-    
+  private void ViewBuildingList() {
     lastHoverBuilding = selectedBuilding = null;
     viewingBuildingIndex = viewingTechnologyIndex = -1;
     
-    if (PlayerState == GameConstants.PlayerState.VIEWING_BUILDING_LIST) {
-      PlayerState = GameConstants.PlayerState.IDLE;
+    if (playerState == GameConstants.PlayerState.VIEWING_BUILDING_LIST) {
+      playerState = GameConstants.PlayerState.IDLE;
     } else {
-      PlayerState = GameConstants.PlayerState.VIEWING_BUILDING_LIST;
+      playerState = GameConstants.PlayerState.VIEWING_BUILDING_LIST;
     }
 
     UpdateTilesMesh();
   }
 
-  void ViewTechnologyList() {
-    if (selectedBuilding != null) {
-      selectedBuilding.GetComponent<RangeDisplayer>().enabled = false;
-    }
-
+  private void ViewTechnologyList() {
     lastHoverBuilding = selectedBuilding = null;
     viewingBuildingIndex = viewingTechnologyIndex = -1;
 
-    if (PlayerState == GameConstants.PlayerState.VIEWING_TECHNOLOGY_LIST) {
-      PlayerState = GameConstants.PlayerState.IDLE;
+    if (playerState == GameConstants.PlayerState.VIEWING_TECHNOLOGY_LIST) {
+      playerState = GameConstants.PlayerState.IDLE;
     } else {
-      PlayerState = GameConstants.PlayerState.VIEWING_TECHNOLOGY_LIST;
+      playerState = GameConstants.PlayerState.VIEWING_TECHNOLOGY_LIST;
     }
 
     UpdateTilesMesh();
   }
 
-  void Combinate() {
-    PlayerState = GameConstants.PlayerState.COMBINATING_BUILDINGS;
+  private void Combinate() {
+    playerState = GameConstants.PlayerState.COMBINATING_BUILDINGS;
 
     UpdateTilesMesh();
   }
 
-  void Upgrade() {
+  private void Upgrade() {
 
     if (selectedBuilding.GetComponent<CharacterStats>().NextLevel == null) {
       return;
@@ -300,48 +304,56 @@ public partial class Game : MonoBehaviour {
     GameObject newBuilding = selectedBuilding.GetComponent<CharacterStats>().NextLevel;
     int upgradeCost = newBuilding.GetComponent<CharacterStats>().Cost - selectedBuilding.GetComponent<CharacterStats>().Cost;
     if (money >= upgradeCost) {
-      MessageManager.AddMessage("升級完成 : " + selectedBuilding.tag);
+      MessageManager.AddMessage("升級完成 : " + GameConstants.NameOfBuildingID[(int)selectedBuilding.GetComponent<CharacterStats>().BuildingID]);
       AudioManager.PlayAudioClip(researchSound);
 
       money -= upgradeCost;
 
+      newBuilding = Instantiate(newBuilding, selectedBuilding.transform.position, selectedBuilding.transform.rotation) as GameObject;
+
       newBuilding.GetComponent<CharacterStats>().TileOccupied = selectedBuilding.GetComponent<CharacterStats>().TileOccupied;
       newBuilding.GetComponent<CharacterStats>().UnitKilled = selectedBuilding.GetComponent<CharacterStats>().UnitKilled;
-      newBuilding = Instantiate(newBuilding, selectedBuilding.transform.position, selectedBuilding.transform.rotation) as GameObject;
 
       Destroy(selectedBuilding.gameObject);
 
       selectedBuilding = newBuilding;
-      selectedBuilding.GetComponent<RangeDisplayer>().enabled = true;
     } else {
       AudioManager.PlayAudioClip(errorSound);
       MessageManager.AddMessage("需要更多金錢");
     }
   }
 
-  void Pause() {
-    if (GameState == GameConstants.GameState.PAUSE_MENU) {
-      GameState = GameConstants.GameState.PLAYING;
+  private void Sell() {
+    MessageManager.AddMessage("拆除 : " + GameConstants.NameOfBuildingID[(int)selectedBuilding.GetComponent<CharacterStats>().BuildingID]);
+    int remainingMoney = (int)(selectedBuilding.GetComponent<CharacterStats>().Cost * 0.8);
+    MessageManager.AddMessage("取回 : " + remainingMoney);
+    money += remainingMoney;
+    nowBuildingNumber--;
+    selectedBuilding.GetComponent<CharacterStats>().TileOccupied.tag = "PlacementTileAvailable";
+    Destroy(selectedBuilding.gameObject);
+
+    selectedBuilding = null;
+  }
+
+  private void Pause() {
+    if (systemState == GameConstants.SystemState.PAUSE_MENU) {
+      systemState = GameConstants.SystemState.PLAYING;
       Time.timeScale = 1;
     } else {
-      GameState = GameConstants.GameState.PAUSE_MENU;
+      systemState = GameConstants.SystemState.PAUSE_MENU;
       Time.timeScale = 0;
     }
   }
 
-  void BackToGame() {
-    GameState = GameConstants.GameState.PLAYING;
+  private void BackToGame() {
+    systemState = GameConstants.SystemState.PLAYING;
     Time.timeScale = 1;
   }
 
-  public bool HasTechnology(GameConstants.TechnologyID technologyID) {
-    return technologyManager.HasTechnology(technologyID);
-  }
-
-  void UpdateTilesMesh() {
+  private void UpdateTilesMesh() {
     for (int i = 0; i < placementTilesRoot.childCount; ++i) {
       Transform tile = placementTilesRoot.GetChild(i);
-      if (PlayerState == GameConstants.PlayerState.VIEWING_BUILDING_LIST) {
+      if (playerState == GameConstants.PlayerState.VIEWING_BUILDING_LIST) {
         if (tile.tag == "PlacementTileAvailable") { // Only show the empty plane
           tile.gameObject.GetComponent<Renderer>().enabled = true;
         }
@@ -351,7 +363,7 @@ public partial class Game : MonoBehaviour {
     }
   }
 
-  void InitializeGame() {
+  private void InitializeGame() {
     Time.timeScale = 0;
 
     AudioManager.Volume = 0.5f;

@@ -12,13 +12,13 @@ public class CameraController : MonoBehaviour {
   public int maxEdgeDistanceToMove = 5;
   public float edgeMovingModifier = 0.5f;
 
-  public Vector2 minBoundPostion;
-  public Vector2 maxBoundPostion;
+  public Vector3 minBoundPostion;
+  public Vector3 maxBoundPostion;
 
   void Update () {
     
     float deltaX = Input.GetAxis("Horizontal") * Time.deltaTime * speed;
-    float deltaY = Input.GetAxis("Vertical") * Time.deltaTime * speed;
+    float deltaZ = Input.GetAxis("Vertical") * Time.deltaTime * speed;
     
     // Moving when mouse is close to the edge of the screen
     
@@ -27,7 +27,7 @@ public class CameraController : MonoBehaviour {
     }
 
     if (Input.mousePosition.y <= maxEdgeDistanceToMove) {
-      deltaY = -edgeMovingModifier * speed * Time.deltaTime;
+      deltaZ = -edgeMovingModifier * speed * Time.deltaTime;
     }
 
     if (Input.mousePosition.x >= Screen.width - maxEdgeDistanceToMove) {
@@ -35,20 +35,15 @@ public class CameraController : MonoBehaviour {
     }
 
     if (Input.mousePosition.y >= Screen.height - maxEdgeDistanceToMove) {
-      deltaY = edgeMovingModifier * speed * Time.deltaTime;
+      deltaZ = edgeMovingModifier * speed * Time.deltaTime;
     }
 
-    // Boundary
+    Vector3 newPosition = transform.position + new Vector3(deltaX, 0, deltaZ);
 
-    Vector3 newPosition = transform.position + new Vector3(deltaX, deltaY, 0);
+    newPosition = Vector3.Max(newPosition, minBoundPostion);
+    newPosition = Vector3.Min(newPosition, maxBoundPostion);
 
-    newPosition.x = Mathf.Max(newPosition.x, minBoundPostion.x);
-    newPosition.y = Mathf.Max(newPosition.y, minBoundPostion.y);
-
-    newPosition.x = Mathf.Min(newPosition.x, maxBoundPostion.x);
-    newPosition.y = Mathf.Min(newPosition.y, maxBoundPostion.y);
-
-    Camera.main.transform.Translate(newPosition - transform.position);
+    transform.position = newPosition;
 
     // Scroll
 

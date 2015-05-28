@@ -6,6 +6,8 @@ public class UpgradeButtonHandler : MonoBehaviour {
 
   private Game game;
   private Button button;
+  private Text buttonText;
+  private string buttonOriginalText;
   private bool hasUpgradeTechnology;
   
   private GameObject lastBuilding;
@@ -16,6 +18,8 @@ public class UpgradeButtonHandler : MonoBehaviour {
     game = Camera.main.GetComponent<Game>();
     button = GetComponent<Button>();
     button.interactable = false;
+    buttonText = button.transform.GetChild(0).GetComponent<Text>();
+    buttonOriginalText = buttonText.text;
 
     hasUpgradeTechnology = false;
 
@@ -26,6 +30,7 @@ public class UpgradeButtonHandler : MonoBehaviour {
 
     if (!hasUpgradeTechnology) {
       hasUpgradeTechnology = game.HasTechnology(GameConstants.TechnologyID.UPGRADE);
+      return;
     }
 
     GameObject building = game.SelectedBuilding;
@@ -33,17 +38,22 @@ public class UpgradeButtonHandler : MonoBehaviour {
     if (building != null && building != lastBuilding) {
       characterStats = building.GetComponent<CharacterStats>();
       lastBuilding = building;
+
+      if (characterStats.NextLevel != null) {
+        button.interactable = hasUpgradeTechnology;
+        int nextLevelCost = characterStats.NextLevel.GetComponent<CharacterStats>().Cost;
+        buttonText.text = buttonOriginalText + "(" + (nextLevelCost - characterStats.Cost) + ")";
+      } else {
+        button.interactable = false;
+        buttonText.text = buttonOriginalText;
+      }
     }
 
     if (building == null) {
+      buttonText.text = buttonOriginalText;
       return;
     }
 
-    if (characterStats.NextLevel != null) {
-      button.interactable = hasUpgradeTechnology;
-    } else {
-      button.interactable = false;
-    }
   }
 
 }

@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using System.Collections.Generic;
 
 public partial class Game : MonoBehaviour {
   
@@ -17,6 +18,9 @@ public partial class Game : MonoBehaviour {
   public GameObject buildingStatsCanvas;
 
   public GameObject buttonTemplate;
+
+  private List<GameObject> buildingButtons;
+  private List<GameObject> technologyButtons;
 
   public void OnViewBuildingListButtonClick() {
     AudioManager.PlayAudioClip(buttonSound);
@@ -41,6 +45,8 @@ public partial class Game : MonoBehaviour {
       }
 
       viewingTechnologyIndex = -1;
+
+      InstantiateTechnologyButton();
     } else {
       AudioManager.PlayAudioClip(errorSound);
       MessageManager.AddMessage("需要更多金錢");
@@ -48,8 +54,13 @@ public partial class Game : MonoBehaviour {
   }
 
   public void OnUpgradeButtonClick() {
-    AudioManager.PlayAudioClip(buttonSound);
+    AudioManager.PlayAudioClip(researchSound);
     Upgrade();
+  }
+
+  public void OnSellButtonClick() {
+    AudioManager.PlayAudioClip(sellSound);
+    Sell();
   }
 
   public void OnPauseButtonClick() {
@@ -77,6 +88,15 @@ public partial class Game : MonoBehaviour {
 
   private void InstantiateBuildingButton() {
 
+    if (buildingButtons == null) {
+      buildingButtons = new List<GameObject>();
+    } else {
+      for (int i = 0; i < buildingButtons.Count; ++i) {
+        Destroy(buildingButtons[i]);
+      }
+      buildingButtons.Clear();
+    }
+
     for (int i = 0; i < buildingList.Count; ++i) {
       GameObject button = Instantiate(buttonTemplate) as GameObject;
       button.transform.SetParent(buildingListCanvas.transform);
@@ -89,11 +109,22 @@ public partial class Game : MonoBehaviour {
 
       string buildingName = GameConstants.NameOfBuildingID[(int)buildingList[i].GetComponent<CharacterStats>().BuildingID];
       button.transform.GetChild(0).GetComponent<Text>().text = buildingName + "(" + (i + 1) + ")";
+
+      buildingButtons.Add(button);
     }
 
   }
 
   private void InstantiateTechnologyButton() {
+
+    if (technologyButtons == null) {
+      technologyButtons = new List<GameObject>();
+    } else {
+      for (int i = 0; i < technologyButtons.Count; ++i) {
+        Destroy(technologyButtons[i]);
+      }
+      technologyButtons.Clear();
+    }
 
     for (int i = 0; i < technologyManager.AvailableTechnology.Count; ++i) {
       GameObject button = Instantiate(buttonTemplate) as GameObject;
@@ -107,15 +138,17 @@ public partial class Game : MonoBehaviour {
 
       string technologyName = technologyManager.AvailableTechnology[i].Name;
       button.transform.GetChild(0).GetComponent<Text>().text = technologyName + "(" + (i + 1) + ")";
+
+      technologyButtons.Add(button);
     }
   }
 
   private void UpdateCanvas() {
-    basicButtonCanvas.SetActive(PlayerState == GameConstants.PlayerState.IDLE && GameState == GameConstants.GameState.PLAYING);
-    buildingListCanvas.SetActive(PlayerState == GameConstants.PlayerState.VIEWING_BUILDING_LIST && GameState == GameConstants.GameState.PLAYING);
-    techonologyListCanvas.SetActive(PlayerState == GameConstants.PlayerState.VIEWING_TECHNOLOGY_LIST && GameState == GameConstants.GameState.PLAYING);
-    pauseMenuCanvas.SetActive(GameState == GameConstants.GameState.PAUSE_MENU);
-    audioMenuCanvas.SetActive(GameState == GameConstants.GameState.AUDIO_MENU);
+    basicButtonCanvas.SetActive(playerState == GameConstants.PlayerState.IDLE && systemState == GameConstants.SystemState.PLAYING);
+    buildingListCanvas.SetActive(playerState == GameConstants.PlayerState.VIEWING_BUILDING_LIST && systemState == GameConstants.SystemState.PLAYING);
+    techonologyListCanvas.SetActive(playerState == GameConstants.PlayerState.VIEWING_TECHNOLOGY_LIST && systemState == GameConstants.SystemState.PLAYING);
+    pauseMenuCanvas.SetActive(systemState == GameConstants.SystemState.PAUSE_MENU);
+    audioMenuCanvas.SetActive(systemState == GameConstants.SystemState.AUDIO_MENU);
   }
 
   private void InitializeUI() {
@@ -140,16 +173,16 @@ public partial class Game : MonoBehaviour {
     GUI.skin = gameGUISkin;
     GUI.depth = 1;
     
-    if (PlayerState != GameConstants.PlayerState.IDLE || GameState != GameConstants.GameState.PLAYING) {
+    if (PlayerState != GameConstants.PlayerState.IDLE || SystemState != GameConstants.SystemState.PLAYING) {
       GUI.DrawTexture(new Rect(0, 0, Screen.width, Screen.height), maskTexture, ScaleMode.StretchToFill, true, 10);
     }
-    if (GameState == GameConstants.GameState.FINISHED || GameState == GameConstants.GameState.LOSED) {
+    if (SystemState == GameConstants.SystemState.FINISHED || SystemState == GameConstants.SystemState.LOSED) {
       GUI.DrawTexture(new Rect(0, 0, Screen.width, Screen.height), nurseCheer, ScaleMode.StretchToFill, true, 10);
       return;
     }
     GUI.DrawTexture(new Rect(0, 0, Screen.width, Screen.height), statsHUD, ScaleMode.StretchToFill, true, 10);
     GUI.DrawTexture(new Rect(0, 0, Screen.width, Screen.height), buildingHUD, ScaleMode.StretchToFill, true, 10);
-    if (GameState == GameConstants.GameState.PAUSE_MENU) {
+    if (SystemState == GameConstants.SystemState.PAUSE_MENU) {
       Time.timeScale = 0;
       // Menu
       GUI.color = Color.white;
@@ -183,7 +216,7 @@ public partial class Game : MonoBehaviour {
         if (GUI.Button(new Rect((menuWidth - labelWidth) / 2, labelHeight * 2, labelWidth, labelHeight), "返回")) {
           AudioManager.PlayAudioClip(buttonSound);
           Time.timeScale = 1;
-          GameState = GameConstants.GameState.PLAYING;
+          SystemState = GameConstants.SystemState.PLAYING;
         }
         if (GUI.Button(new Rect((menuWidth - labelWidth) / 2, labelHeight * 3, labelWidth, labelHeight), "離開")) {
           AudioManager.PlayAudioClip(buttonSound);

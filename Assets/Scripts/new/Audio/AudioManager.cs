@@ -5,6 +5,18 @@ public class AudioManager : MonoBehaviour {
   
   private static AudioManager instance;
 
+  public static AudioManager GetInstance() {
+    return instance;
+  }
+
+  void Awake() {
+    if (instance != null && instance != this) {
+      Destroy(this.gameObject);
+      return;
+    }
+    instance = this;
+  }
+
   private static float _volume;
   public static float Volume {
     get {
@@ -17,18 +29,6 @@ public class AudioManager : MonoBehaviour {
     }
   }
   
-  void Awake() {
-    if (instance != null && instance != this) {
-      Destroy(this.gameObject);
-      return;
-    }
-    instance = this;
-  }
-  
-  public static AudioManager GetInstance() {
-    return instance;
-  }
-
   public static void PlayAudioClip(AudioClip audioClip) {
     PlayAudioClip(audioClip, 1.0f);
   }

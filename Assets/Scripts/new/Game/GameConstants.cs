@@ -8,12 +8,10 @@ public static class GameConstants {
     SURVIVAL_BOSS,
   }
 
-  public enum GameState {
+  public enum SystemState {
     PLAYING,
     PAUSE_MENU,
-    AUDIO_MENU,
-    FINISHED,
-    LOSED
+    AUDIO_MENU
   }
 
   public enum PlayerState {
@@ -22,6 +20,13 @@ public static class GameConstants {
     VIEWING_BUILDING_LIST,
     VIEWING_TECHNOLOGY_LIST,
     EXITING
+  }
+
+  public enum GameState {
+    MIDDLE_OF_THE_WAVE,
+    WAIT_FOR_THE_NEXT_WAVE,
+    FINISHED,
+    LOSED
   }
 
   public enum BuildingID {

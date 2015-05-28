@@ -3,8 +3,26 @@ using System.Collections;
 
 public partial class Game : MonoBehaviour {
 
+  private GameConstants.SystemState _systemState;
+  private GameConstants.SystemState systemState {
+    get {
+      return _systemState;
+    }
+    set {
+      _systemState = value;
+
+      UpdateCanvas();
+    }
+  }
+  public GameConstants.SystemState SystemState {
+    get {
+      return _systemState;
+    }
+  }
+
+  /*
   private GameConstants.GameState _gameState;
-  private GameConstants.GameState GameState {
+  private GameConstants.GameState gameState {
     get {
       return _gameState;
     }
@@ -14,9 +32,15 @@ public partial class Game : MonoBehaviour {
       UpdateCanvas();
     }
   }
+  public GameConstants.GameState GameState {
+    get {
+      return _gameState;
+    }
+  }
+  */
 
   private GameConstants.PlayerState _playerState;
-  private GameConstants.PlayerState PlayerState {
+  private GameConstants.PlayerState playerState {
     get {
       return _playerState;
     }
@@ -24,6 +48,11 @@ public partial class Game : MonoBehaviour {
       _playerState = value;
 
       UpdateCanvas();
+    }
+  }
+  public GameConstants.PlayerState PlayerState {
+    get {
+      return _playerState;
     }
   }
 }
