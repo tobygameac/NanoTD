@@ -3,7 +3,7 @@ using System.Collections;
 
 [RequireComponent (typeof(CharacterStats))]
 [RequireComponent (typeof(SphereCollider))]
-public class LaserCannon : MonoBehaviour {
+public class LaserDevice : MonoBehaviour {
 
   public AudioClip laserSound;
 
@@ -15,7 +15,6 @@ public class LaserCannon : MonoBehaviour {
   private float bonusDamage;
   private float attackingRange;
 
-  public Transform[] muzzles;
   public Transform turretBall;
 
   private float nextFireTime;
@@ -44,8 +43,6 @@ public class LaserCannon : MonoBehaviour {
 
   void Update() {
     if (target != null) {
-      Quaternion desiredRotation = Quaternion.LookRotation(target.position - turretBall.position);
-      turretBall.rotation = Quaternion.Slerp(turretBall.rotation, desiredRotation, Time.deltaTime * turningSpeed);
       if (Time.time >= nextFireTime) {
         FireProjectile();
       }
@@ -75,17 +72,15 @@ public class LaserCannon : MonoBehaviour {
 
     nextFireTime = Time.time + reloadTime;
 
-    for (int i = 0; i < muzzles.Length; ++i) {
-      GameObject laserGameObject = Instantiate(laser, muzzles[i].position, Quaternion.identity) as GameObject;
-      laserGameObject.GetComponent<Laser>().TargetPosition = target.position;
-      CharacterStats targetCharacterStats = target.GetComponent<CharacterStats>();
-      targetCharacterStats.CurrentHP -= (damage + bonusDamage);
-      if (targetCharacterStats.CurrentHP <= 0) {
-        ++characterStats.UnitKilled;
-        if (game.HasTechnology(GameConstants.TechnologyID.SELF_LEARNING)) {
-          bonusDamage += damage * GameConstants.SELF_LEARNING_IMPROVEMENT_PERCENT_PER_KILL;
-        } else {
-        }
+    GameObject laserGameObject = Instantiate(laser, turretBall.position, Quaternion.identity) as GameObject;
+    laserGameObject.GetComponent<Laser>().TargetPosition = target.position;
+    CharacterStats targetCharacterStats = target.GetComponent<CharacterStats>();
+    targetCharacterStats.CurrentHP -= (damage + bonusDamage);
+    if (targetCharacterStats.CurrentHP <= 0) {
+      ++characterStats.UnitKilled;
+      if (game.HasTechnology(GameConstants.TechnologyID.SELF_LEARNING)) {
+        bonusDamage += damage * GameConstants.SELF_LEARNING_IMPROVEMENT_PERCENT_PER_KILL;
+      } else {
       }
     }
   }

@@ -30,7 +30,7 @@ public static class GameConstants {
   }
 
   public enum BuildingID {
-    TURRET_CANNON,
+    TURRET,
     SLOW_AURA,
     BURNING_DEVICE,
     LASER_DEVICE,
@@ -44,7 +44,7 @@ public static class GameConstants {
     get {
       if (_nameOfBuildingID == null) {
         _nameOfBuildingID = new string[Enum.GetNames(typeof(GameConstants.BuildingID)).Length];
-        _nameOfBuildingID[(int)BuildingID.TURRET_CANNON] = "基礎砲塔";
+        _nameOfBuildingID[(int)BuildingID.TURRET] = "基礎砲塔";
         _nameOfBuildingID[(int)BuildingID.SLOW_AURA] = "緩速光環";
         _nameOfBuildingID[(int)BuildingID.BURNING_DEVICE] = "燃燒裝置";
         _nameOfBuildingID[(int)BuildingID.LASER_DEVICE] = "雷射裝置";
@@ -83,5 +83,7 @@ public static class GameConstants {
       return _nameOfTechnologyID;
     }
   }
+
+  public static readonly float SELF_LEARNING_IMPROVEMENT_PERCENT_PER_KILL = 0.001f;
 
 }

@@ -107,7 +107,7 @@ public partial class Game : MonoBehaviour {
       button.transform.SetParent(buildingListCanvas.transform);
       
       button.GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1);
-      button.GetComponent<RectTransform>().localPosition = new Vector3(-380 + button.GetComponent<RectTransform>().sizeDelta.x * i * 1.1f, -250, 0);
+      button.GetComponent<RectTransform>().localPosition = new Vector3(-380 + button.GetComponent<RectTransform>().sizeDelta.x * i * 1.1f, -160, 0);
       
       int buttonIndex = i; // Delegate is capturing a reference to the variable i
       button.GetComponent<Button>().onClick.AddListener(delegate{OnBuildingListButtonClick(buttonIndex);});
@@ -136,7 +136,7 @@ public partial class Game : MonoBehaviour {
       button.transform.SetParent(techonologyListCanvas.transform);
       
       button.GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1);
-      button.GetComponent<RectTransform>().localPosition = new Vector3(-380 + button.GetComponent<RectTransform>().sizeDelta.x * i * 1.1f, -250, 0);
+      button.GetComponent<RectTransform>().localPosition = new Vector3(-380 + button.GetComponent<RectTransform>().sizeDelta.x * i * 1.1f, -160, 0);
       
       int buttonIndex = i; // Delegate is capturing a reference to the variable i
       button.GetComponent<Button>().onClick.AddListener(delegate{OnTechnologyListButtonClick(buttonIndex);});
@@ -149,7 +149,10 @@ public partial class Game : MonoBehaviour {
   }
 
   private void UpdateCanvas() {
-    basicButtonCanvas.SetActive(playerState == GameConstants.PlayerState.IDLE && systemState == GameConstants.SystemState.PLAYING);
+    basicButtonCanvas.SetActive((playerState == GameConstants.PlayerState.IDLE 
+                              || playerState == GameConstants.PlayerState.VIEWING_BUILDING_LIST
+                              || playerState == GameConstants.PlayerState.VIEWING_TECHNOLOGY_LIST)
+                              && systemState == GameConstants.SystemState.PLAYING);
     buildingListCanvas.SetActive(playerState == GameConstants.PlayerState.VIEWING_BUILDING_LIST && systemState == GameConstants.SystemState.PLAYING);
     techonologyListCanvas.SetActive(playerState == GameConstants.PlayerState.VIEWING_TECHNOLOGY_LIST && systemState == GameConstants.SystemState.PLAYING);
     pauseMenuCanvas.SetActive(systemState == GameConstants.SystemState.PAUSE_MENU);

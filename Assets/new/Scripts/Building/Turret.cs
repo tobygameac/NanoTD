@@ -3,11 +3,11 @@ using System.Collections;
 
 [RequireComponent (typeof(CharacterStats))]
 [RequireComponent (typeof(SphereCollider))]
-public class LaserCannon : MonoBehaviour {
+public class Turret : MonoBehaviour {
 
-  public AudioClip laserSound;
+  public AudioClip projectileSound;
 
-  public GameObject laser;
+  public GameObject projectilePrefab;
   public float reloadTime;
   public float turningSpeed;
 
@@ -45,6 +45,7 @@ public class LaserCannon : MonoBehaviour {
   void Update() {
     if (target != null) {
       Quaternion desiredRotation = Quaternion.LookRotation(target.position - turretBall.position);
+      desiredRotation.eulerAngles = new Vector3(turretBall.eulerAngles.x, desiredRotation.eulerAngles.y,turretBall.eulerAngles.z); // y-axis only
       turretBall.rotation = Quaternion.Slerp(turretBall.rotation, desiredRotation, Time.deltaTime * turningSpeed);
       if (Time.time >= nextFireTime) {
         FireProjectile();
@@ -70,23 +71,29 @@ public class LaserCannon : MonoBehaviour {
     }
   }
 
-  void FireProjectile() {
-    AudioManager.PlayAudioClip(laserSound);
+  public void DealDamage(GameObject enemyGameObject) {
+    CharacterStats enemyCharacterStats = enemyGameObject.GetComponent<CharacterStats>();
+    enemyCharacterStats.CurrentHP -= (damage + bonusDamage);
+    if (enemyCharacterStats.CurrentHP <= 0) {
+      ++characterStats.UnitKilled;
+      if (game.HasTechnology(GameConstants.TechnologyID.SELF_LEARNING)) {
+        bonusDamage += damage * 0.001f;
+      } else {
+      }
+    }
+  }
+
+  private void FireProjectile() {
+    AudioManager.PlayAudioClip(projectileSound);
 
     nextFireTime = Time.time + reloadTime;
 
     for (int i = 0; i < muzzles.Length; ++i) {
-      GameObject laserGameObject = Instantiate(laser, muzzles[i].position, Quaternion.identity) as GameObject;
-      laserGameObject.GetComponent<Laser>().TargetPosition = target.position;
-      CharacterStats targetCharacterStats = target.GetComponent<CharacterStats>();
-      targetCharacterStats.CurrentHP -= (damage + bonusDamage);
-      if (targetCharacterStats.CurrentHP <= 0) {
-        ++characterStats.UnitKilled;
-        if (game.HasTechnology(GameConstants.TechnologyID.SELF_LEARNING)) {
-          bonusDamage += damage * GameConstants.SELF_LEARNING_IMPROVEMENT_PERCENT_PER_KILL;
-        } else {
-        }
-      }
+      GameObject projectileGameObject = Instantiate(projectilePrefab, muzzles[i].position, Quaternion.identity) as GameObject;
+      Projectile projectile = projectileGameObject.GetComponent<Projectile>();
+
+      projectile.SourceTurret = this;
+      projectile.TargetPosition = target.position; 
     }
   }
 }

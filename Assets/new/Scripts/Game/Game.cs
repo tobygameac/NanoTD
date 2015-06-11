@@ -180,7 +180,7 @@ public partial class Game : MonoBehaviour {
         if (lastHoverTile.tag == "PlacementTileAvailable" && viewingBuildingIndex >= 0) {
           CharacterStats toBuildBuildingStat = buildingList[viewingBuildingIndex].GetComponent<CharacterStats>();
           if (money >= toBuildBuildingStat.Cost && currentBuildingNumber < maxBuildingNumber) {
-            newBuilding = Instantiate(buildingList[viewingBuildingIndex], lastHoverTile.transform.position + new Vector3(0, 1, 0), Quaternion.identity) as GameObject;
+            newBuilding = Instantiate(buildingList[viewingBuildingIndex], lastHoverTile.transform.position/* + new Vector3(0, 1, 0) */, Quaternion.identity) as GameObject;
             
             AudioManager.PlayAudioClip(buildSound);
 
@@ -224,7 +224,9 @@ public partial class Game : MonoBehaviour {
         }
         lastHoverBuilding = selectedBuilding = null;
       } else {
+        /*
         OnPauseButtonClick();
+        */
       }
     }
 
@@ -238,13 +240,17 @@ public partial class Game : MonoBehaviour {
     }
     
     if (Input.GetKeyDown(KeyCode.B)) {
-      if (playerState == GameConstants.PlayerState.IDLE || playerState == GameConstants.PlayerState.VIEWING_BUILDING_LIST) {
+      if (playerState == GameConstants.PlayerState.IDLE
+        || playerState == GameConstants.PlayerState.VIEWING_BUILDING_LIST
+        || playerState == GameConstants.PlayerState.VIEWING_TECHNOLOGY_LIST) {
         OnViewBuildingListButtonClick();
       }
     }
 
     if (Input.GetKeyDown(KeyCode.R)) {
-      if (playerState == GameConstants.PlayerState.IDLE || playerState == GameConstants.PlayerState.VIEWING_TECHNOLOGY_LIST) {
+      if (playerState == GameConstants.PlayerState.IDLE
+        || playerState == GameConstants.PlayerState.VIEWING_BUILDING_LIST
+        || playerState == GameConstants.PlayerState.VIEWING_TECHNOLOGY_LIST) {
         OnViewTechnologyListButtonClick();
       }
     }
