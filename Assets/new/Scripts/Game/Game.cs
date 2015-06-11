@@ -39,8 +39,20 @@ public partial class Game : MonoBehaviour {
   }
 
   private int currentBuildingNumber;
+  public int CurrentBuildingNumber {
+    get {
+      return currentBuildingNumber;
+    }
+  }
+
   [SerializeField]
   private int maxBuildingNumber;
+  public int MaxBuildingNumber {
+    get {
+      return maxBuildingNumber;
+    }
+  }
+
   public LayerMask buildingLayerMask;
   private GameObject lastHoverBuilding;
   private GameObject _selectedBuilding;
@@ -123,6 +135,11 @@ public partial class Game : MonoBehaviour {
   }
 
   void Update() {
+
+    if (systemState != GameConstants.SystemState.PLAYING) {
+      return;
+    }
+
     Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
     RaycastHit raycastHit;
 

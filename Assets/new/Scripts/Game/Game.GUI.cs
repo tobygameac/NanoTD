@@ -157,6 +157,10 @@ public partial class Game : MonoBehaviour {
     techonologyListCanvas.SetActive(playerState == GameConstants.PlayerState.VIEWING_TECHNOLOGY_LIST && systemState == GameConstants.SystemState.PLAYING);
     pauseMenuCanvas.SetActive(systemState == GameConstants.SystemState.PAUSE_MENU);
     audioMenuCanvas.SetActive(systemState == GameConstants.SystemState.AUDIO_MENU);
+
+    if (_viewingTechnologyIndex >= 0 && _viewingTechnologyIndex < technologyManager.AvailableTechnology.Count) {
+      technologyDetailCanvas.SetActive(systemState == GameConstants.SystemState.PLAYING);
+    }
   }
 
   private void InitializeUI() {
