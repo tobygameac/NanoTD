@@ -213,6 +213,10 @@ public partial class Game : MonoBehaviour {
     if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject()) {
       if (lastHoverBuilding != null) {
         if (playerState == GameConstants.PlayerState.COMBINATING_BUILDINGS) {
+          if (lastHoverBuilding == selectedBuilding) {
+            MessageManager.AddMessage("請選擇本身以外的裝置進行組合");
+            return;
+          }
           CharacterStats buildingStats1 = selectedBuilding.GetComponent<CharacterStats>();
           CharacterStats buildingStats2 = lastHoverBuilding.GetComponent<CharacterStats>();
           GameConstants.BuildingID buildingID1 = buildingStats1.BuildingID;

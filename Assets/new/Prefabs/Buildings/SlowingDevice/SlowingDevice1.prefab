@@ -564,7 +564,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 153292}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6ad3c1500505dbd43b9c110e1dbeacd7, type: 3}
+  m_Script: {fileID: 11500000, guid: 79043601d32962f4c98ff47e3fdd4ffc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   slowingFXObject: {fileID: 178726}

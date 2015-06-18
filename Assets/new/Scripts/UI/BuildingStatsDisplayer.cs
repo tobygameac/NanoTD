@@ -38,7 +38,12 @@ public class BuildingStatsDisplayer : MonoBehaviour {
       return;
     }
 
-    buildingIconImage.sprite = iconSprites[(int)characterStats.BuildingID];
+    if ((int)characterStats.BuildingID >= 0 && (int)characterStats.BuildingID < iconSprites.Length) {
+      buildingIconImage.enabled = true;
+      buildingIconImage.sprite = iconSprites[(int)characterStats.BuildingID];
+    } else {
+      buildingIconImage.enabled = false;
+    }
 
     buildingStatsText.text = GameConstants.NameOfBuildingID[(int)characterStats.BuildingID] + "\n";
     buildingStatsText.text += "價值 : " + characterStats.Cost + "\n\n";
