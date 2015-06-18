@@ -59,6 +59,9 @@ public class GameManager : MonoBehaviour {
       return _score;
     }
     set {
+      if (gameState == GameConstants.GameState.FINISHED || gameState == GameConstants.GameState.LOSED) {
+        return;
+      }
       _score = value;
     }
   }
@@ -90,15 +93,26 @@ public class GameManager : MonoBehaviour {
     }
     set {
       _gameState = value;
+      game.gameState = value;
       if (value == GameConstants.GameState.WAIT_FOR_THE_NEXT_WAVE) {
         restedTime = 0;
         //MessageManager.AddMessage("第 " + (currentWave + 1) + " 波病菌將於 " + (int)(restingTimeBetweenWaves) + " 秒後入侵");
+        if ((game.GameMode == GameConstants.GameMode.SURVIVAL_NORMAL) || (game.GameMode == GameConstants.GameMode.SURVIVAL_BOSS)) {
+          if (currentWave > 0) {
+            MessageManager.AddMessage("成功擊退第" + currentWave + "波病菌");
+            MessageManager.AddMessage("剩餘秒數 : " + (int)remainingTimeOfCurrentWave);
+            int speedBonus = (int)remainingTimeOfCurrentWave * currentWave * currentWave;
+            score += speedBonus;
+            MessageManager.AddMessage("快速擊退加分 : " + speedBonus);
+          }
+        }
       }
       if (value == GameConstants.GameState.MIDDLE_OF_THE_WAVE) {
         generateEnemyTime = Time.time;
       }
     }
   }
+
   public GameConstants.GameState GameState {
     get {
       return _gameState;
@@ -112,7 +126,6 @@ public class GameManager : MonoBehaviour {
     }
   }
 
-  [SerializeField]
   private float timeBetweenGenerateEnemy;
   private float generateEnemyTime;
 
@@ -134,6 +147,10 @@ public class GameManager : MonoBehaviour {
     score += cost;
     game.AddMoney(cost);
     --numberOfEnemiesOnMap;
+  }
+
+  public void OnSubmitScoreButtonClick() {
+    game.SubmitScore(score);
   }
 
   void Start() {
@@ -158,6 +175,10 @@ public class GameManager : MonoBehaviour {
     if (gameState == GameConstants.GameState.MIDDLE_OF_THE_WAVE) {
       if (currentWave < maxWave || (game.GameMode == GameConstants.GameMode.SURVIVAL_NORMAL) || (game.GameMode == GameConstants.GameMode.SURVIVAL_BOSS)) {
         remainingTimeOfCurrentWave -= Time.deltaTime;
+        if (remainingTimeOfCurrentWave < 0) {
+          gameState = GameConstants.GameState.LOSED;
+          return;
+        }
       }
       if (numberOfEnemiesToGenerate > 0) {
         if (Time.time >= generateEnemyTime) {
@@ -190,18 +211,13 @@ public class GameManager : MonoBehaviour {
   }
 
   private void NextWave() {
-    // Test only
-    score += (int)remainingTimeOfCurrentWave;
-    if (game.GameMode == GameConstants.GameMode.SURVIVAL_NORMAL) {
-      //StartCoroutine(ScoreboardManager.PostScore(game.GameMode, "toby", score));
-    }
-    // Test only
-
     ++currentWave;
     numberOfEnemiesToGenerate = currentWave * 10;
     if ((game.GameMode == GameConstants.GameMode.SURVIVAL_NORMAL) || (game.GameMode == GameConstants.GameMode.SURVIVAL_BOSS)) {
-      remainingTimeOfCurrentWave = currentWave * 30;
+      remainingTimeOfCurrentWave = 30 + ((currentWave - 1) * 15);
     }
+    
+    timeBetweenGenerateEnemy = (remainingTimeOfCurrentWave / numberOfEnemiesToGenerate) / 3.0f;
   }
 
 }

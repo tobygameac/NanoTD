@@ -760,7 +760,7 @@ MonoBehaviour:
   _enemyID: 0
   _currentHP: 300
   _maxHP: 300
-  _cost: 105
+  _cost: 150
   _attackingRange: 5
   _nextLevel: {fileID: 0}
   _damage: 10
@@ -940,7 +940,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: _cost
-      value: 105
+      value: 150
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: _attackingRange

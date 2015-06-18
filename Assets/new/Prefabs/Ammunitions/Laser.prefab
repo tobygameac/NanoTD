@@ -115,9 +115,9 @@ TrailRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Time: .5
-  m_StartWidth: .174999997
-  m_EndWidth: .125
+  m_Time: 1
+  m_StartWidth: .150000006
+  m_EndWidth: .0299999993
   m_Colors:
     m_Color[0]:
       serializedVersion: 2
@@ -147,14 +147,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee2ef93052129424aa116171bb5c9a48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shootingTime: .0399999991
+  shootingTime: .100000001
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
-    m_Modifications: []
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: m_StartWidth
+      value: .150000006
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_EndWidth
+      value: .0299999993
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Time
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: shootingTime
+      value: .100000001
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 100000}

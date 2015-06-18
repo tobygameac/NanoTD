@@ -706,8 +706,8 @@ MonoBehaviour:
   description: 
   _buildingID: 0
   _enemyID: 0
-  _currentHP: 20
-  _maxHP: 20
+  _currentHP: 50
+  _maxHP: 50
   _cost: 10
   _attackingRange: 0
   _nextLevel: {fileID: 0}
@@ -1234,7 +1234,15 @@ Prefab:
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
-    m_Modifications: []
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: _currentHP
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: _maxHP
+      value: 50
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 191606}

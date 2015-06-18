@@ -665,7 +665,7 @@ MonoBehaviour:
   _enemyID: 0
   _currentHP: 300
   _maxHP: 300
-  _cost: 5
+  _cost: 50
   _attackingRange: 3
   _nextLevel: {fileID: 112174, guid: 61b41834758ddd64f8081aa4289b5628, type: 2}
   _damage: 10
@@ -799,6 +799,10 @@ Prefab:
       propertyPath: _nextLevel
       value: 
       objectReference: {fileID: 112174, guid: 61b41834758ddd64f8081aa4289b5628, type: 2}
+    - target: {fileID: 0}
+      propertyPath: _cost
+      value: 50
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 186646}

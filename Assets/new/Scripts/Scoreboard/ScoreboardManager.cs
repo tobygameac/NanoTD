@@ -56,7 +56,7 @@ public class ScoreboardManager : MonoBehaviour {
 
     string scoreboardUrl;
     if (gameMode == GameConstants.GameMode.SURVIVAL_NORMAL) {
-      scoreboardUrl = "http://toby:toby@134.208.60.35:5631/nanoTD/SurvivalNormalScoreboard.php";
+      scoreboardUrl = "http://134.208.60.35:5631/nanoTD/SurvivalNormalScoreboard.php";
     } else {
       yield break;
     }
@@ -69,16 +69,13 @@ public class ScoreboardManager : MonoBehaviour {
     isGettingScores = false;
   }
 
-  public static IEnumerator PostScore(GameConstants.GameMode gameMode, string name, int score) {
+  public static IEnumerator PostScore(GameConstants.GameMode gameMode, string name, int score, bool loadScoreboard) {
 
     name = name.Trim();
-    if (name.Length >= 30) {
-      name = name.Substring(0, 30);
-    }
     
     string postScoreUrl;
     if (gameMode == GameConstants.GameMode.SURVIVAL_NORMAL) {
-      postScoreUrl = "http://toby:toby@134.208.60.35:5631/nanoTD/postSurvivalNormalScore.php";
+      postScoreUrl = "http://134.208.60.35:5631/nanoTD/postSurvivalNormalScore.php";
     } else {
       yield break;
     }
@@ -93,6 +90,8 @@ public class ScoreboardManager : MonoBehaviour {
       print("There was an error posting the score: " + hs_post.error);
     }
 
-    //Application.LoadLevel("Rank");
+    if (loadScoreboard) {
+      Application.LoadLevel("Scoreboard");
+    }
   }
 }

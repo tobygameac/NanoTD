@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using System.Collections;
 using System.Collections.Generic;
@@ -114,12 +115,16 @@ public partial class Game : MonoBehaviour {
   // Game Stats
   [SerializeField]
   private int basicmoney;
-  private static int money;
+  private int money;
   public int Money {
     get {
       return money;
     }
   }
+
+  private bool initialized;
+
+  private bool scoreSubmitted;
 
   public bool HasTechnology(GameConstants.TechnologyID technologyID) {
     return technologyManager.HasTechnology(technologyID);
@@ -129,9 +134,25 @@ public partial class Game : MonoBehaviour {
     money += moneyToAdd;
   }
 
+  public void SubmitScore(int score) {
+    if (scoreSubmitted) {
+      return;
+    }
+    if (gameMode == GameConstants.GameMode.SURVIVAL_NORMAL) {
+      string name = nameInputField.GetComponent<InputField>().text;
+      if (name.Length > 0) {
+        scoreSubmitted = true;
+        StartCoroutine(ScoreboardManager.PostScore(gameMode, name, score, true));
+      } else {
+        AudioManager.PlayAudioClip(errorSound);
+      }
+    }
+  }
 
   void Start() {
+    initialized = false;
     InitializeGame();
+    initialized = true;
   }
 
   void Update() {
@@ -380,6 +401,11 @@ public partial class Game : MonoBehaviour {
     Time.timeScale = 1;
   }
 
+  private void Exit() {
+    Time.timeScale = 1;
+    Application.LoadLevel("MainMenu");
+  }
+
   private void UpdateTilesMesh() {
     for (int i = 0; i < placementTilesRoot.childCount; ++i) {
       Transform tile = placementTilesRoot.GetChild(i);
@@ -404,11 +430,13 @@ public partial class Game : MonoBehaviour {
     
     technologyManager = new TechnologyManager();
     technologyManager.Initiate();
-
-    money += basicmoney;
+    
+    money = basicmoney;
 
     InitializeUI();
 
     Time.timeScale = 1;
+
+    scoreSubmitted = false;
   }
 }

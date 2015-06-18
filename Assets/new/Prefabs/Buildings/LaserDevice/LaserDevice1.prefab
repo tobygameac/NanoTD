@@ -683,7 +683,7 @@ MonoBehaviour:
   _cost: 100
   _attackingRange: 5
   _nextLevel: {fileID: 0}
-  _damage: 50
+  _damage: 0
   _movingSpeed: 0
   _path: []
 --- !u!114 &11495810
@@ -820,7 +820,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: _damage
-      value: 50
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

@@ -20,25 +20,6 @@ public partial class Game : MonoBehaviour {
     }
   }
 
-  /*
-  private GameConstants.GameState _gameState;
-  private GameConstants.GameState gameState {
-    get {
-      return _gameState;
-    }
-    set {
-      _gameState = value;
-
-      UpdateCanvas();
-    }
-  }
-  public GameConstants.GameState GameState {
-    get {
-      return _gameState;
-    }
-  }
-  */
-
   private GameConstants.PlayerState _playerState;
   private GameConstants.PlayerState playerState {
     get {
@@ -55,4 +36,21 @@ public partial class Game : MonoBehaviour {
       return _playerState;
     }
   }
+
+  private GameConstants.GameState _gameState;
+  public GameConstants.GameState gameState {
+    get {
+      return _gameState;
+    }
+    set {
+      _gameState = value;
+
+      UpdateCanvas();
+
+      if (gameState == GameConstants.GameState.FINISHED || gameState == GameConstants.GameState.LOSED) {
+        Time.timeScale = 0;
+      }
+    }
+  }
+
 }
