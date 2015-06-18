@@ -57,6 +57,11 @@ public partial class Game : MonoBehaviour {
     Upgrade();
   }
 
+  public void OnCombinateButtonClick() {
+    AudioManager.PlayAudioClip(buttonSound);
+    Combinate();
+  }
+
   public void OnSellButtonClick() {
     AudioManager.PlayAudioClip(sellSound);
     Sell();

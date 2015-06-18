@@ -213,6 +213,44 @@ public partial class Game : MonoBehaviour {
     if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject()) {
       if (lastHoverBuilding != null) {
         if (playerState == GameConstants.PlayerState.COMBINATING_BUILDINGS) {
+          CharacterStats buildingStats1 = selectedBuilding.GetComponent<CharacterStats>();
+          CharacterStats buildingStats2 = lastHoverBuilding.GetComponent<CharacterStats>();
+          GameConstants.BuildingID buildingID1 = buildingStats1.BuildingID;
+          GameConstants.BuildingID buildingID2 = buildingStats2.BuildingID;
+          newBuilding = CombinationTable.GetCombinationObject(buildingID1, buildingID2);
+          if (newBuilding != null) {
+            if (buildingStats1.NextLevel != null || buildingStats2.NextLevel != null) {
+              AudioManager.PlayAudioClip(errorSound);
+              MessageManager.AddMessage("需將兩個裝置都升級到最高等級才能進行組合");
+            } else {
+              // Build new building on the position of selected building
+              newBuilding = Instantiate(newBuilding, selectedBuilding.transform.position/* + new Vector3(0, 1, 0) */, Quaternion.identity) as GameObject;
+              CharacterStats newBuildingStats = newBuilding.GetComponent<CharacterStats>();
+              newBuildingStats.TileOccupied = buildingStats1.TileOccupied;
+              newBuildingStats.UnitKilled = buildingStats1.UnitKilled + buildingStats2.UnitKilled;
+              newBuildingStats.DamageModifier = buildingStats1.DamageModifier + buildingStats2.DamageModifier;
+
+              // Clear original building
+              Destroy(selectedBuilding);
+
+              buildingStats2.TileOccupied.tag = "PlacementTileAvailable";
+              Destroy(lastHoverBuilding);
+
+              selectedBuilding = newBuilding;
+              --currentBuildingNumber;
+
+              AudioManager.PlayAudioClip(buildSound);
+
+              MessageManager.AddMessage("將 " + GameConstants.NameOfBuildingID[(int)buildingID1] + " 與 " + GameConstants.NameOfBuildingID[(int)buildingID2]+ " 進行組合");
+              MessageManager.AddMessage("組合完畢 : " + GameConstants.NameOfBuildingID[(int)newBuildingStats.BuildingID]);
+
+              playerState = GameConstants.PlayerState.IDLE;
+            }
+          } else {
+            AudioManager.PlayAudioClip(errorSound);
+            MessageManager.AddMessage("無法將 " + GameConstants.NameOfBuildingID[(int)buildingID1] + " 與 " + GameConstants.NameOfBuildingID[(int)buildingID2]+ " 進行組合");
+          }
+          return;
         }
         if (playerState == GameConstants.PlayerState.IDLE) {
           selectedBuilding = lastHoverBuilding;
@@ -224,6 +262,7 @@ public partial class Game : MonoBehaviour {
           AudioManager.PlayAudioClip(errorSound);
           MessageManager.AddMessage("請選擇正確的目標");
           playerState = GameConstants.PlayerState.IDLE;
+          return;
         }
       }
       if (lastHoverTile != null) {
@@ -288,6 +327,15 @@ public partial class Game : MonoBehaviour {
         }
       }
     }
+
+    // Combinate
+    if (Input.GetKeyDown(KeyCode.C)) {
+      if (selectedBuilding != null && HasTechnology(GameConstants.TechnologyID.COMBINATE)) {
+        if (selectedBuilding.GetComponent<CharacterStats>().NextLevel == null) {
+          OnCombinateButtonClick();
+        }
+      }
+    }
     
     if (Input.GetKeyDown(KeyCode.B)) {
       if (playerState == GameConstants.PlayerState.IDLE
@@ -303,11 +351,6 @@ public partial class Game : MonoBehaviour {
         || playerState == GameConstants.PlayerState.VIEWING_TECHNOLOGY_LIST) {
         OnViewTechnologyListButtonClick();
       }
-    }
-
-    if (Input.GetKeyDown(KeyCode.C)) {
-      // if (combinatable && selectingBuilding.GetComponent(Stats).combinatable*/) { // Player have to research & Building has combination
-      Combinate();
     }
 
     if (playerState == GameConstants.PlayerState.VIEWING_BUILDING_LIST) {
@@ -352,12 +395,6 @@ public partial class Game : MonoBehaviour {
     UpdateTilesMesh();
   }
 
-  private void Combinate() {
-    playerState = GameConstants.PlayerState.COMBINATING_BUILDINGS;
-
-    UpdateTilesMesh();
-  }
-
   private void Upgrade() {
 
     if (selectedBuilding.GetComponent<CharacterStats>().NextLevel == null) {
@@ -386,6 +423,13 @@ public partial class Game : MonoBehaviour {
       AudioManager.PlayAudioClip(errorSound);
       MessageManager.AddMessage("需要更多金錢");
     }
+  }
+
+  private void Combinate() {
+    playerState = GameConstants.PlayerState.COMBINATING_BUILDINGS;
+
+    MessageManager.AddMessage("請選擇組合目標");
+    UpdateTilesMesh();
   }
 
   private void Sell() {

@@ -42,8 +42,14 @@ public class BuildingDetailDisplayer : MonoBehaviour {
       buildingDetailText.text += characterStats.description + "\n\n";
 
       buildingDetailText.text += "價值 : " + characterStats.Cost + "\n\n";
-      buildingDetailText.text += "傷害 : " + characterStats.Damage + "\n";
+      /*
+      if (characterStats.BuildingID == GameConstants.BuildingID.SLOWING_DEVICE) {
+        buildingDetailText.text += "減緩 " + (characterStats.Damage * 100).ToString("0.00") + "% 移動速度\n";
+      } else {
+        buildingDetailText.text += "傷害 : " + characterStats.Damage + "\n";
+      }
       buildingDetailText.text += "攻擊範圍 : " + characterStats.AttackingRange + "\n";
+      */
     } else {
       buildingIconImage.sprite = null;
       buildingDetailText.text = "";

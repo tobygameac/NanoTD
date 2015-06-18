@@ -31,7 +31,7 @@ public static class GameConstants {
 
   public enum BuildingID {
     TURRET,
-    SLOW_AURA,
+    SLOWING_DEVICE,
     BURNING_DEVICE,
     LASER_DEVICE,
     LASER_CANNON,
@@ -45,7 +45,7 @@ public static class GameConstants {
       if (_nameOfBuildingID == null) {
         _nameOfBuildingID = new string[Enum.GetNames(typeof(GameConstants.BuildingID)).Length];
         _nameOfBuildingID[(int)BuildingID.TURRET] = "基礎砲塔";
-        _nameOfBuildingID[(int)BuildingID.SLOW_AURA] = "緩速光環";
+        _nameOfBuildingID[(int)BuildingID.SLOWING_DEVICE] = "緩速裝置";
         _nameOfBuildingID[(int)BuildingID.BURNING_DEVICE] = "燃燒裝置";
         _nameOfBuildingID[(int)BuildingID.LASER_DEVICE] = "雷射裝置";
         _nameOfBuildingID[(int)BuildingID.LASER_CANNON] = "雷射加農砲";
@@ -106,13 +106,13 @@ public static class GameConstants {
         _detailOfTechnologyID[(int)TechnologyID.ADDITIONAL_BUILDING_NUMBER] = "增加 " + ADDITIONAL_BUILDING_NUMBER_PER_RESEARCH + " 個最大可建裝置數量";
 
         _detailOfTechnologyID[(int)TechnologyID.FREEZING_LEVEL1] = "場上病菌減慢 ";
-        _detailOfTechnologyID[(int)TechnologyID.FREEZING_LEVEL1] += (FREEZING_LEVEL1_MOVING_SPEED_MODIFIER * -100).ToString("0.00") + "% 速度";
+        _detailOfTechnologyID[(int)TechnologyID.FREEZING_LEVEL1] += (FREEZING_LEVEL1_MOVING_SPEED_MODIFIER * -100).ToString("0.00") + "% 移動速度";
 
         _detailOfTechnologyID[(int)TechnologyID.FREEZING_LEVEL2] = "場上病菌減慢 ";
-        _detailOfTechnologyID[(int)TechnologyID.FREEZING_LEVEL2] += (FREEZING_LEVEL2_MOVING_SPEED_MODIFIER * -100).ToString("0.00") + "% 速度";
+        _detailOfTechnologyID[(int)TechnologyID.FREEZING_LEVEL2] += (FREEZING_LEVEL2_MOVING_SPEED_MODIFIER * -100).ToString("0.00") + "% 移動速度";
 
         _detailOfTechnologyID[(int)TechnologyID.FREEZING_LEVEL3] = "場上病菌減慢 ";
-        _detailOfTechnologyID[(int)TechnologyID.FREEZING_LEVEL3] += (FREEZING_LEVEL3_MOVING_SPEED_MODIFIER * -100).ToString("0.00") + "% 速度";
+        _detailOfTechnologyID[(int)TechnologyID.FREEZING_LEVEL3] += (FREEZING_LEVEL3_MOVING_SPEED_MODIFIER * -100).ToString("0.00") + "% 移動速度";
 
       }
       return _detailOfTechnologyID;

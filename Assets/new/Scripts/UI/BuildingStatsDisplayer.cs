@@ -42,7 +42,11 @@ public class BuildingStatsDisplayer : MonoBehaviour {
 
     buildingStatsText.text = GameConstants.NameOfBuildingID[(int)characterStats.BuildingID] + "\n";
     buildingStatsText.text += "價值 : " + characterStats.Cost + "\n\n";
-    buildingStatsText.text += "傷害 : " + (characterStats.Damage).ToString("0.0");
+    if (characterStats.BuildingID == GameConstants.BuildingID.SLOWING_DEVICE) {
+      buildingStatsText.text += "減緩 " + (characterStats.Damage * 100).ToString("0.00") + "% 移動速度\n";
+    } else {
+      buildingStatsText.text += "傷害 : " + (characterStats.Damage).ToString("0.0");
+    }
     if (game.HasTechnology(GameConstants.TechnologyID.SELF_LEARNING)) {
       buildingStatsText.text += "(+" + (characterStats.DamageModifier * characterStats.BasicDamage).ToString("0.0") + ")";
     }

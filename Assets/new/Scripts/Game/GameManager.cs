@@ -214,7 +214,7 @@ public class GameManager : MonoBehaviour {
     ++currentWave;
     numberOfEnemiesToGenerate = currentWave * 10;
     if ((game.GameMode == GameConstants.GameMode.SURVIVAL_NORMAL) || (game.GameMode == GameConstants.GameMode.SURVIVAL_BOSS)) {
-      remainingTimeOfCurrentWave = 30 + ((currentWave - 1) * 15);
+      remainingTimeOfCurrentWave = 30 + ((currentWave - 1) * 5);
     }
     
     timeBetweenGenerateEnemy = (remainingTimeOfCurrentWave / numberOfEnemiesToGenerate) / 3.0f;

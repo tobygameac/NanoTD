@@ -129,6 +129,7 @@ public class CharacterStats : MonoBehaviour {
     set {
       _movingSpeedModifier = value;
       MovingSpeed = BasicMovingSpeed * (1 + value);
+      MovingSpeed = (MovingSpeed < 0 ? 0 : MovingSpeed);
     }
   }
 
