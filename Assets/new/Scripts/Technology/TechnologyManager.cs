@@ -34,19 +34,33 @@ public class TechnologyManager {
     technologyList.Add(new Technology(GameConstants.TechnologyID.UPGRADE, 300));
     technologyList.Add(new Technology(GameConstants.TechnologyID.SELF_LEARNING, 500));
     technologyList.Add(new Technology(GameConstants.TechnologyID.COMBINATE, 2000,
-        new GameConstants.TechnologyID[]{GameConstants.TechnologyID.UPGRADE
-      }
+                    new GameConstants.TechnologyID[] {
+                      GameConstants.TechnologyID.UPGRADE
+                    }
     ));
+    /*
     technologyList.Add(new Technology(GameConstants.TechnologyID.SELF_HEALING, 1500,
-      new GameConstants.TechnologyID[]{
-        GameConstants.TechnologyID.SELF_LEARNING
-      }
+                    new GameConstants.TechnologyID[] {
+                      GameConstants.TechnologyID.SELF_LEARNING
+                    }
     ));
+    */
     technologyList.Add(new Technology(GameConstants.TechnologyID.ADDITIONAL_BUILDING_NUMBER, 5000, true,
-      new GameConstants.TechnologyID[]{
-        GameConstants.TechnologyID.COMBINATE,
-        GameConstants.TechnologyID.SELF_HEALING
-      }
+                    new GameConstants.TechnologyID[] {
+                      GameConstants.TechnologyID.COMBINATE,
+                      //GameConstants.TechnologyID.SELF_HEALING
+                    }
+    ));
+    technologyList.Add(new Technology(GameConstants.TechnologyID.FREEZING_LEVEL1, 5000));
+    technologyList.Add(new Technology(GameConstants.TechnologyID.FREEZING_LEVEL2, 10000,
+                    new GameConstants.TechnologyID[] {
+                      GameConstants.TechnologyID.FREEZING_LEVEL1,
+                    }
+    ));
+    technologyList.Add(new Technology(GameConstants.TechnologyID.FREEZING_LEVEL3, 25000,
+                    new GameConstants.TechnologyID[] {
+                      GameConstants.TechnologyID.FREEZING_LEVEL2,
+                    }
     ));
 
     UpdateAvailableTechnologyList();

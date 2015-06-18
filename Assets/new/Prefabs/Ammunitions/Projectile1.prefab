@@ -147,14 +147,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4e086477bf885e458bf59594680c621, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shootingTime: .0500000007
+  shootingTime: .100000001
+  explosion: {fileID: 184780, guid: 1d4091a37fefd7448ba95d9fe76faeb3, type: 2}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
-    m_Modifications: []
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: explosion
+      value: 
+      objectReference: {fileID: 184780, guid: 1d4091a37fefd7448ba95d9fe76faeb3, type: 2}
+    - target: {fileID: 0}
+      propertyPath: shootingTime
+      value: .100000001
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: playOnAwake
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 152236}

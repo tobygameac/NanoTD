@@ -9,6 +9,8 @@ public class Projectile : MonoBehaviour {
   private float passedTime;
   private bool hasTarget;
 
+  public GameObject explosion;
+
   private Turret _sourceTurret;
   public Turret SourceTurret {
     get {
@@ -37,6 +39,10 @@ public class Projectile : MonoBehaviour {
     transform.position = Vector3.Lerp(transform.position, TargetPosition, passedTime / shootingTime);
     passedTime += Time.deltaTime;
     if (passedTime >= shootingTime) {
+      if (explosion != null) {
+        GameObject newExplosion = Instantiate(explosion, transform.position, transform.rotation) as GameObject;
+        Destroy(newExplosion, 1);
+      }
       Destroy(gameObject);
     }
   }
@@ -45,6 +51,10 @@ public class Projectile : MonoBehaviour {
     if (collision.gameObject.tag == "Enemy") {
       if (_sourceTurret != null) {
         _sourceTurret.DealDamage(collision.gameObject);
+      }
+      if (explosion != null) {
+        GameObject newExplosion = Instantiate(explosion, transform.position, transform.rotation) as GameObject;
+        Destroy(newExplosion, 1);
       }
       Destroy(gameObject);
     }

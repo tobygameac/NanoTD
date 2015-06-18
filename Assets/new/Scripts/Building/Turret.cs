@@ -11,8 +11,6 @@ public class Turret : MonoBehaviour {
   public float reloadTime;
   public float turningSpeed;
 
-  private float damage;
-  private float bonusDamage;
   private float attackingRange;
 
   public Transform[] muzzles;
@@ -29,9 +27,6 @@ public class Turret : MonoBehaviour {
   void Start() {
     characterStats = GetComponent<CharacterStats>();
     GetComponent<SphereCollider>().radius = characterStats.AttackingRange;
-
-    damage = characterStats.Damage;
-    bonusDamage = 0;
 
     target = null;
 
@@ -73,11 +68,11 @@ public class Turret : MonoBehaviour {
 
   public void DealDamage(GameObject enemyGameObject) {
     CharacterStats enemyCharacterStats = enemyGameObject.GetComponent<CharacterStats>();
-    enemyCharacterStats.CurrentHP -= (damage + bonusDamage);
+    enemyCharacterStats.CurrentHP -= characterStats.Damage;
     if (enemyCharacterStats.CurrentHP <= 0) {
       ++characterStats.UnitKilled;
       if (game.HasTechnology(GameConstants.TechnologyID.SELF_LEARNING)) {
-        bonusDamage += damage * 0.001f;
+        characterStats.DamageModifier += GameConstants.SELF_LEARNING_IMPROVEMENT_PERCENT_PER_KILL;
       } else {
       }
     }

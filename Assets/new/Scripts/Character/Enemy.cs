@@ -4,7 +4,7 @@ using System.Collections;
 [RequireComponent (typeof(CharacterStats))]
 public class Enemy : MonoBehaviour {
 
-  private GameManager gameManager;
+  private static GameManager gameManager;
   private CharacterStats characterStats;
 
   private float previousHP;
@@ -15,7 +15,9 @@ public class Enemy : MonoBehaviour {
   private float minStoppingDistance = 0.1f;
 
   void Start() {
-    gameManager = Camera.main.GetComponent<GameManager>();
+    if (gameManager == null) {
+      gameManager = Camera.main.GetComponent<GameManager>();
+    }
 
     characterStats = GetComponent<CharacterStats>();
 
@@ -25,12 +27,14 @@ public class Enemy : MonoBehaviour {
   }
 
   void Update() {
-    transform.position = Vector3.MoveTowards(transform.position, characterStats.Path[currentTargetIndex], characterStats.MovingSpeed * Time.deltaTime);
+    float movingSpeed = characterStats.MovingSpeed * (1 + GameConstants.GLOBAL_ENEMY_SPEED_MODIFIER);
+    transform.position = Vector3.MoveTowards(transform.position, characterStats.Path[currentTargetIndex], movingSpeed * Time.deltaTime);
 
     if (characterStats.CurrentHP <= 0) {
       if (previousHP == characterStats.MaxHP) { // One shot kill
-        gameManager.KillEnemyWithCost(characterStats.Cost * 2);
-        MessageManager.AddMessage("瞬間擊殺! 獎賞加倍");
+        int oneShotKillBonus = (int)(characterStats.Cost * GameConstants.ONE_SHOT_KILL_BONUS_MODIFIER);
+        gameManager.KillEnemyWithCost(characterStats.Cost + oneShotKillBonus);
+        MessageManager.AddMessage("瞬間擊殺! 獲得額外" + oneShotKillBonus + "金錢與分數");
       } else {
         gameManager.KillEnemyWithCost(characterStats.Cost);
       }

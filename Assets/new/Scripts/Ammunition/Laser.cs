@@ -8,6 +8,8 @@ public class Laser : MonoBehaviour {
   private float passedTime;
   private bool hasTarget;
 
+  public GameObject explosion;
+
   private Vector3 _targetPosition;
   public Vector3 TargetPosition {
     get {
@@ -26,6 +28,10 @@ public class Laser : MonoBehaviour {
     transform.position = Vector3.Lerp(transform.position, TargetPosition, passedTime / shootingTime);
     passedTime += Time.deltaTime;
     if (passedTime >= shootingTime) {
+      if (explosion != null) {
+        GameObject newExplosion = Instantiate(explosion, transform.position, transform.rotation) as GameObject;
+        Destroy(newExplosion, 1);
+      }
       Destroy(gameObject);
     }
   }

@@ -42,9 +42,9 @@ public class BuildingStatsDisplayer : MonoBehaviour {
 
     buildingStatsText.text = GameConstants.NameOfBuildingID[(int)characterStats.BuildingID] + "\n";
     buildingStatsText.text += "價值 : " + characterStats.Cost + "\n\n";
-    buildingStatsText.text += "傷害 : " + characterStats.Damage;
+    buildingStatsText.text += "傷害 : " + (characterStats.Damage).ToString("0.0");
     if (game.HasTechnology(GameConstants.TechnologyID.SELF_LEARNING)) {
-      buildingStatsText.text += "(+" + (int)(GameConstants.SELF_LEARNING_IMPROVEMENT_PERCENT_PER_KILL * characterStats.Damage) + ")";
+      buildingStatsText.text += "(+" + (characterStats.DamageModifier * characterStats.BasicDamage).ToString("0.0") + ")";
     }
     buildingStatsText.text += "\n";
     buildingStatsText.text += "攻擊範圍 : " + characterStats.AttackingRange + "\n";

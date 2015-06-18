@@ -758,13 +758,15 @@ MonoBehaviour:
   description: "\u6700\u57FA\u672C\u7684\u653B\u64CA\u88DD\u7F6E\uFF0C\u5C0F\u7BC4\u570D\u653B\u64CA"
   _buildingID: 0
   _enemyID: 0
-  _currentHP: 300
-  _maxHP: 300
+  _basicHP: 0
+  _hPModifier: 0
+  _basicDamage: 10
+  _damageModifier: 0
+  _basicMovingSpeed: 0
+  _movingSpeedModifier: 0
   _cost: 150
   _attackingRange: 5
   _nextLevel: {fileID: 0}
-  _damage: 10
-  _movingSpeed: 0
   _path: []
 --- !u!114 &11451448
 MonoBehaviour:
@@ -945,6 +947,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: _attackingRange
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: _basicDamage
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

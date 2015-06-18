@@ -18,8 +18,7 @@ public class EnemyStatsModifier : MonoBehaviour {
   }
 
   public static void ModifyStatsWithWave(CharacterStats characterStats, int wave) {
-    characterStats.CurrentHP *= ((wave - 1) + Mathf.Pow(1.3f, (float)(wave - 1)));
-    characterStats.MaxHP *= ((wave - 1) + Mathf.Pow(1.3f, (float)(wave - 1)));
+    characterStats.HPModifier = ((wave - 1) + Mathf.Pow(1.3f, (float)(wave - 1)));
     characterStats.Cost += (wave - 1) * 25;
 
     // Random buff

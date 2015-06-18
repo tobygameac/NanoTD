@@ -164,14 +164,20 @@ MonoBehaviour:
   coreGameObject: {fileID: 0}
   buildingList:
   - {fileID: 186646, guid: 40e4f0d38a4e0ff4d8fde76e329082a7, type: 2}
-  - {fileID: 130178, guid: eb0f125e45e80a04f930accea99b83d1, type: 2}
-  - {fileID: 145468, guid: 6b700ffbe9c18ad4991de6971b630d13, type: 2}
   - {fileID: 188834, guid: 03a6216844f979847a81e40aa480fa31, type: 2}
+  - {fileID: 130178, guid: eb0f125e45e80a04f930accea99b83d1, type: 2}
   maxBuildingNumber: 10
   buildingLayerMask:
     serializedVersion: 2
     m_Bits: 512
-  basicmoney: 200
+  _viewingTechnology:
+    _cost: 0
+    _repeatable: 0
+    _requiredTechnology: 
+  freezingLevel1Effect: {fileID: 0}
+  freezingLevel2Effect: {fileID: 0}
+  freezingLevel3Effect: {fileID: 0}
+  basicmoney: 200000
 --- !u!124 &12411282
 Behaviour:
   m_ObjectHideFlags: 1

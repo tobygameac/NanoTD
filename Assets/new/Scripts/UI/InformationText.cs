@@ -18,7 +18,7 @@ public class InformationText : MonoBehaviour {
 
   void Update() {
     text.text = "金錢 : " + game.Money + "\n";
-    text.text += "建造數量 : " + game.CurrentBuildingNumber + " / " + game.MaxBuildingNumber + "\n";
+    text.text += "裝置數量 : " + game.CurrentBuildingNumber + " / " + game.MaxBuildingNumber + "\n";
     if (game.GameMode == GameConstants.GameMode.STORY) {
       text.text += "波數 : " + gameManager.CurrentWave + " / " + gameManager.MaxWave + "\n";
     } else if ((game.GameMode == GameConstants.GameMode.SURVIVAL_NORMAL) || (game.GameMode == GameConstants.GameMode.SURVIVAL_BOSS)) {

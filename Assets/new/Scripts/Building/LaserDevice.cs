@@ -11,8 +11,6 @@ public class LaserDevice : MonoBehaviour {
   public float reloadTime;
   public float turningSpeed;
 
-  private float damage;
-  private float bonusDamage;
   private float attackingRange;
 
   public Transform turretBall;
@@ -28,9 +26,6 @@ public class LaserDevice : MonoBehaviour {
   void Start() {
     characterStats = GetComponent<CharacterStats>();
     GetComponent<SphereCollider>().radius = characterStats.AttackingRange;
-
-    damage = characterStats.Damage;
-    bonusDamage = 0;
 
     target = null;
 
@@ -75,11 +70,11 @@ public class LaserDevice : MonoBehaviour {
     GameObject laserGameObject = Instantiate(laser, turretBall.position, Quaternion.identity) as GameObject;
     laserGameObject.GetComponent<Laser>().TargetPosition = target.position;
     CharacterStats targetCharacterStats = target.GetComponent<CharacterStats>();
-    targetCharacterStats.CurrentHP -= (damage + bonusDamage);
+    targetCharacterStats.CurrentHP -= characterStats.Damage;
     if (targetCharacterStats.CurrentHP <= 0) {
       ++characterStats.UnitKilled;
       if (game.HasTechnology(GameConstants.TechnologyID.SELF_LEARNING)) {
-        bonusDamage += damage * GameConstants.SELF_LEARNING_IMPROVEMENT_PERCENT_PER_KILL;
+          characterStats.DamageModifier += GameConstants.SELF_LEARNING_IMPROVEMENT_PERCENT_PER_KILL;
       } else {
       }
     }

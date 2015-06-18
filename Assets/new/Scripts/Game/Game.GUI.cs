@@ -37,21 +37,11 @@ public partial class Game : MonoBehaviour {
   }
 
   public void OnResearchButtonClick() {
-    int technologyCost = technologyManager.AvailableTechnology[viewingTechnologyIndex].Cost;
+    int technologyCost = ViewingTechnology.Cost;
     if (money >= technologyCost) {
       AudioManager.PlayAudioClip(researchSound);
 
-      money -= technologyCost;
-      
-      if (technologyManager.AvailableTechnology[viewingTechnologyIndex].ID == GameConstants.TechnologyID.ADDITIONAL_BUILDING_NUMBER) {
-        ++maxBuildingNumber;
-      }
-
-      MessageManager.AddMessage("研發完成 : " + technologyManager.AvailableTechnology[viewingTechnologyIndex].Name);
-      technologyManager.ResearchTechnology(viewingTechnologyIndex);
-      for (int i = 0; i < technologyManager.NewTechnology.Count; ++i) {
-        MessageManager.AddMessage("獲得科技 : " + technologyManager.NewTechnology[i].Name);
-      }
+      ResearchTechnology();
 
       viewingTechnologyIndex = -1;
 
