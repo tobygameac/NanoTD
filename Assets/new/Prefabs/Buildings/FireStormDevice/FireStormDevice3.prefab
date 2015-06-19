@@ -577,7 +577,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FXObject: {fileID: 171342}
   additionalFXTime: .100000001
-  damageScale: 1500
+  damageScale: 800
   deviceBase: {fileID: 192048}
 --- !u!114 &11487666
 MonoBehaviour:
@@ -6941,7 +6941,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: damageScale
-      value: 1500
+      value: 800
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: additionalFXTime

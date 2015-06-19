@@ -263,7 +263,7 @@ public class GameManager : MonoBehaviour {
       /* temp */
       /* temp */
       /* temp */
-    numberOfEnemiesToGenerate = currentWave * 25 * (int)Mathf.Pow(1.1f, currentWave);
+    numberOfEnemiesToGenerate = currentWave * 15 * (int)Mathf.Pow(1.1f, currentWave);
     if ((game.GameMode == GameConstants.GameMode.SURVIVAL_NORMAL) || (game.GameMode == GameConstants.GameMode.SURVIVAL_BOSS)) {
       remainingTimeOfCurrentWave = 30 + ((currentWave - 1) * 5);
       /* temp */

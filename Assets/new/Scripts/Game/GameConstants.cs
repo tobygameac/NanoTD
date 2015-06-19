@@ -34,6 +34,7 @@ public static class GameConstants {
     SLOWING_DEVICE,
     BURNING_DEVICE,
     LASER_DEVICE,
+    FIRE_TURRET,
     LASER_CANNON,
     FIRE_CANNON,
     SUPER_BURNING_DEVICE,
@@ -50,6 +51,7 @@ public static class GameConstants {
         _nameOfBuildingID[(int)BuildingID.SLOWING_DEVICE] = "緩速裝置";
         _nameOfBuildingID[(int)BuildingID.BURNING_DEVICE] = "燃燒裝置";
         _nameOfBuildingID[(int)BuildingID.LASER_DEVICE] = "雷射裝置";
+        _nameOfBuildingID[(int)BuildingID.FIRE_TURRET] = "火焰砲塔";
         _nameOfBuildingID[(int)BuildingID.LASER_CANNON] = "雷射加農砲";
         _nameOfBuildingID[(int)BuildingID.FIRE_CANNON] = "火焰加農砲";
         _nameOfBuildingID[(int)BuildingID.SUPER_BURNING_DEVICE] = "超級燃燒裝置";
