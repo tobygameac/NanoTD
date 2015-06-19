@@ -52,7 +52,7 @@ public static class GameConstants {
         _nameOfBuildingID[(int)BuildingID.LASER_DEVICE] = "雷射裝置";
         _nameOfBuildingID[(int)BuildingID.LASER_CANNON] = "雷射加農砲";
         _nameOfBuildingID[(int)BuildingID.FIRE_CANNON] = "火焰加農砲";
-        _nameOfBuildingID[(int)BuildingID.SUPER_BURNING_DEVICE] = "超級燃燒塔";
+        _nameOfBuildingID[(int)BuildingID.SUPER_BURNING_DEVICE] = "超級燃燒裝置";
         _nameOfBuildingID[(int)BuildingID.LASER_BURNING_DEVICE] = "雷與火之歌";
         _nameOfBuildingID[(int)BuildingID.FIRE_STORM_DEVICE] = "烈焰風暴";
       }
@@ -132,21 +132,21 @@ public static class GameConstants {
 
   // Enemy improvement
   public static readonly float PROBABILITY_OF_STRONGGER = 0.1f;
-  public static readonly float COST_SCALE_OF_STRONGGER = 1.5f;
+  public static readonly float COST_SCALE_OF_STRONGGER = 1.05f;
   public static readonly float HP_SCALE_OF_STRONGGER = 1.2f;
   public static readonly float SIZE_SCALE_OF_STRONGGER = 1.2f;
   public static readonly float MOVING_SPEED_MODIFIER_OF_STRONGGER = -0.25f;
 
   public static readonly float PROBABILITY_OF_INSANE = 0.1f;
-  public static readonly float COST_SCALE_OF_INSANE = 1.5f;
+  public static readonly float COST_SCALE_OF_INSANE = 1.05f;
   public static readonly float MOVING_SPEED_MODIFIER_OF_INSANE = 0.3f;
 
-  public static readonly float PROBABILITY_OF_SELF_HEALING = 0.1f;
-  public static readonly float COST_SCALE_OF_SELF_HEALING = 1.5f;
-  public static readonly float HP_PERCENT_REGENERATING_PER_SECOND_OF_SELF_HEALING = 0.01f;
+  public static readonly float PROBABILITY_OF_SELF_HEALING = 0.05f;
+  public static readonly float COST_SCALE_OF_SELF_HEALING = 1.2f;
+  public static readonly float HP_PERCENT_REGENERATING_PER_SECOND_OF_SELF_HEALING = 0.05f;
 
   public static readonly float PROBABILITY_OF_CELL_DIVISION = 0.05f;
-  public static readonly float COST_SCALE_OF_CELL_DIVISION = 2.5f;
+  public static readonly float COST_SCALE_OF_CELL_DIVISION = 1.2f;
   public static readonly float HP_PERCENT_FOR_CELL_DIVISION = 0.2f;
   public static readonly int MIN_CELL_DIVISION_COUNT = 4;
   public static readonly int MAX_CELL_DIVISION_COUNT = 8;

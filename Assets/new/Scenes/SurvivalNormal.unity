@@ -26336,7 +26336,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11454504, guid: 94ab219c2e501444bafe3dffdbc804f9, type: 2}
       propertyPath: waveThresholdForTheNextTypeOfEnemy
-      value: 5
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 94ab219c2e501444bafe3dffdbc804f9, type: 2}

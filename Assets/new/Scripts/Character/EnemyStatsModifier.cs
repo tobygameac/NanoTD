@@ -27,7 +27,7 @@ public class EnemyStatsModifier : MonoBehaviour {
       }
     }
     
-    characterStats.Cost = (int)(characterStats.Cost * (wave - 1) * GameConstants.COST_MODIFIER_FOR_EACH_WAVE);
+    characterStats.Cost += (int)(characterStats.Cost * (wave - 1) * GameConstants.COST_MODIFIER_FOR_EACH_WAVE);
 
     characterStats.MovingSpeedModifier += Random.Range(-1, 1) * GameConstants.ENEMY_MOVING_SPEED_FLOATING_MODIFIER;
 
@@ -44,16 +44,19 @@ public class EnemyStatsModifier : MonoBehaviour {
       targetCharacter.AddComponent<Strongger>();
     }
 
+    dice = Random.Range(0.0f, 1.0f);
     if (dice < GameConstants.PROBABILITY_OF_INSANE) {
       characterStats.Cost = (int)(characterStats.Cost * GameConstants.COST_SCALE_OF_INSANE);
       targetCharacter.AddComponent<Insane>();
     }
 
+    dice = Random.Range(0.0f, 1.0f);
     if (dice < GameConstants.PROBABILITY_OF_SELF_HEALING) {
       characterStats.Cost = (int)(characterStats.Cost * GameConstants.COST_SCALE_OF_SELF_HEALING);
       targetCharacter.AddComponent<SelfHealing>();
     }
 
+    dice = Random.Range(0.0f, 1.0f);
     if (dice < GameConstants.PROBABILITY_OF_CELL_DIVISION) {
       characterStats.Cost = (int)(characterStats.Cost * GameConstants.COST_SCALE_OF_CELL_DIVISION);
       targetCharacter.AddComponent<CellDivision>();

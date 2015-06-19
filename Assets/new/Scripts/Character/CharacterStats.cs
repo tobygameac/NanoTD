@@ -39,10 +39,7 @@ public class CharacterStats : MonoBehaviour {
       return _currentHP;
     }
     set {
-      _currentHP = value;
-      if (_currentHP >= MaxHP) {
-        _currentHP = MaxHP;
-      }
+      _currentHP = (value >= MaxHP) ? MaxHP : value;
     }
   }
 
@@ -67,8 +64,9 @@ public class CharacterStats : MonoBehaviour {
       if (MaxHP <= 0) {
         CurrentHP = MaxHP = BasicHP;
       } else {
-        CurrentHP = (CurrentHP / MaxHP) * MaxHP * (1 + value);
+        float currentHPPercent = CurrentHP / MaxHP;
         MaxHP = BasicHP * (1 + value);
+        CurrentHP = currentHPPercent * MaxHP;
       }
     }
   }

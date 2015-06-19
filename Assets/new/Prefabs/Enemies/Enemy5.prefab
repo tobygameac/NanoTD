@@ -82,6 +82,7 @@ GameObject:
   - 54: {fileID: 5495708}
   - 114: {fileID: 11401112}
   - 114: {fileID: 11498916}
+  - 114: {fileID: 11441006}
   m_Layer: 10
   m_Name: Enemy5
   m_TagString: Enemy
@@ -266,6 +267,19 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &11441006
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 148646}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f40b415c25d9ba540a5e6d8a08df5bd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotatingSpeed: 60
+  rotatingScale: {x: 0, y: 1, z: 0}
 --- !u!114 &11452162
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -537,6 +551,14 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_AnchoredPosition.y
       value: .0149999997
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: rotatingSpeed
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: rotatingScale.y
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

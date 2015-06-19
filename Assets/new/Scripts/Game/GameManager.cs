@@ -241,7 +241,7 @@ public class GameManager : MonoBehaviour {
 
   private void GenerateEnemies() {
     for (int i = 0; i < spawningPoints.Count && numberOfEnemiesToGenerate > 0; ++i) {
-      int indexRangeOfEnemyToGenerate = CurrentWave;
+      int indexRangeOfEnemyToGenerate = CurrentWave + 1;
       if (waveThresholdForTheNextTypeOfEnemy > 0) {
         indexRangeOfEnemyToGenerate /= waveThresholdForTheNextTypeOfEnemy;
       }
