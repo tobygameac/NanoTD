@@ -45,18 +45,23 @@ public class BuildingStatsDisplayer : MonoBehaviour {
       buildingIconImage.enabled = false;
     }
 
-    buildingStatsText.text = GameConstants.NameOfBuildingID[(int)characterStats.BuildingID] + "\n";
-    buildingStatsText.text += "價值 : " + characterStats.Cost + "\n\n";
+    buildingStatsText.text = "<color=#0f0f0fff>" + GameConstants.NameOfBuildingID[(int)characterStats.BuildingID] + "</color>\n";
+    buildingStatsText.text += "<color=red>價值 : </color><color=yellow>" + characterStats.Cost + "</color>\n\n";
     if (characterStats.BuildingID == GameConstants.BuildingID.SLOWING_DEVICE) {
-      buildingStatsText.text += "減緩 " + (characterStats.Damage * 100).ToString("0.00") + "% 移動速度\n";
+      buildingStatsText.text += "<color=brown>減緩移動速度 : </color><color=blue>" + (characterStats.Damage * 100).ToString("0.00") + "%\n";
+    } else if (characterStats.BuildingID == GameConstants.BuildingID.FIRE_STORM_DEVICE) {
+      float damageScale = building.GetComponent<FireStormDevice>().DamageScale;
+      buildingStatsText.text += "<color=brown>減緩移動速度 : </color><color=blue>" + (characterStats.Damage * 100).ToString("0.00") + "%</color>\n";
+      buildingStatsText.text += "<color=brown>傷害 : </color><color=blue>" + (characterStats.Damage * damageScale).ToString("0.0");
     } else {
-      buildingStatsText.text += "傷害 : " + (characterStats.Damage).ToString("0.0");
+      buildingStatsText.text += "<color=brown>傷害 : </color><color=blue>" + (characterStats.Damage).ToString("0.0");
     }
+    buildingStatsText.text += "</color>";
     if (game.HasTechnology(GameConstants.TechnologyID.SELF_LEARNING)) {
-      buildingStatsText.text += "(+" + (characterStats.DamageModifier * characterStats.BasicDamage).ToString("0.0") + ")";
+      buildingStatsText.text += "<color=red>(+" + (characterStats.DamageModifier * characterStats.BasicDamage).ToString("0.0") + ")</color>";
     }
     buildingStatsText.text += "\n";
-    buildingStatsText.text += "攻擊範圍 : " + characterStats.AttackingRange + "\n";
-    buildingStatsText.text += "擊殺數 : " + characterStats.UnitKilled + "\n";
+    buildingStatsText.text += "<color=brown>攻擊範圍 : </color><color=blue>" + characterStats.AttackingRange + "</color>\n";
+    buildingStatsText.text += "<color=brown>擊殺數 : </color><color=blue>" + characterStats.UnitKilled + "</color>\n";
   }
 }

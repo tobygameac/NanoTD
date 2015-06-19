@@ -54,10 +54,14 @@ public class SlowingDevice : MonoBehaviour {
 
   void OnTriggerEnter(Collider collider) {
     if (collider.gameObject.tag == "Enemy") {
-      lastAttackingTime = Time.time;
-
       CharacterStats targetCharacterStats = collider.GetComponent<CharacterStats>();
       targetCharacterStats.MovingSpeedModifier -= characterStats.Damage;
+    }
+  }
+
+  void OnTriggerstay(Collider collider) {
+    if (collider.gameObject.tag == "Enemy") {
+      lastAttackingTime = Time.time;
     }
   }
 

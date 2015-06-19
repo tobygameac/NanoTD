@@ -10,6 +10,14 @@ public class Enemy : MonoBehaviour {
   private float previousHP;
 
   private int currentTargetIndex;
+  public int CurrentTargetIndex {
+    get {
+      return currentTargetIndex;
+    }
+    set {
+      currentTargetIndex = value;
+    }
+  }
 
   [SerializeField]
   private float minStoppingDistance = 0.1f;
@@ -22,8 +30,6 @@ public class Enemy : MonoBehaviour {
     characterStats = GetComponent<CharacterStats>();
 
     previousHP = characterStats.MaxHP;
-
-    currentTargetIndex = 0;
   }
 
   void Update() {

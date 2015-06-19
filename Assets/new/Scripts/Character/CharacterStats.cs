@@ -40,6 +40,9 @@ public class CharacterStats : MonoBehaviour {
     }
     set {
       _currentHP = value;
+      if (_currentHP >= MaxHP) {
+        _currentHP = MaxHP;
+      }
     }
   }
 
@@ -127,9 +130,8 @@ public class CharacterStats : MonoBehaviour {
       return _movingSpeedModifier;
     }
     set {
-      _movingSpeedModifier = value;
-      MovingSpeed = BasicMovingSpeed * (1 + value);
-      MovingSpeed = (MovingSpeed < 0 ? 0 : MovingSpeed);
+      _movingSpeedModifier = (value < GameConstants.MINIMUM_LOCAL_MOVING_SPEED_MODIFIER) ? GameConstants.MINIMUM_LOCAL_MOVING_SPEED_MODIFIER : value;
+      MovingSpeed = BasicMovingSpeed * (1 + _movingSpeedModifier);
     }
   }
 

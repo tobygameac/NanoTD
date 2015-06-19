@@ -14,8 +14,14 @@ public class MessageDisplayer : MonoBehaviour {
 
   void Update() {
     string messageToDisplay = "";
+    bool lastMessage = true;
     for (int i = MessageManager.Messages.Count - 1; i >= Mathf.Max(0, MessageManager.Messages.Count - maxDisplayMessageNumber); --i) {
-      messageToDisplay += MessageManager.Messages[i] + "\n";
+      if (lastMessage) {
+        messageToDisplay += "<color=red>" + MessageManager.Messages[i] + "</color>\n";
+        lastMessage = false;
+      } else {
+        messageToDisplay += "<color=green>" + MessageManager.Messages[i] + "</color>\n";
+      }
     }
     text.text = messageToDisplay;
   }

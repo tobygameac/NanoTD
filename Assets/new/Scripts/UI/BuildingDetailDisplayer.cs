@@ -37,11 +37,12 @@ public class BuildingDetailDisplayer : MonoBehaviour {
       CharacterStats characterStats = game.BuildingList[game.ViewingBuildingIndex].GetComponent<CharacterStats>();
       buildingIconImage.sprite = iconSprites[(int)characterStats.BuildingID];
 
-      buildingDetailText.text = GameConstants.NameOfBuildingID[(int)characterStats.BuildingID] + "\n\n";
+      buildingDetailText.text = "<color=lime>";
+      //buildingDetailText.text += GameConstants.NameOfBuildingID[(int)characterStats.BuildingID] + "\n\n";
 
-      buildingDetailText.text += characterStats.description + "\n\n";
+      buildingDetailText.text += characterStats.description + "</color>\n\n";
 
-      buildingDetailText.text += "價值 : " + characterStats.Cost + "\n\n";
+      buildingDetailText.text += "<color=red>需要金錢 : </color><color=yellow>" + characterStats.Cost + "</color>\n\n";
       /*
       if (characterStats.BuildingID == GameConstants.BuildingID.SLOWING_DEVICE) {
         buildingDetailText.text += "減緩 " + (characterStats.Damage * 100).ToString("0.00") + "% 移動速度\n";

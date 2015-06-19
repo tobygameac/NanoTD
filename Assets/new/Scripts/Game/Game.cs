@@ -15,6 +15,8 @@ public partial class Game : MonoBehaviour {
   }
 
   // Audio
+  public AudioClip backgroundMusic;
+
   public AudioClip buttonSound;
   public AudioClip buildSound;
   public AudioClip errorSound;
@@ -156,6 +158,7 @@ public partial class Game : MonoBehaviour {
         scoreSubmitted = true;
         StartCoroutine(ScoreboardManager.PostScore(gameMode, name, score, true));
       } else {
+        MessageManager.AddMessage("請輸入名稱");
         AudioManager.PlayAudioClip(errorSound);
       }
     }
@@ -293,7 +296,7 @@ public partial class Game : MonoBehaviour {
             }
             if (currentBuildingNumber >= maxBuildingNumber) {
               AudioManager.PlayAudioClip(errorSound);
-              MessageManager.AddMessage("機械數量超過上限");
+              MessageManager.AddMessage("裝置數量超過上限");
             }
           }
         }
@@ -439,7 +442,7 @@ public partial class Game : MonoBehaviour {
   private void Sell() {
     MessageManager.AddMessage("拆除 : " + GameConstants.NameOfBuildingID[(int)selectedBuilding.GetComponent<CharacterStats>().BuildingID]);
     int remainingMoney = (int)(selectedBuilding.GetComponent<CharacterStats>().Cost * 0.8);
-    MessageManager.AddMessage("取回 : " + remainingMoney);
+    MessageManager.AddMessage("取回 " + remainingMoney + " 金錢");
     money += remainingMoney;
     --currentBuildingNumber;
     selectedBuilding.GetComponent<CharacterStats>().TileOccupied.tag = "PlacementTileAvailable";
@@ -516,14 +519,12 @@ public partial class Game : MonoBehaviour {
     MessageManager.AddMessage("研發完成 : " + ViewingTechnology.Name);
     technologyManager.ResearchTechnology(viewingTechnologyIndex);
     for (int i = 0; i < technologyManager.NewTechnology.Count; ++i) {
-      MessageManager.AddMessage("獲得科技 : " + technologyManager.NewTechnology[i].Name);
+      MessageManager.AddMessage("發現新科技 : " + technologyManager.NewTechnology[i].Name);
     }
   }
 
   private void InitializeGame() {
     Time.timeScale = 0;
-
-    AudioManager.Volume = 0.5f;
 
     UpdateTilesMesh();
     
@@ -541,5 +542,7 @@ public partial class Game : MonoBehaviour {
     Time.timeScale = 1;
 
     scoreSubmitted = false;
+
+    AudioManager.PlayLoopAudioClip(backgroundMusic);
   }
 }

@@ -6,6 +6,8 @@ public class Scoreboard : MonoBehaviour {
 
   public Text scoreboardText;
 
+  public AudioClip buttonSound;
+
   private bool gotScore;
   
   void Start() {
@@ -23,6 +25,7 @@ public class Scoreboard : MonoBehaviour {
   }
 
   public void OnBackToMainMenuButtonClick() {
+    AudioManager.PlayAudioClip(buttonSound);
     Application.LoadLevel("MainMenu");
   }
 

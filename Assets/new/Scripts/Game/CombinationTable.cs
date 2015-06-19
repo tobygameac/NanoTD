@@ -10,6 +10,8 @@ public class CombinationTable : MonoBehaviour {
 
   public GameObject superBurningDevice;
 
+  public GameObject fireStormDevice;
+
   private static GameObject[][] combinationTable;
 
   void Start() {
@@ -26,6 +28,7 @@ public class CombinationTable : MonoBehaviour {
     combinationTable[(int)GameConstants.BuildingID.TURRET][(int)GameConstants.BuildingID.LASER_DEVICE] = laserCannon;
     combinationTable[(int)GameConstants.BuildingID.BURNING_DEVICE][(int)GameConstants.BuildingID.LASER_DEVICE] = laserBurningDevice;
     combinationTable[(int)GameConstants.BuildingID.BURNING_DEVICE][(int)GameConstants.BuildingID.BURNING_DEVICE] = superBurningDevice;
+    combinationTable[(int)GameConstants.BuildingID.BURNING_DEVICE][(int)GameConstants.BuildingID.SLOWING_DEVICE] = fireStormDevice;
 
     for (int i = 0; i < buildingCount; ++i) {
       for (int j = 0; j < buildingCount; ++j) {

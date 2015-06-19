@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class AudioManager : MonoBehaviour {
   
@@ -16,6 +17,8 @@ public class AudioManager : MonoBehaviour {
     }
     instance = this;
   }
+
+  private static List<GameObject> loopingAudioClip;
 
   private static float _volume;
   public static float Volume {
@@ -49,11 +52,14 @@ public class AudioManager : MonoBehaviour {
     Destroy(audioClipGameObject, audioClip.length);
   }
 
-  public static GameObject PlayLoopAudioClip(AudioClip audioClip) {
-    return PlayLoopAudioClip(audioClip, 1.0f);
+  public static void PlayLoopAudioClip(AudioClip audioClip) {
+    if (loopingAudioClip == null) {
+      loopingAudioClip = new List<GameObject>();
+    }
+    PlayLoopAudioClip(audioClip, 1.0f);
   }
 
-  public static GameObject PlayLoopAudioClip(AudioClip audioClip, float volume) {
+  public static void PlayLoopAudioClip(AudioClip audioClip, float volume) {
     GameObject audioClipGameObject = new GameObject("Audio Clip : " + audioClip.name);
     audioClipGameObject.transform.position = Vector3.zero;
 
@@ -66,6 +72,39 @@ public class AudioManager : MonoBehaviour {
     audioSource.volume = volume * _volume;
     audioSource.Play();
 
-    return  audioClipGameObject;
+    if (loopingAudioClip == null) {
+      loopingAudioClip = new List<GameObject>();
+    }
+    loopingAudioClip.Add(audioClipGameObject);
+  }
+
+  public static void StartAllLoopAudioClip() {
+    if (loopingAudioClip == null) {
+      return;
+    }
+    for (int i = 0; i < loopingAudioClip.Count; ++i) {
+      if (!loopingAudioClip[i].GetComponent<AudioSource>().isPlaying) {
+        loopingAudioClip[i].GetComponent<AudioSource>().Play();
+      }
+    }
+  }
+
+  public static void StopAllLoopAudioClip() {
+    if (loopingAudioClip == null) {
+      return;
+    }
+    for (int i = 0; i < loopingAudioClip.Count; ++i) {
+      loopingAudioClip[i].GetComponent<AudioSource>().Stop();
+    }
+  }
+
+  public static void DeleteAllLoopAudioClip() {
+    if (loopingAudioClip == null) {
+      return;
+    }
+    for (int i = 0; i < loopingAudioClip.Count; ++i) {
+      Destroy(loopingAudioClip[i]);
+    }
+    loopingAudioClip.Clear();
   }
  }

@@ -14,12 +14,17 @@ public class GameManager : MonoBehaviour {
 
   [SerializeField]
   private List<Vector3> enemyPath;
+  public GameObject pathArrow;
+  public float distancePerArrow = 5.0f;
 
   [SerializeField]
   private List<Vector3> corePositions;
 
   [SerializeField]
   private List<GameObject> enemyPrefabs;
+
+  [SerializeField]
+  private int waveThresholdForTheNextTypeOfEnemy = 5;
 
   private int _currentWave;
   private int currentWave {
@@ -108,7 +113,7 @@ public class GameManager : MonoBehaviour {
         }
       }
       if (value == GameConstants.GameState.MIDDLE_OF_THE_WAVE) {
-        generateEnemyTime = Time.time;
+        nextGenerateEnemyTime = Time.time;
       }
     }
   }
@@ -119,6 +124,9 @@ public class GameManager : MonoBehaviour {
     }
   }
 
+  [SerializeField]
+  private float maxRemainingTimeForEachWave = 90.0f;
+
   private float remainingTimeOfCurrentWave;
   public float RemainingTimeOfCurrentWave {
     get {
@@ -127,12 +135,15 @@ public class GameManager : MonoBehaviour {
   }
 
   private float timeBetweenGenerateEnemy;
-  private float generateEnemyTime;
+  private float nextGenerateEnemyTime;
 
   private int numberOfEnemiesToGenerate;
   public int NumberOfEnemiesToGenerate {
     get {
       return numberOfEnemiesToGenerate;
+    }
+    set {
+      numberOfEnemiesToGenerate = value;
     }
   }
 
@@ -140,6 +151,9 @@ public class GameManager : MonoBehaviour {
   public int NumberOfEnemiesOnMap {
     get {
       return numberOfEnemiesOnMap;
+    }
+    set {
+      numberOfEnemiesOnMap = value;
     }
   }
 
@@ -156,6 +170,9 @@ public class GameManager : MonoBehaviour {
   void Start() {
     game = GetComponent<Game>();
     gameState = GameConstants.GameState.WAIT_FOR_THE_NEXT_WAVE;
+    GeneratePathArrows(enemyPath, distancePerArrow);
+
+    MessageManager.AddMessage("請建造攻擊裝置抵擋即將入侵的病菌");
   }
 
   void Update() {
@@ -177,11 +194,12 @@ public class GameManager : MonoBehaviour {
         remainingTimeOfCurrentWave -= Time.deltaTime;
         if (remainingTimeOfCurrentWave < 0) {
           gameState = GameConstants.GameState.LOSED;
+          MessageManager.AddMessage("遊戲結束，請輸入您的名稱將分數登入排行榜");
           return;
         }
       }
       if (numberOfEnemiesToGenerate > 0) {
-        if (Time.time >= generateEnemyTime) {
+        if (Time.time >= nextGenerateEnemyTime) {
           GenerateEnemies();
         }
       } else if (numberOfEnemiesOnMap > 0) {
@@ -199,22 +217,63 @@ public class GameManager : MonoBehaviour {
     }
   }
 
+  private void GeneratePathArrows(List<Vector3> path, float distancePerArrow) {
+    if (path.Count == 0) {
+      return;
+    }
+    if (distancePerArrow <= 1e-5) {
+      return;
+    }
+    for (int i = 0; i < path.Count; ++i) {
+      Vector3 arrowDirection = (path[i] - path[(i + path.Count - 1) % path.Count]).normalized;
+      Quaternion arrowAngle = Quaternion.FromToRotation(Vector3.forward, arrowDirection);
+      float distanceBetweenPoints = Vector3.Distance(path[i], path[(i + path.Count - 1) % path.Count]);
+      float gapT = distancePerArrow / distanceBetweenPoints;
+      if (distanceBetweenPoints <= 1e-5) {
+        continue;
+      }
+      for (float t = gapT; t < 1; t += gapT) {
+        Vector3 arrowPosition = Vector3.Lerp(path[(i + path.Count - 1) % path.Count], path[i], t) + new Vector3(0, 0.005f, 0);
+        Instantiate(pathArrow, arrowPosition, arrowAngle);
+      }
+    }
+  }
+
   private void GenerateEnemies() {
     for (int i = 0; i < spawningPoints.Count && numberOfEnemiesToGenerate > 0; ++i) {
-      GameObject enemyPrefab = enemyPrefabs[Random.Range(0, enemyPrefabs.Count)];
+      int indexRangeOfEnemyToGenerate = CurrentWave;
+      if (waveThresholdForTheNextTypeOfEnemy > 0) {
+        indexRangeOfEnemyToGenerate /= waveThresholdForTheNextTypeOfEnemy;
+      }
+      if (indexRangeOfEnemyToGenerate > enemyPrefabs.Count) {
+        indexRangeOfEnemyToGenerate = enemyPrefabs.Count;
+      }
+      GameObject enemyPrefab = enemyPrefabs[Random.Range(0, indexRangeOfEnemyToGenerate)];
       GameObject newEnemy = CharacterGenerator.GenerateCharacter(enemyPrefab, spawningPoints[i].position, enemyPath);
+      EnemyStatsModifier.AddRandomImprovement(newEnemy);
       EnemyStatsModifier.ModifyStatsWithWave(newEnemy.GetComponent<CharacterStats>(), currentWave);
       --numberOfEnemiesToGenerate;
       ++numberOfEnemiesOnMap;
     }
-    generateEnemyTime = Time.time + timeBetweenGenerateEnemy;
+    nextGenerateEnemyTime = Time.time + timeBetweenGenerateEnemy;
   }
 
   private void NextWave() {
     ++currentWave;
-    numberOfEnemiesToGenerate = currentWave * 10;
+      /* temp */
+      /* temp */
+      /* temp */
+    numberOfEnemiesToGenerate = currentWave * 25 * (int)Mathf.Pow(1.1f, currentWave);
     if ((game.GameMode == GameConstants.GameMode.SURVIVAL_NORMAL) || (game.GameMode == GameConstants.GameMode.SURVIVAL_BOSS)) {
       remainingTimeOfCurrentWave = 30 + ((currentWave - 1) * 5);
+      /* temp */
+      /* temp */
+      /* temp */
+      if (remainingTimeOfCurrentWave > maxRemainingTimeForEachWave) {
+        if (maxRemainingTimeForEachWave > 0) {
+          remainingTimeOfCurrentWave = maxRemainingTimeForEachWave;
+        }
+      }
     }
     
     timeBetweenGenerateEnemy = (remainingTimeOfCurrentWave / numberOfEnemiesToGenerate) / 3.0f;

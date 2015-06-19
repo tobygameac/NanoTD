@@ -3,6 +3,7 @@ using System.Collections;
 
 public class RangeDisplayer : MonoBehaviour {
 
+  public GameObject backgroundImage;
   public GameObject imageToRotate;
 
   public float rotatingSpeed = 90;
@@ -17,6 +18,10 @@ public class RangeDisplayer : MonoBehaviour {
       transformToDisplayRange = transform.parent;
     }
     sphereCollider = transformToDisplayRange.GetComponent<SphereCollider>();
+    transform.localScale = Vector3.one * sphereCollider.radius;
+
+    backgroundImage.SetActive(true);
+    imageToRotate.SetActive(true);
   }
 
   void Update() {
