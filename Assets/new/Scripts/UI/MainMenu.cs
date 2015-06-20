@@ -1,10 +1,16 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class MainMenu : MonoBehaviour {
 
+  public string versionMessage;
+  public GameObject versionTextObject;
+  private Text versionText;
+
+  public AudioClip backgroundMusic;
+
   public AudioClip buttonSound;
-  public AudioClip theme;
 
   public void OnStartButtonClick() {
     AudioManager.PlayAudioClip(buttonSound);
@@ -23,6 +29,10 @@ public class MainMenu : MonoBehaviour {
   }
 
   void Start() {
-    AudioManager.PlayLoopAudioClip(theme);
+    StartCoroutine(AudioManager.PlayFadeInLoopAudioClip(backgroundMusic, 10.0f));
+    if (versionTextObject != null) {
+      versionText = versionTextObject.GetComponent<Text>();
+      versionText.text = versionMessage;
+    }
   }
 }

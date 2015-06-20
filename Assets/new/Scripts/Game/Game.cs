@@ -16,6 +16,7 @@ public partial class Game : MonoBehaviour {
 
   // Audio
   public AudioClip backgroundMusic;
+  public AudioClip finishedMusic;
 
   public AudioClip buttonSound;
   public AudioClip buildSound;
@@ -64,12 +65,13 @@ public partial class Game : MonoBehaviour {
       return _selectedBuilding;
     }
     set {
+      // Disable the range displayer of previous building
       if (_selectedBuilding != null) {
-        _selectedBuilding.GetComponent<CharacterStats>().rangeDisplayer.SetActive(false);
+        _selectedBuilding.GetComponent<CharacterStats>().RangeDisplayer.SetActive(false);
       }
       _selectedBuilding = value;
       if (_selectedBuilding != null) {
-        _selectedBuilding.GetComponent<CharacterStats>().rangeDisplayer.SetActive(true);
+        _selectedBuilding.GetComponent<CharacterStats>().RangeDisplayer.SetActive(true);
       }
       buildingStatsCanvas.SetActive(value != null);
     }
@@ -237,6 +239,12 @@ public partial class Game : MonoBehaviour {
               newBuildingStats.UnitKilled = buildingStats1.UnitKilled + buildingStats2.UnitKilled;
               newBuildingStats.DamageModifier = buildingStats1.DamageModifier + buildingStats2.DamageModifier;
 
+              // Adjust cost, prevent from money laundering
+              int originalCost = buildingStats1.Cost + buildingStats2.Cost;
+              if (originalCost < newBuildingStats.Cost) {
+                newBuildingStats.Cost = originalCost;
+              }
+
               // Clear original building
               Destroy(selectedBuilding);
 
@@ -325,6 +333,17 @@ public partial class Game : MonoBehaviour {
         */
       }
     }
+
+    // Cheat
+    // Cheat
+    // Cheat
+    if (Input.GetKeyDown(KeyCode.F10)) {
+      money += 100000000;
+    }
+    // Cheat
+    // Cheat
+    // Cheat
+    // Cheat
 
     // Upgrade
     if (Input.GetKeyDown(KeyCode.U)) {
@@ -543,6 +562,6 @@ public partial class Game : MonoBehaviour {
 
     scoreSubmitted = false;
 
-    AudioManager.PlayLoopAudioClip(backgroundMusic);
+    StartCoroutine(AudioManager.PlayFadeInLoopAudioClip(backgroundMusic, 10.0f));
   }
 }

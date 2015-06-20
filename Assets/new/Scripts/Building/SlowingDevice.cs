@@ -59,7 +59,7 @@ public class SlowingDevice : MonoBehaviour {
     }
   }
 
-  void OnTriggerstay(Collider collider) {
+  void OnTriggerStay(Collider collider) {
     if (collider.gameObject.tag == "Enemy") {
       lastAttackingTime = Time.time;
     }

@@ -40,7 +40,9 @@ public class Enemy : MonoBehaviour {
       if (previousHP == characterStats.MaxHP) { // One shot kill
         int oneShotKillBonus = (int)(characterStats.Cost * GameConstants.ONE_SHOT_KILL_BONUS_MODIFIER);
         gameManager.KillEnemyWithCost(characterStats.Cost + oneShotKillBonus);
-        MessageManager.AddMessage("瞬間擊殺! 獲得額外" + oneShotKillBonus + "金錢與分數");
+        if (oneShotKillBonus > 0) {
+          MessageManager.AddMessage("瞬間擊殺! 獲得額外" + oneShotKillBonus + "金錢與分數");
+        }
       } else {
         gameManager.KillEnemyWithCost(characterStats.Cost);
       }

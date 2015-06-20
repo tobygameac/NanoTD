@@ -130,7 +130,6 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 478454}
-  - 95: {fileID: 9514888}
   - 65: {fileID: 6544432}
   m_Layer: 9
   m_Name: Fire_Turret
@@ -876,7 +875,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 2100000, guid: 773861f9c10fdf34bad29b8717d76d4a, type: 2}
+  - {fileID: 2100000, guid: 8497ad5ca695c9f41978aaf169b9810b, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1
@@ -900,7 +899,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 2100000, guid: 773861f9c10fdf34bad29b8717d76d4a, type: 2}
+  - {fileID: 2100000, guid: e7fe2959ee20c3545af27298a73bdbb1, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1
@@ -924,7 +923,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 2100000, guid: 773861f9c10fdf34bad29b8717d76d4a, type: 2}
+  - {fileID: 2100000, guid: e7fe2959ee20c3545af27298a73bdbb1, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1
@@ -972,7 +971,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 2100000, guid: 773861f9c10fdf34bad29b8717d76d4a, type: 2}
+  - {fileID: 2100000, guid: 8497ad5ca695c9f41978aaf169b9810b, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1
@@ -996,7 +995,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 2100000, guid: 773861f9c10fdf34bad29b8717d76d4a, type: 2}
+  - {fileID: 2100000, guid: e7fe2959ee20c3545af27298a73bdbb1, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1
@@ -1020,7 +1019,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 2100000, guid: 773861f9c10fdf34bad29b8717d76d4a, type: 2}
+  - {fileID: 2100000, guid: 8497ad5ca695c9f41978aaf169b9810b, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1
@@ -1044,7 +1043,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 2100000, guid: 773861f9c10fdf34bad29b8717d76d4a, type: 2}
+  - {fileID: 2100000, guid: e7fe2959ee20c3545af27298a73bdbb1, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1
@@ -1092,7 +1091,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 2100000, guid: 773861f9c10fdf34bad29b8717d76d4a, type: 2}
+  - {fileID: 2100000, guid: e7fe2959ee20c3545af27298a73bdbb1, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1
@@ -1116,7 +1115,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 2100000, guid: 773861f9c10fdf34bad29b8717d76d4a, type: 2}
+  - {fileID: 2100000, guid: 8497ad5ca695c9f41978aaf169b9810b, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1
@@ -1281,23 +1280,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: .200000003, y: .200000003, z: .200000003}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!95 &9514888
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 120258}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 4578c33d51e75044ea4d99e70913a6c4, type: 3}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
 --- !u!114 &11405556
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1441,17 +1423,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72c2f4245947a8f44bc322d55a27df0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rangeDisplayer: {fileID: 114922}
+  _rangeDisplayer: {fileID: 0}
   description: 
   _buildingID: 6
   _enemyID: 0
   _basicHP: 0
   _hPModifier: 0
-  _basicDamage: 150
+  _basicDamage: 400
   _damageModifier: 0
   _basicMovingSpeed: 0
   _movingSpeedModifier: 0
-  _cost: 20000
+  _cost: 33000
   _attackingRange: 13
   _nextLevel: {fileID: 187066, guid: 5afadf15f3e131a43859d32542dbfdb4, type: 2}
   _path: []
@@ -13717,11 +13699,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 0}
       propertyPath: _cost
-      value: 20000
+      value: 33000
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: _basicDamage
-      value: 150
+      value: 400
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: _nextLevel

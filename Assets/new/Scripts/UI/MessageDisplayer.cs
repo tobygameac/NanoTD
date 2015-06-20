@@ -20,7 +20,7 @@ public class MessageDisplayer : MonoBehaviour {
         messageToDisplay += "<color=red>" + MessageManager.Messages[i] + "</color>\n";
         lastMessage = false;
       } else {
-        messageToDisplay += "<color=green>" + MessageManager.Messages[i] + "</color>\n";
+        messageToDisplay += "<color=#c1da9340><i>" + MessageManager.Messages[i] + "</i></color>\n";
       }
     }
     text.text = messageToDisplay;

@@ -4,6 +4,7 @@ using System.Collections;
 
 public class CombinationTable : MonoBehaviour {
 
+  public GameObject superTurret;
   public GameObject fireTurret;
   public GameObject superFireTurret;
   public GameObject laserCannon;
@@ -24,6 +25,7 @@ public class CombinationTable : MonoBehaviour {
       }
     }
 
+    combinationTable[(int)GameConstants.BuildingID.TURRET][(int)GameConstants.BuildingID.TURRET] = superTurret;
     combinationTable[(int)GameConstants.BuildingID.TURRET][(int)GameConstants.BuildingID.BURNING_DEVICE] = fireTurret;
     combinationTable[(int)GameConstants.BuildingID.FIRE_TURRET][(int)GameConstants.BuildingID.FIRE_TURRET] = superFireTurret;
     combinationTable[(int)GameConstants.BuildingID.TURRET][(int)GameConstants.BuildingID.LASER_DEVICE] = laserCannon;

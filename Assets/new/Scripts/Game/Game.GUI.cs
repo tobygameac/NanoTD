@@ -53,7 +53,7 @@ public partial class Game : MonoBehaviour {
   }
 
   public void OnUpgradeButtonClick() {
-    AudioManager.PlayAudioClip(researchSound);
+    //AudioManager.PlayAudioClip(researchSound);
     Upgrade();
   }
 

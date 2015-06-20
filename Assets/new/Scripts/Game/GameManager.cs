@@ -104,11 +104,9 @@ public class GameManager : MonoBehaviour {
         //MessageManager.AddMessage("第 " + (currentWave + 1) + " 波病菌將於 " + (int)(restingTimeBetweenWaves) + " 秒後入侵");
         if ((game.GameMode == GameConstants.GameMode.SURVIVAL_NORMAL) || (game.GameMode == GameConstants.GameMode.SURVIVAL_BOSS)) {
           if (currentWave > 0) {
-            MessageManager.AddMessage("成功擊退第" + currentWave + "波病菌");
-            MessageManager.AddMessage("剩餘秒數 : " + (int)remainingTimeOfCurrentWave);
             int speedBonus = (int)remainingTimeOfCurrentWave * currentWave * currentWave;
             score += speedBonus;
-            MessageManager.AddMessage("快速擊退加分 : " + speedBonus);
+            MessageManager.AddMessage("成功擊退第" + currentWave + "波病菌\n剩餘秒數 : " + (int)remainingTimeOfCurrentWave + "\n快速擊退加分 : " + speedBonus);
           }
         }
       }
@@ -240,10 +238,11 @@ public class GameManager : MonoBehaviour {
   }
 
   private void GenerateEnemies() {
-    int indexRangeOfEnemyToGenerate = CurrentWave + 1;
+    int indexRangeOfEnemyToGenerate = CurrentWave;
 
     if (waveThresholdForTheNextTypeOfEnemy > 0) {
       indexRangeOfEnemyToGenerate /= waveThresholdForTheNextTypeOfEnemy;
+      ++indexRangeOfEnemyToGenerate;
     }
     if (indexRangeOfEnemyToGenerate > enemyPrefabs.Count) {
       indexRangeOfEnemyToGenerate = enemyPrefabs.Count;

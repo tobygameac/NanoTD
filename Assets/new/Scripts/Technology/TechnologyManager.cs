@@ -32,7 +32,7 @@ public class TechnologyManager {
 
   public void Initiate() {
     technologyList.Add(new Technology(GameConstants.TechnologyID.UPGRADE, 300));
-    technologyList.Add(new Technology(GameConstants.TechnologyID.SELF_LEARNING, 500));
+    technologyList.Add(new Technology(GameConstants.TechnologyID.SELF_LEARNING, 5000));
     technologyList.Add(new Technology(GameConstants.TechnologyID.COMBINATE, 2000,
                     new GameConstants.TechnologyID[] {
                       GameConstants.TechnologyID.UPGRADE
@@ -45,7 +45,7 @@ public class TechnologyManager {
                     }
     ));
     */
-    technologyList.Add(new Technology(GameConstants.TechnologyID.ADDITIONAL_BUILDING_NUMBER, 5000, true,
+    technologyList.Add(new Technology(GameConstants.TechnologyID.ADDITIONAL_BUILDING_NUMBER, 10000, true,
                     new GameConstants.TechnologyID[] {
                       GameConstants.TechnologyID.COMBINATE,
                       //GameConstants.TechnologyID.SELF_HEALING

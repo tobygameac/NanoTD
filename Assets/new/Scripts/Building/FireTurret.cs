@@ -13,11 +13,14 @@ public class FireTurret : MonoBehaviour {
   public Transform[] muzzles;
   public Transform muzzleBase;
 
+  public float attackingAngleForEachMuzzle;
+
   public float turningSpeed;
   public float warmingUpTime;
   private float nextAttackTime;
 
-  public float attackingAngleForEachMuzzle;
+  public float stopFireTimeWhenNoTarget;
+  private float noTargetTime;
 
   private CharacterStats characterStats;
 
@@ -43,8 +46,9 @@ public class FireTurret : MonoBehaviour {
 
   void Update() {
     if (target != null) {
+      noTargetTime = 0;
       for (int i = 0; i < FXParticleSystem.Length; ++i) {
-        if (!FXParticleSystem[i].isPlaying) {
+        if (FXParticleSystem[i].isStopped) {
           nextAttackTime = Time.time + warmingUpTime;
           FXParticleSystem[i].Play();
         }
@@ -53,35 +57,32 @@ public class FireTurret : MonoBehaviour {
       desiredRotation.eulerAngles = new Vector3(muzzleBase.eulerAngles.x, desiredRotation.eulerAngles.y,muzzleBase.eulerAngles.z); // y-axis only
       muzzleBase.rotation = Quaternion.Slerp(muzzleBase.rotation, desiredRotation, Time.deltaTime * turningSpeed);
     } else {
-      for (int i = 0; i < FXParticleSystem.Length; ++i) {
-        FXParticleSystem[i].Stop();
+      noTargetTime += Time.deltaTime;
+      if (noTargetTime >= stopFireTimeWhenNoTarget) {
+        for (int i = 0; i < FXParticleSystem.Length; ++i) {
+          FXParticleSystem[i].Stop();
+        }
       }
     }
   }
 
   void OnTriggerEnter(Collider collider) {
     if (target == null && collider.gameObject.tag == "Enemy") {
-      target = collider.gameObject.transform;
+      target = collider.transform;
     }
   }
 
   void OnTriggerStay(Collider collider) {
     if (collider.gameObject.tag == "Enemy") {
       if (target == null) {
-        target = collider.gameObject.transform;
-      }
-      bool isPlaying = false;
-      for (int i = 0; !isPlaying && i < FXParticleSystem.Length; ++i) {
-        isPlaying = FXParticleSystem[i].isPlaying;
-      }
-      if (!isPlaying) {
-        return;
+        target = collider.transform;
       }
       if (Time.time >= nextAttackTime) {
         for (int i = 0; i < muzzles.Length; ++i) {
           Quaternion desiredRotation = Quaternion.LookRotation(collider.transform.position - muzzleBase.position);
           float angleToEnemy = Quaternion.Angle(muzzles[i].rotation, desiredRotation);
           if (angleToEnemy <= attackingAngleForEachMuzzle / 2) {
+            target = collider.transform;
             CharacterStats targetCharacterStats = collider.GetComponent<CharacterStats>();
             targetCharacterStats.CurrentHP -= characterStats.Damage * Time.deltaTime;
             if (targetCharacterStats.CurrentHP <= 0) {
@@ -100,18 +101,6 @@ public class FireTurret : MonoBehaviour {
   void OnTriggerExit(Collider collider) {
     if (target == collider.transform) {
       target = null;
-    }
-  }
-
-  public void DealDamage(GameObject enemyGameObject) {
-    CharacterStats enemyCharacterStats = enemyGameObject.GetComponent<CharacterStats>();
-    enemyCharacterStats.CurrentHP -= characterStats.Damage;
-    if (enemyCharacterStats.CurrentHP <= 0) {
-      ++characterStats.UnitKilled;
-      if (game.HasTechnology(GameConstants.TechnologyID.SELF_LEARNING)) {
-        characterStats.DamageModifier += GameConstants.SELF_LEARNING_IMPROVEMENT_PERCENT_PER_KILL;
-      } else {
-      }
     }
   }
 

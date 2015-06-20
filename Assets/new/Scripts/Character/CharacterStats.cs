@@ -4,7 +4,19 @@ using System.Collections.Generic;
 
 public class CharacterStats : MonoBehaviour {
 
-  public GameObject rangeDisplayer;
+  [SerializeField]
+  private GameObject _rangeDisplayer;
+  public GameObject RangeDisplayer {
+    get {
+      if (_rangeDisplayer == null) {
+        _rangeDisplayer = transform.FindChild("RangeDisplayer").gameObject;
+      }
+      return _rangeDisplayer;
+    }
+    set {
+      _rangeDisplayer = value;
+    }
+  }
 
   public string description;
 
@@ -61,14 +73,28 @@ public class CharacterStats : MonoBehaviour {
     }
     set {
       _hPModifier = value;
-      if (MaxHP <= 0) {
-        CurrentHP = MaxHP = BasicHP;
-      } else {
-        float currentHPPercent = CurrentHP / MaxHP;
-        MaxHP = BasicHP * (1 + value);
-        CurrentHP = currentHPPercent * MaxHP;
-      }
+      UpdateHP();
     }
+  }
+
+  private float _hPScaler = 1.0f;
+  public float HPScaler {
+    get {
+      return _hPScaler;
+    }
+    set {
+      _hPScaler = value;
+      UpdateHP();
+    }
+  }
+
+  private void UpdateHP() {
+    if (MaxHP <= 0) {
+      return;
+    }
+    float currentHPPercent = CurrentHP / MaxHP;
+    MaxHP = BasicHP * (1 + HPModifier) * HPScaler;
+    CurrentHP = currentHPPercent * MaxHP;
   }
 
   // Damage
@@ -198,8 +224,8 @@ public class CharacterStats : MonoBehaviour {
     }
   }
 
-  void Start() {
-    CurrentHP = MaxHP = BasicHP * (1 + HPModifier);
+  void Awake() {
+    CurrentHP = MaxHP = BasicHP;
     Damage = BasicDamage * (1 + DamageModifier);
     MovingSpeed = BasicMovingSpeed * (1 + MovingSpeedModifier);
   }

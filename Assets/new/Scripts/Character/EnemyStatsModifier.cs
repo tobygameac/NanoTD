@@ -18,15 +18,14 @@ public class EnemyStatsModifier : MonoBehaviour {
   }
 
   public static void ModifyStatsWithWave(CharacterStats characterStats, int wave) {
-    for (int w = 1, hpModifierIndex = 0; w <= wave; ++w) {
-      if (w > GameConstants.WAVE_THERSHOLD_FOR_THE_NEXT_HP_MODIFIER[hpModifierIndex]) {
-        if (hpModifierIndex < GameConstants.WAVE_THERSHOLD_FOR_THE_NEXT_HP_MODIFIER.Length) {
-          ++hpModifierIndex;
+    for (int w = 1, hpScalerIndex = 0; w <= wave; ++w) {
+      if (w > GameConstants.WAVE_THERSHOLD_FOR_THE_NEXT_HP_SCALER[hpScalerIndex]) {
+        if (hpScalerIndex < GameConstants.WAVE_THERSHOLD_FOR_THE_NEXT_HP_SCALER.Length) {
+          ++hpScalerIndex;
         }
       }
-      characterStats.HPModifier += GameConstants.HP_MODIFIERS_FOR_WAVE[hpModifierIndex];
+      characterStats.HPScaler *= GameConstants.HP_SCALER_FOR_WAVE[hpScalerIndex];
     }
-    
     characterStats.Cost += (int)(characterStats.Cost * (wave - 1) * GameConstants.COST_MODIFIER_FOR_EACH_WAVE);
 
     characterStats.MovingSpeedModifier += Random.Range(-1, 1) * GameConstants.ENEMY_MOVING_SPEED_FLOATING_MODIFIER;

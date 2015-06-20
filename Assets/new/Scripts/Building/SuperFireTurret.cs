@@ -82,13 +82,6 @@ public class SuperFireTurret : MonoBehaviour {
       if (target == null) {
         target = collider.gameObject.transform;
       }
-      bool isPlaying = false;
-      for (int i = 0; !isPlaying && i < FXParticleSystem.Length; ++i) {
-        isPlaying = FXParticleSystem[i].isPlaying;
-      }
-      if (!isPlaying) {
-        return;
-      }
       if (Time.time >= nextAttackTime) {
         for (int i = 0; i < muzzles.Length; ++i) {
           Quaternion desiredRotation = Quaternion.LookRotation(collider.transform.position - muzzleBase.position);

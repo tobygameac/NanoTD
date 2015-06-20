@@ -45,7 +45,6 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 485416}
-  - 95: {fileID: 9595770}
   - 65: {fileID: 6554100}
   m_Layer: 9
   m_Name: Device
@@ -366,7 +365,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 2100000, guid: 773861f9c10fdf34bad29b8717d76d4a, type: 2}
+  - {fileID: 2100000, guid: b9c10db078e82ef4c9b7cd70feda5b69, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1
@@ -390,7 +389,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 2100000, guid: 773861f9c10fdf34bad29b8717d76d4a, type: 2}
+  - {fileID: 2100000, guid: b9c10db078e82ef4c9b7cd70feda5b69, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1
@@ -430,23 +429,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: .100000001, y: .100000001, z: .100000001}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!95 &9595770
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 104552}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 87974da6d4d592f43a9b193802f31bff, type: 3}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
 --- !u!114 &11406022
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -471,7 +453,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72c2f4245947a8f44bc322d55a27df0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rangeDisplayer: {fileID: 100970}
+  _rangeDisplayer: {fileID: 0}
   description: "\u6E1B\u7DE9\u6575\u8ECD\u79FB\u52D5\u901F\u5EA6\u7684\u88DD\u7F6E"
   _buildingID: 1
   _enemyID: 0

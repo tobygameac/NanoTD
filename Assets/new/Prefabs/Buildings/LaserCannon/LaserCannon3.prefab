@@ -78,6 +78,7 @@ GameObject:
   - 4: {fileID: 469372}
   - 33: {fileID: 3368232}
   - 23: {fileID: 2391732}
+  - 114: {fileID: 11483010}
   m_Layer: 9
   m_Name: pCylinder1
   m_TagString: Untagged
@@ -128,7 +129,6 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 469976}
-  - 95: {fileID: 9554766}
   - 65: {fileID: 6538118}
   m_Layer: 9
   m_Name: Top_Crystal_Turret
@@ -305,7 +305,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 2100000, guid: 773861f9c10fdf34bad29b8717d76d4a, type: 2}
+  - {fileID: 2100000, guid: 9e9a768818c4dd340beb9764dbebf0ef, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1
@@ -329,7 +329,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 2100000, guid: 773861f9c10fdf34bad29b8717d76d4a, type: 2}
+  - {fileID: 2100000, guid: 99641f58d7e3c934bab354602c6d5e60, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1
@@ -353,7 +353,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 2100000, guid: 773861f9c10fdf34bad29b8717d76d4a, type: 2}
+  - {fileID: 2100000, guid: 99641f58d7e3c934bab354602c6d5e60, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1
@@ -377,7 +377,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 2100000, guid: 773861f9c10fdf34bad29b8717d76d4a, type: 2}
+  - {fileID: 2100000, guid: 99641f58d7e3c934bab354602c6d5e60, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1
@@ -401,7 +401,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 2100000, guid: 773861f9c10fdf34bad29b8717d76d4a, type: 2}
+  - {fileID: 2100000, guid: 99641f58d7e3c934bab354602c6d5e60, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1
@@ -425,7 +425,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 2100000, guid: 773861f9c10fdf34bad29b8717d76d4a, type: 2}
+  - {fileID: 2100000, guid: f038a9c017cebd04a9f20b6be583b138, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1
@@ -493,23 +493,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: .200000003, y: .200000003, z: .200000003}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!95 &9554766
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 189104}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: c94fa07e26192964da3c1196f9f7d267, type: 3}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
 --- !u!114 &11424970
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -584,13 +567,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72c2f4245947a8f44bc322d55a27df0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rangeDisplayer: {fileID: 199388}
+  _rangeDisplayer: {fileID: 0}
   description: 
   _buildingID: 7
   _enemyID: 0
   _basicHP: 0
   _hPModifier: 0
-  _basicDamage: 300
+  _basicDamage: 1000
   _damageModifier: 0
   _basicMovingSpeed: 0
   _movingSpeedModifier: 0
@@ -598,6 +581,19 @@ MonoBehaviour:
   _attackingRange: 15
   _nextLevel: {fileID: 0}
   _path: []
+--- !u!114 &11483010
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 148260}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f40b415c25d9ba540a5e6d8a08df5bd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotatingSpeed: 150
+  rotatingScale: {x: 0, y: 1, z: 1}
 --- !u!114 &11485046
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -627,7 +623,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   laserSound: {fileID: 8300000, guid: 48abe319bdc363c459fd99fedb698782, type: 3}
   laser: {fileID: 100000, guid: ceded0f2e59790749900bf244d45a4ed, type: 2}
-  reloadTime: .300000012
+  reloadTime: .200000003
   turningSpeed: 5
   muzzles:
   - {fileID: 406686}
@@ -761,7 +757,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 0}
       propertyPath: _basicDamage
-      value: 300
+      value: 1000
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: _cost
@@ -777,11 +773,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: reloadTime
-      value: .300000012
+      value: .200000003
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: _buildingID
       value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_LocalPosition.x
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

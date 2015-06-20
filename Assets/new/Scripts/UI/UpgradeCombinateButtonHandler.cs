@@ -8,7 +8,7 @@ public class UpgradeCombinateButtonHandler : MonoBehaviour {
   public GameObject combinateButtonObject;
 
   private Button upgradeButton;
-  private Button combinateButton;
+  //private Button combinateButton;
 
   private Text upgradeButtonText;
   private string upgradeButtonOriginalText;
@@ -25,7 +25,7 @@ public class UpgradeCombinateButtonHandler : MonoBehaviour {
     game = Camera.main.GetComponent<Game>();
 
     upgradeButton = upgradeButtonObject.GetComponent<Button>();
-    combinateButton = combinateButtonObject.GetComponent<Button>();
+    //combinateButton = combinateButtonObject.GetComponent<Button>();
 
     upgradeButtonObject.SetActive(true);
     combinateButtonObject.SetActive(false);

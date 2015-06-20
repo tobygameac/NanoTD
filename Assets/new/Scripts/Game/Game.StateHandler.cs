@@ -48,6 +48,8 @@ public partial class Game : MonoBehaviour {
       UpdateCanvas();
 
       if (gameState == GameConstants.GameState.FINISHED || gameState == GameConstants.GameState.LOSED) {
+        StartCoroutine(AudioManager.FadeOutAllLoopAudioClip(5.0f));
+        StartCoroutine(AudioManager.PlayFadeInLoopAudioClip(finishedMusic, 5.0f));
         Time.timeScale = 0;
       }
     }

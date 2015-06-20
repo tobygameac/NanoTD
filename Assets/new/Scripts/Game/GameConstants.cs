@@ -40,7 +40,8 @@ public static class GameConstants {
     LASER_CANNON,
     FIRE_CANNON,
     LASER_BURNING_DEVICE,
-    FIRE_STORM_DEVICE
+    FIRE_STORM_DEVICE,
+    SUPER_TURRET
   }
 
   private static string[] _nameOfBuildingID;
@@ -59,6 +60,7 @@ public static class GameConstants {
         _nameOfBuildingID[(int)BuildingID.FIRE_CANNON] = "火焰加農砲";
         _nameOfBuildingID[(int)BuildingID.LASER_BURNING_DEVICE] = "雷與火之歌";
         _nameOfBuildingID[(int)BuildingID.FIRE_STORM_DEVICE] = "烈焰風暴";
+        _nameOfBuildingID[(int)BuildingID.SUPER_TURRET] = "高級砲塔";
       }
       return _nameOfBuildingID;
     }
@@ -158,8 +160,8 @@ public static class GameConstants {
   public static readonly float IMPROVEMENT_PROBABILITY_SCALE_PER_WAVE = 0.05f;
 
   // Other modifier
-  public static readonly int[] WAVE_THERSHOLD_FOR_THE_NEXT_HP_MODIFIER = new int[]{1,       3,    5,  10,   15,   20,   30,    50};
-  public static readonly float[] HP_MODIFIERS_FOR_WAVE =               new float[]{0.0f, 1.1f, 1.7f, 1.8f, 2.0f, 1.6f, 1.4f, 1.2f};
+  public static readonly int[] WAVE_THERSHOLD_FOR_THE_NEXT_HP_SCALER = new int[]{1,      3,    5,    7,   10,   12,   15,   20,   30,   50};
+  public static readonly float[] HP_SCALER_FOR_WAVE =               new float[]{1.0f, 1.1f, 1.3f, 1.5f, 1.7f, 1.8f, 2.0f, 1.6f, 1.4f, 1.2f};
 
   public static readonly float COST_MODIFIER_FOR_EACH_WAVE = 0.5f;
 

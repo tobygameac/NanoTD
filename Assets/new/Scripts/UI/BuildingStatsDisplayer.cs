@@ -51,10 +51,11 @@ public class BuildingStatsDisplayer : MonoBehaviour {
       buildingStatsText.text += "<color=brown>減緩移動速度 : </color><color=blue>" + (characterStats.Damage * 100).ToString("0.00") + "%\n";
     } else if (characterStats.BuildingID == GameConstants.BuildingID.FIRE_STORM_DEVICE) {
       float damageScale = building.GetComponent<FireStormDevice>().DamageScale;
-      buildingStatsText.text += "<color=brown>減緩移動速度 : </color><color=blue>" + (characterStats.Damage * 100).ToString("0.00") + "%</color>\n";
+      buildingStatsText.text += "<color=brown>減緩移動速度 : </color><color=blue>" + (characterStats.Damage * 100).ToString("0.00") + "%</color>";
       if (game.HasTechnology(GameConstants.TechnologyID.SELF_LEARNING)) {
-        buildingStatsText.text += "<color=red>(+" + (characterStats.DamageModifier * characterStats.BasicDamage).ToString("0.0") + ")</color>";
+        buildingStatsText.text += "<color=red>(+" + (characterStats.DamageModifier * characterStats.BasicDamage * 100).ToString("0.00") + "%)</color>";
       }
+      buildingStatsText.text += "\n";
       buildingStatsText.text += "<color=brown>傷害 : </color><color=blue>" + (characterStats.Damage * damageScale).ToString("0.0");
     } else {
       buildingStatsText.text += "<color=brown>傷害 : </color><color=blue>" + (characterStats.Damage).ToString("0.0");

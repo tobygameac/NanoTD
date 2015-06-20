@@ -68,7 +68,7 @@ public class Turret : MonoBehaviour {
 
   public void DealDamage(GameObject enemyGameObject) {
     CharacterStats enemyCharacterStats = enemyGameObject.GetComponent<CharacterStats>();
-    enemyCharacterStats.CurrentHP -= characterStats.Damage;
+    enemyCharacterStats.CurrentHP -= characterStats.Damage / muzzles.Length;
     if (enemyCharacterStats.CurrentHP <= 0) {
       ++characterStats.UnitKilled;
       if (game.HasTechnology(GameConstants.TechnologyID.SELF_LEARNING)) {

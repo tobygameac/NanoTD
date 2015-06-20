@@ -74,7 +74,7 @@ public class LaserCannon : MonoBehaviour {
       GameObject laserGameObject = Instantiate(laser, muzzles[i].position, Quaternion.identity) as GameObject;
       laserGameObject.GetComponent<Laser>().TargetPosition = target.position;
       CharacterStats targetCharacterStats = target.GetComponent<CharacterStats>();
-      targetCharacterStats.CurrentHP -= characterStats.Damage;
+      targetCharacterStats.CurrentHP -= characterStats.Damage / muzzles.Length;
       if (targetCharacterStats.CurrentHP <= 0) {
         ++characterStats.UnitKilled;
         if (game.HasTechnology(GameConstants.TechnologyID.SELF_LEARNING)) {

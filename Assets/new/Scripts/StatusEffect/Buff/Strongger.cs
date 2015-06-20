@@ -13,7 +13,7 @@ public class Strongger : MonoBehaviour {
   void Start() {
     characterStats = GetComponent<CharacterStats>();
 
-    characterStats.HPModifier *= hpScale;
+    characterStats.HPScaler *= hpScale;
     characterStats.MovingSpeedModifier += movingSpeedModifier;
 
     transform.localScale *= sizeScale;
