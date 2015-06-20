@@ -180,8 +180,18 @@ public partial class Game : MonoBehaviour {
     pauseMenuCanvas.SetActive(systemState == GameConstants.SystemState.PAUSE_MENU);
     audioMenuCanvas.SetActive(systemState == GameConstants.SystemState.AUDIO_MENU);
 
-    if (_viewingTechnologyIndex >= 0 && _viewingTechnologyIndex < technologyManager.AvailableTechnology.Count) {
-      technologyDetailCanvas.SetActive(systemState == GameConstants.SystemState.PLAYING);
+    if (ViewingTechnologyIndex >= 0 && ViewingTechnologyIndex < technologyManager.AvailableTechnology.Count) {
+      technologyDetailCanvas.SetActive(playerState == GameConstants.PlayerState.VIEWING_TECHNOLOGY_LIST
+                                      && systemState == GameConstants.SystemState.PLAYING);
+    } else {
+      technologyDetailCanvas.SetActive(false);
+    }
+
+    if (ViewingBuildingIndex >= 0 && ViewingBuildingIndex < BuildingList.Count) {
+      buildingDetailCanvas.SetActive(playerState == GameConstants.PlayerState.VIEWING_BUILDING_LIST
+                                    && systemState == GameConstants.SystemState.PLAYING);
+    } else {
+      buildingDetailCanvas.SetActive(false);
     }
   }
 

@@ -116,6 +116,11 @@ public partial class Game : MonoBehaviour {
       }
     }
   }
+  public int ViewingTechnologyIndex {
+    get {
+      return _viewingTechnologyIndex;
+    }
+  }
 
   public Technology _viewingTechnology;
   public Technology ViewingTechnology {
@@ -272,13 +277,15 @@ public partial class Game : MonoBehaviour {
         }
       }
       if (lastHoverBuilding == null) {
-        lastHoverBuilding = selectedBuilding = null;
+
         if (playerState == GameConstants.PlayerState.COMBINATING_BUILDINGS) {
           AudioManager.PlayAudioClip(errorSound);
           MessageManager.AddMessage("請選擇正確的目標");
           playerState = GameConstants.PlayerState.IDLE;
           return;
         }
+
+        lastHoverBuilding = selectedBuilding = null;
       }
       if (lastHoverTile != null) {
         if (lastHoverTile.tag == "PlacementTileAvailable" && viewingBuildingIndex >= 0) {
@@ -310,6 +317,13 @@ public partial class Game : MonoBehaviour {
         }
       }
       if (lastHoverTile == null) {
+        if (playerState == GameConstants.PlayerState.VIEWING_BUILDING_LIST) {
+          playerState = GameConstants.PlayerState.IDLE;
+        }
+      }
+      
+      if (playerState == GameConstants.PlayerState.VIEWING_TECHNOLOGY_LIST) {
+        playerState = GameConstants.PlayerState.IDLE;
       }
     }
 

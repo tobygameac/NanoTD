@@ -34,6 +34,9 @@ public class UpgradeCombinateButtonHandler : MonoBehaviour {
     upgradeButtonText = upgradeButton.transform.GetChild(0).GetComponent<Text>();
     upgradeButtonOriginalText = upgradeButtonText.text;
 
+    string upgradeTechnologyName = GameConstants.NameOfTechnologyID[(int)GameConstants.TechnologyID.UPGRADE];
+    upgradeButtonText.text = "需研發" + upgradeTechnologyName + "";
+
     hasUpgradeTechnology = false;
 
     lastBuilding = null;
@@ -66,13 +69,14 @@ public class UpgradeCombinateButtonHandler : MonoBehaviour {
       if (characterStats.NextLevel != null) {
         upgradeButton.interactable = hasUpgradeTechnology;
         int nextLevelCost = characterStats.NextLevel.GetComponent<CharacterStats>().Cost;
-        upgradeButtonText.text = upgradeButtonOriginalText + "(" + (nextLevelCost - characterStats.Cost) + ")";
+        upgradeButtonText.text = upgradeButtonOriginalText + " : " + (nextLevelCost - characterStats.Cost);
 
         upgradeButtonObject.SetActive(true);
         combinateButtonObject.SetActive(false);
       } else {
         upgradeButton.interactable = false;
-        upgradeButtonText.text = upgradeButtonOriginalText;
+        string combinateTechnologyName = GameConstants.NameOfTechnologyID[(int)GameConstants.TechnologyID.COMBINATE];
+        upgradeButtonText.text = "需研發" + combinateTechnologyName + "";
 
         if (hasCombinateTechnology) {
           upgradeButtonObject.SetActive(false);

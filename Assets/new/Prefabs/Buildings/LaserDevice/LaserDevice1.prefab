@@ -680,7 +680,7 @@ MonoBehaviour:
   _enemyID: 0
   _basicHP: 0
   _hPModifier: 0
-  _basicDamage: 40
+  _basicDamage: 100
   _damageModifier: 0
   _basicMovingSpeed: 0
   _movingSpeedModifier: 0
@@ -823,7 +823,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: _basicDamage
-      value: 40
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: _cost

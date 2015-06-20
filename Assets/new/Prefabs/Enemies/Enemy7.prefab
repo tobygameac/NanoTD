@@ -702,7 +702,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72c2f4245947a8f44bc322d55a27df0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rangeDisplayer: {fileID: 0}
+  _rangeDisplayer: {fileID: 0}
   description: 
   _buildingID: 0
   _enemyID: 0
@@ -710,7 +710,7 @@ MonoBehaviour:
   _hPModifier: 0
   _basicDamage: 0
   _damageModifier: 0
-  _basicMovingSpeed: 15
+  _basicMovingSpeed: 10
   _movingSpeedModifier: 0
   _cost: 300
   _attackingRange: 0
@@ -1251,7 +1251,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: _basicMovingSpeed
-      value: 15
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: _basicHP

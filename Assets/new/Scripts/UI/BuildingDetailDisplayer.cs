@@ -35,7 +35,12 @@ public class BuildingDetailDisplayer : MonoBehaviour {
   void UpdateBuildingDetail() {
     if (game.ViewingBuildingIndex >= 0) {
       CharacterStats characterStats = game.BuildingList[game.ViewingBuildingIndex].GetComponent<CharacterStats>();
-      buildingIconImage.sprite = iconSprites[(int)characterStats.BuildingID];
+
+      if ((int)characterStats.BuildingID < iconSprites.Length) {
+        buildingIconImage.sprite = iconSprites[(int)characterStats.BuildingID];
+      } else {
+        buildingIconImage.sprite = iconSprites[iconSprites.Length - 1];
+      }
 
       buildingDetailText.text = "<color=lime>";
       //buildingDetailText.text += GameConstants.NameOfBuildingID[(int)characterStats.BuildingID] + "\n\n";

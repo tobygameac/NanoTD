@@ -398,6 +398,10 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 11420596, guid: 37af9a34b2efb7942b87523b2428bc77, type: 2}
+      propertyPath: iconSprites.Array.size
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 447008, guid: 37af9a34b2efb7942b87523b2428bc77, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -506,6 +510,21 @@ Prefab:
       propertyPath: m_AnchoredPosition.y
       value: 230
       objectReference: {fileID: 0}
+    - target: {fileID: 11420596, guid: 37af9a34b2efb7942b87523b2428bc77, type: 2}
+      propertyPath: iconSprites.Array.data[4]
+      value: 
+      objectReference: {fileID: 21300000, guid: 5a14c2db68d11c841a3d5bff0ac14237,
+        type: 3}
+    - target: {fileID: 11420596, guid: 37af9a34b2efb7942b87523b2428bc77, type: 2}
+      propertyPath: iconSprites.Array.data[5]
+      value: 
+      objectReference: {fileID: 21300000, guid: a0b4db95b3614e340a7a572ea06109a9,
+        type: 3}
+    - target: {fileID: 11420596, guid: 37af9a34b2efb7942b87523b2428bc77, type: 2}
+      propertyPath: iconSprites.Array.data[6]
+      value: 
+      objectReference: {fileID: 21300000, guid: 13a1eb92f9461684f8ed2b06aa9209df,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 37af9a34b2efb7942b87523b2428bc77, type: 2}
   m_IsPrefabParent: 0
@@ -28869,6 +28888,10 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 11473124, guid: 94ab219c2e501444bafe3dffdbc804f9, type: 2}
+      propertyPath: buildingList.Array.size
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 435612, guid: 94ab219c2e501444bafe3dffdbc804f9, type: 2}
       propertyPath: m_LocalPosition.x
       value: 5
@@ -28980,7 +29003,7 @@ Prefab:
     - target: {fileID: 11499584, guid: 94ab219c2e501444bafe3dffdbc804f9, type: 2}
       propertyPath: superBurningDevice
       value: 
-      objectReference: {fileID: 164380, guid: 4c7a942581744c34fae522437cdb6f96, type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: 11454504, guid: 94ab219c2e501444bafe3dffdbc804f9, type: 2}
       propertyPath: maxRemainingTimeForEachWave
       value: 100
@@ -28992,7 +29015,7 @@ Prefab:
     - target: {fileID: 11499584, guid: 94ab219c2e501444bafe3dffdbc804f9, type: 2}
       propertyPath: superTurret
       value: 
-      objectReference: {fileID: 104796, guid: 496bd6e982188b44395a28d7efe541cd, type: 2}
+      objectReference: {fileID: 147436, guid: 496bd6e982188b44395a28d7efe541cd, type: 2}
     - target: {fileID: 2058964, guid: 94ab219c2e501444bafe3dffdbc804f9, type: 2}
       propertyPath: orthographic size
       value: 4
@@ -29001,7 +29024,20 @@ Prefab:
       propertyPath: minCameraSize
       value: 2
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 11449604, guid: 94ab219c2e501444bafe3dffdbc804f9, type: 2}
+      propertyPath: superTurret
+      value: 
+      objectReference: {fileID: 147436, guid: 496bd6e982188b44395a28d7efe541cd, type: 2}
+    - target: {fileID: 11449604, guid: 94ab219c2e501444bafe3dffdbc804f9, type: 2}
+      propertyPath: superBurningDevice
+      value: 
+      objectReference: {fileID: 164380, guid: 4c7a942581744c34fae522437cdb6f96, type: 2}
+    - target: {fileID: 11473124, guid: 94ab219c2e501444bafe3dffdbc804f9, type: 2}
+      propertyPath: buildingList.Array.data[4]
+      value: 
+      objectReference: {fileID: 176402, guid: f6f8e960e291def4e9350c2ae5e73b53, type: 2}
+    m_RemovedComponents:
+    - {fileID: 11499584, guid: 94ab219c2e501444bafe3dffdbc804f9, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 94ab219c2e501444bafe3dffdbc804f9, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &1957252851

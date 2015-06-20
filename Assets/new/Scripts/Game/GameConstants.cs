@@ -41,7 +41,8 @@ public static class GameConstants {
     FIRE_CANNON,
     LASER_BURNING_DEVICE,
     FIRE_STORM_DEVICE,
-    SUPER_TURRET
+    SUPER_TURRET,
+    SPEEDING_DEVICE
   }
 
   private static string[] _nameOfBuildingID;
@@ -61,6 +62,7 @@ public static class GameConstants {
         _nameOfBuildingID[(int)BuildingID.LASER_BURNING_DEVICE] = "雷與火之歌";
         _nameOfBuildingID[(int)BuildingID.FIRE_STORM_DEVICE] = "烈焰風暴";
         _nameOfBuildingID[(int)BuildingID.SUPER_TURRET] = "高級砲塔";
+        _nameOfBuildingID[(int)BuildingID.SPEEDING_DEVICE] = "加速裝置";
       }
       return _nameOfBuildingID;
     }
