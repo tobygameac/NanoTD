@@ -66,7 +66,6 @@ GameObject:
   - 54: {fileID: 5476344}
   - 114: {fileID: 11496652}
   - 114: {fileID: 11435570}
-  - 114: {fileID: 11491940}
   m_Layer: 10
   m_Name: Enemy4
   m_TagString: Enemy
@@ -83,6 +82,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 487022}
   - 212: {fileID: 21241200}
+  - 114: {fileID: 11492522}
   m_Layer: 10
   m_Name: Body
   m_TagString: Untagged
@@ -314,18 +314,18 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
---- !u!114 &11491940
+--- !u!114 &11492522
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 149434}
+  m_GameObject: {fileID: 149536}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f40b415c25d9ba540a5e6d8a08df5bd5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotatingSpeed: 45
+  rotatingSpeed: 15
   rotatingScale: {x: 0, y: 1, z: 0}
 --- !u!114 &11496516
 MonoBehaviour:
@@ -550,7 +550,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: rotatingSpeed
-      value: 45
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: rotatingScale.y

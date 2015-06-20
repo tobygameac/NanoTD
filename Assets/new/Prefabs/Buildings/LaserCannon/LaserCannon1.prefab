@@ -480,11 +480,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rangeDisplayer: {fileID: 125762}
   description: 
-  _buildingID: 4
+  _buildingID: 7
   _enemyID: 0
   _basicHP: 0
   _hPModifier: 0
-  _basicDamage: 100
+  _basicDamage: 200
   _damageModifier: 0
   _basicMovingSpeed: 0
   _movingSpeedModifier: 0
@@ -699,7 +699,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 0}
       propertyPath: _basicDamage
-      value: 100
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: _cost
@@ -716,6 +716,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: reloadTime
       value: .75
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: _buildingID
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

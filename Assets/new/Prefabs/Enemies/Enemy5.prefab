@@ -9,6 +9,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 489718}
   - 212: {fileID: 21257016}
+  - 114: {fileID: 11417332}
   m_Layer: 10
   m_Name: Body
   m_TagString: Untagged
@@ -82,7 +83,6 @@ GameObject:
   - 54: {fileID: 5495708}
   - 114: {fileID: 11401112}
   - 114: {fileID: 11498916}
-  - 114: {fileID: 11441006}
   m_Layer: 10
   m_Name: Enemy5
   m_TagString: Enemy
@@ -209,6 +209,19 @@ MonoBehaviour:
   _attackingRange: 0
   _nextLevel: {fileID: 0}
   _path: []
+--- !u!114 &11417332
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 118700}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f40b415c25d9ba540a5e6d8a08df5bd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotatingSpeed: 30
+  rotatingScale: {x: 0, y: 1, z: 0}
 --- !u!114 &11419834
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -267,19 +280,6 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
---- !u!114 &11441006
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 148646}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f40b415c25d9ba540a5e6d8a08df5bd5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rotatingSpeed: 60
-  rotatingScale: {x: 0, y: 1, z: 0}
 --- !u!114 &11452162
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -554,7 +554,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: rotatingSpeed
-      value: 60
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: rotatingScale.y

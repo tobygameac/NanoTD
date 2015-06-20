@@ -18,13 +18,13 @@ public class EnemyStatsModifier : MonoBehaviour {
   }
 
   public static void ModifyStatsWithWave(CharacterStats characterStats, int wave) {
-    characterStats.HPModifier = wave - 1;
-
-    for (int w = 2, hpModifierIndex = 0; hpModifierIndex < GameConstants.WAVE_THERSHOLD_FOR_THE_NEXT_HP_MODIFIER.Length; ++hpModifierIndex) {
-      while (w <= GameConstants.WAVE_THERSHOLD_FOR_THE_NEXT_HP_MODIFIER[hpModifierIndex] && w <= wave) {
-        characterStats.HPModifier += GameConstants.HP_MODIFIERS_FOR_WAVE[hpModifierIndex];
-        ++w;
+    for (int w = 1, hpModifierIndex = 0; w <= wave; ++w) {
+      if (w > GameConstants.WAVE_THERSHOLD_FOR_THE_NEXT_HP_MODIFIER[hpModifierIndex]) {
+        if (hpModifierIndex < GameConstants.WAVE_THERSHOLD_FOR_THE_NEXT_HP_MODIFIER.Length) {
+          ++hpModifierIndex;
+        }
       }
+      characterStats.HPModifier += GameConstants.HP_MODIFIERS_FOR_WAVE[hpModifierIndex];
     }
     
     characterStats.Cost += (int)(characterStats.Cost * (wave - 1) * GameConstants.COST_MODIFIER_FOR_EACH_WAVE);
@@ -34,30 +34,31 @@ public class EnemyStatsModifier : MonoBehaviour {
     characterStats.MovingSpeedModifier += (wave - 1) * GameConstants.ENEMY_MOVING_SPEED_MODIFIER_FOR_EACH_WAVE; 
   }
 
-  public static void AddRandomImprovement(GameObject targetCharacter) {
+  public static void AddRandomImprovementWithWave(GameObject targetCharacter, int wave) {
+    float probabilityScale = wave * GameConstants.IMPROVEMENT_PROBABILITY_SCALE_PER_WAVE;
     float dice = Random.Range(0.0f, 1.0f);
 
     CharacterStats characterStats = targetCharacter.GetComponent<CharacterStats>();
 
-    if (dice < GameConstants.PROBABILITY_OF_STRONGGER) {
+    if (dice < GameConstants.PROBABILITY_OF_STRONGGER * probabilityScale) {
       characterStats.Cost = (int)(characterStats.Cost * GameConstants.COST_SCALE_OF_STRONGGER);
       targetCharacter.AddComponent<Strongger>();
     }
 
     dice = Random.Range(0.0f, 1.0f);
-    if (dice < GameConstants.PROBABILITY_OF_INSANE) {
+    if (dice < GameConstants.PROBABILITY_OF_INSANE * probabilityScale) {
       characterStats.Cost = (int)(characterStats.Cost * GameConstants.COST_SCALE_OF_INSANE);
       targetCharacter.AddComponent<Insane>();
     }
 
     dice = Random.Range(0.0f, 1.0f);
-    if (dice < GameConstants.PROBABILITY_OF_SELF_HEALING) {
+    if (dice < GameConstants.PROBABILITY_OF_SELF_HEALING * probabilityScale) {
       characterStats.Cost = (int)(characterStats.Cost * GameConstants.COST_SCALE_OF_SELF_HEALING);
       targetCharacter.AddComponent<SelfHealing>();
     }
 
     dice = Random.Range(0.0f, 1.0f);
-    if (dice < GameConstants.PROBABILITY_OF_CELL_DIVISION) {
+    if (dice < GameConstants.PROBABILITY_OF_CELL_DIVISION * probabilityScale) {
       characterStats.Cost = (int)(characterStats.Cost * GameConstants.COST_SCALE_OF_CELL_DIVISION);
       targetCharacter.AddComponent<CellDivision>();
     }

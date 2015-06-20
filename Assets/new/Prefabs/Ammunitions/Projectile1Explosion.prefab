@@ -84,7 +84,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &184780
 GameObject:
   m_ObjectHideFlags: 0
@@ -376,7 +376,7 @@ ParticleSystem:
         rgba: 3372220415
       minMaxState: 2
     startSize:
-      scalar: .300000012
+      scalar: .150000006
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -1369,7 +1369,7 @@ ParticleSystem:
         rgba: 2533359615
       minMaxState: 0
     startSize:
-      scalar: .5
+      scalar: .400000006
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -1384,7 +1384,7 @@ ParticleSystem:
         serializedVersion: 2
         m_Curve:
         - time: 0
-          value: .699999988
+          value: .625
           inSlope: 0
           outSlope: 0
           tangentMode: 0

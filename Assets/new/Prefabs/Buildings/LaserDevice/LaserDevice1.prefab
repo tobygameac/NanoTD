@@ -676,7 +676,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rangeDisplayer: {fileID: 131016}
   description: "\u521D\u671F\u7684\u55AE\u9AD4\u653B\u64CA\u88DD\u7F6E"
-  _buildingID: 3
+  _buildingID: 4
   _enemyID: 0
   _basicHP: 0
   _hPModifier: 0
@@ -848,6 +848,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: _attackingRange
       value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: _buildingID
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

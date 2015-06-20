@@ -4,6 +4,7 @@ using System.Collections;
 public class MainMenu : MonoBehaviour {
 
   public AudioClip buttonSound;
+  public AudioClip theme;
 
   public void OnStartButtonClick() {
     AudioManager.PlayAudioClip(buttonSound);
@@ -22,6 +23,6 @@ public class MainMenu : MonoBehaviour {
   }
 
   void Start() {
-    AudioManager.Volume = 0.5f;
+    AudioManager.PlayLoopAudioClip(theme);
   }
 }

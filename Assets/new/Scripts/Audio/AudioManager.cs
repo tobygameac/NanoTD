@@ -20,23 +20,7 @@ public class AudioManager : MonoBehaviour {
 
   private static List<GameObject> loopingAudioClip;
 
-  private static float _volume;
-  public static float Volume {
-    get {
-      return _volume;
-    }
-    set {
-      if (value >= 0 && value <= 1.0f) {
-        _volume = value;
-      }
-    }
-  }
-  
   public static void PlayAudioClip(AudioClip audioClip) {
-    PlayAudioClip(audioClip, 1.0f);
-  }
-
-  public static void PlayAudioClip(AudioClip audioClip, float volume) {
     GameObject audioClipGameObject = new GameObject("Audio Clip : " + audioClip.name);
     audioClipGameObject.transform.position = Vector3.zero;
 
@@ -46,20 +30,13 @@ public class AudioManager : MonoBehaviour {
     audioSource.rolloffMode = AudioRolloffMode.Linear;
     audioSource.loop = false;
     audioSource.clip = audioClip;
-    audioSource.volume = volume * _volume;
+    audioSource.volume = 1.0f;
     audioSource.Play();
 
     Destroy(audioClipGameObject, audioClip.length);
   }
 
   public static void PlayLoopAudioClip(AudioClip audioClip) {
-    if (loopingAudioClip == null) {
-      loopingAudioClip = new List<GameObject>();
-    }
-    PlayLoopAudioClip(audioClip, 1.0f);
-  }
-
-  public static void PlayLoopAudioClip(AudioClip audioClip, float volume) {
     GameObject audioClipGameObject = new GameObject("Audio Clip : " + audioClip.name);
     audioClipGameObject.transform.position = Vector3.zero;
 
@@ -69,7 +46,7 @@ public class AudioManager : MonoBehaviour {
     audioSource.rolloffMode = AudioRolloffMode.Linear;
     audioSource.loop = true;
     audioSource.clip = audioClip;
-    audioSource.volume = volume * _volume;
+    audioSource.volume = 1.0f;
     audioSource.Play();
 
     if (loopingAudioClip == null) {

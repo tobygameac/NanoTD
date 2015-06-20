@@ -529,7 +529,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rangeDisplayer: {fileID: 191264}
   description: 
-  _buildingID: 8
+  _buildingID: 10
   _enemyID: 0
   _basicHP: 0
   _hPModifier: 0
@@ -6925,7 +6925,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: _buildingID
-      value: 8
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: _attackingRange

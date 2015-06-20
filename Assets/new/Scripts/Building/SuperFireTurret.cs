@@ -3,7 +3,7 @@ using System.Collections;
 
 [RequireComponent (typeof(CharacterStats))]
 [RequireComponent (typeof(SphereCollider))]
-public class FireTurret : MonoBehaviour {
+public class SuperFireTurret : MonoBehaviour {
 
   //public AudioClip projectileSound;
 
@@ -12,12 +12,16 @@ public class FireTurret : MonoBehaviour {
 
   public Transform[] muzzles;
   public Transform muzzleBase;
+  private Rotating muzzleBaseRotating;
+
+  public float attackingAngleForEachMuzzle;
 
   public float turningSpeed;
   public float warmingUpTime;
   private float nextAttackTime;
 
-  public float attackingAngleForEachMuzzle;
+  public float stopFireTimeWhenNoTarget;
+  private float noTargetTime;
 
   private CharacterStats characterStats;
 
@@ -34,6 +38,9 @@ public class FireTurret : MonoBehaviour {
     characterStats = GetComponent<CharacterStats>();
     GetComponent<SphereCollider>().radius = characterStats.AttackingRange;
 
+    muzzleBaseRotating = muzzleBase.GetComponent<Rotating>();
+    muzzleBaseRotating.rotatingSpeed = turningSpeed;
+
     target = null;
 
     if (game == null) {
@@ -43,18 +50,23 @@ public class FireTurret : MonoBehaviour {
 
   void Update() {
     if (target != null) {
+      noTargetTime = 0;
       for (int i = 0; i < FXParticleSystem.Length; ++i) {
         if (!FXParticleSystem[i].isPlaying) {
           nextAttackTime = Time.time + warmingUpTime;
           FXParticleSystem[i].Play();
+          muzzleBaseRotating.enabled = true;
         }
       }
-      Quaternion desiredRotation = Quaternion.LookRotation(target.position - muzzleBase.position);
-      desiredRotation.eulerAngles = new Vector3(muzzleBase.eulerAngles.x, desiredRotation.eulerAngles.y,muzzleBase.eulerAngles.z); // y-axis only
-      muzzleBase.rotation = Quaternion.Slerp(muzzleBase.rotation, desiredRotation, Time.deltaTime * turningSpeed);
     } else {
-      for (int i = 0; i < FXParticleSystem.Length; ++i) {
-        FXParticleSystem[i].Stop();
+      noTargetTime += Time.deltaTime;
+      if (noTargetTime >= stopFireTimeWhenNoTarget) {
+        for (int i = 0; i < FXParticleSystem.Length; ++i) {
+          if (FXParticleSystem[i].isPlaying) {
+            FXParticleSystem[i].Stop();
+          }
+        }
+        muzzleBaseRotating.enabled = false;
       }
     }
   }
@@ -80,8 +92,8 @@ public class FireTurret : MonoBehaviour {
       if (Time.time >= nextAttackTime) {
         for (int i = 0; i < muzzles.Length; ++i) {
           Quaternion desiredRotation = Quaternion.LookRotation(collider.transform.position - muzzleBase.position);
-          float angleToEnemy = Quaternion.Angle(muzzles[i].rotation, desiredRotation);
-          if (angleToEnemy <= attackingAngleForEachMuzzle / 2) {
+          float angleFromMuzzleToEnemy = Quaternion.Angle(muzzles[i].rotation, desiredRotation);
+          if (angleFromMuzzleToEnemy <= attackingAngleForEachMuzzle / 2) {
             CharacterStats targetCharacterStats = collider.GetComponent<CharacterStats>();
             targetCharacterStats.CurrentHP -= characterStats.Damage * Time.deltaTime;
             if (targetCharacterStats.CurrentHP <= 0) {
@@ -100,18 +112,6 @@ public class FireTurret : MonoBehaviour {
   void OnTriggerExit(Collider collider) {
     if (target == collider.transform) {
       target = null;
-    }
-  }
-
-  public void DealDamage(GameObject enemyGameObject) {
-    CharacterStats enemyCharacterStats = enemyGameObject.GetComponent<CharacterStats>();
-    enemyCharacterStats.CurrentHP -= characterStats.Damage;
-    if (enemyCharacterStats.CurrentHP <= 0) {
-      ++characterStats.UnitKilled;
-      if (game.HasTechnology(GameConstants.TechnologyID.SELF_LEARNING)) {
-        characterStats.DamageModifier += GameConstants.SELF_LEARNING_IMPROVEMENT_PERCENT_PER_KILL;
-      } else {
-      }
     }
   }
 

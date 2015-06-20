@@ -33,11 +33,12 @@ public static class GameConstants {
     TURRET,
     SLOWING_DEVICE,
     BURNING_DEVICE,
+    SUPER_BURNING_DEVICE,
     LASER_DEVICE,
     FIRE_TURRET,
+    SUPER_FIRE_TURRET,
     LASER_CANNON,
     FIRE_CANNON,
-    SUPER_BURNING_DEVICE,
     LASER_BURNING_DEVICE,
     FIRE_STORM_DEVICE
   }
@@ -50,11 +51,12 @@ public static class GameConstants {
         _nameOfBuildingID[(int)BuildingID.TURRET] = "基礎砲塔";
         _nameOfBuildingID[(int)BuildingID.SLOWING_DEVICE] = "緩速裝置";
         _nameOfBuildingID[(int)BuildingID.BURNING_DEVICE] = "燃燒裝置";
+        _nameOfBuildingID[(int)BuildingID.SUPER_BURNING_DEVICE] = "超級燃燒裝置";
         _nameOfBuildingID[(int)BuildingID.LASER_DEVICE] = "雷射裝置";
         _nameOfBuildingID[(int)BuildingID.FIRE_TURRET] = "火焰砲塔";
+        _nameOfBuildingID[(int)BuildingID.SUPER_FIRE_TURRET] = "超級火焰砲塔";
         _nameOfBuildingID[(int)BuildingID.LASER_CANNON] = "雷射加農砲";
         _nameOfBuildingID[(int)BuildingID.FIRE_CANNON] = "火焰加農砲";
-        _nameOfBuildingID[(int)BuildingID.SUPER_BURNING_DEVICE] = "超級燃燒裝置";
         _nameOfBuildingID[(int)BuildingID.LASER_BURNING_DEVICE] = "雷與火之歌";
         _nameOfBuildingID[(int)BuildingID.FIRE_STORM_DEVICE] = "烈焰風暴";
       }
@@ -133,29 +135,31 @@ public static class GameConstants {
   public static readonly float FREEZING_LEVEL3_MOVING_SPEED_MODIFIER = -0.4f;
 
   // Enemy improvement
-  public static readonly float PROBABILITY_OF_STRONGGER = 0.1f;
+  public static readonly float PROBABILITY_OF_STRONGGER = 0.10f;
   public static readonly float COST_SCALE_OF_STRONGGER = 1.05f;
-  public static readonly float HP_SCALE_OF_STRONGGER = 1.2f;
-  public static readonly float SIZE_SCALE_OF_STRONGGER = 1.2f;
+  public static readonly float HP_SCALE_OF_STRONGGER = 8.0f;
+  public static readonly float SIZE_SCALE_OF_STRONGGER = 1.5f;
   public static readonly float MOVING_SPEED_MODIFIER_OF_STRONGGER = -0.25f;
 
-  public static readonly float PROBABILITY_OF_INSANE = 0.1f;
+  public static readonly float PROBABILITY_OF_INSANE = 0.10f;
   public static readonly float COST_SCALE_OF_INSANE = 1.05f;
-  public static readonly float MOVING_SPEED_MODIFIER_OF_INSANE = 0.3f;
+  public static readonly float MOVING_SPEED_MODIFIER_OF_INSANE = 1.0f;
 
-  public static readonly float PROBABILITY_OF_SELF_HEALING = 0.05f;
+  public static readonly float PROBABILITY_OF_SELF_HEALING = 0.10f;
   public static readonly float COST_SCALE_OF_SELF_HEALING = 1.2f;
   public static readonly float HP_PERCENT_REGENERATING_PER_SECOND_OF_SELF_HEALING = 0.05f;
 
-  public static readonly float PROBABILITY_OF_CELL_DIVISION = 0.05f;
+  public static readonly float PROBABILITY_OF_CELL_DIVISION = 0.10f;
   public static readonly float COST_SCALE_OF_CELL_DIVISION = 1.2f;
   public static readonly float HP_PERCENT_FOR_CELL_DIVISION = 0.2f;
   public static readonly int MIN_CELL_DIVISION_COUNT = 4;
   public static readonly int MAX_CELL_DIVISION_COUNT = 8;
 
+  public static readonly float IMPROVEMENT_PROBABILITY_SCALE_PER_WAVE = 0.05f;
+
   // Other modifier
-  public static readonly int[] WAVE_THERSHOLD_FOR_THE_NEXT_HP_MODIFIER = new int[]{   3,    5,  10,   15,   20,   30,    50};
-  public static readonly float[] HP_MODIFIERS_FOR_WAVE =               new float[]{1.1f, 1.7f, 1.6f, 1.5f, 1.4f, 1.3f, 1.2f};
+  public static readonly int[] WAVE_THERSHOLD_FOR_THE_NEXT_HP_MODIFIER = new int[]{1,       3,    5,  10,   15,   20,   30,    50};
+  public static readonly float[] HP_MODIFIERS_FOR_WAVE =               new float[]{0.0f, 1.1f, 1.7f, 1.8f, 2.0f, 1.6f, 1.4f, 1.2f};
 
   public static readonly float COST_MODIFIER_FOR_EACH_WAVE = 0.5f;
 

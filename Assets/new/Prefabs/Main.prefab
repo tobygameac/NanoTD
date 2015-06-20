@@ -12,9 +12,12 @@ GameObject:
   - 124: {fileID: 12411282}
   - 92: {fileID: 9298394}
   - 81: {fileID: 8147958}
+  - 114: {fileID: 11403450}
   - 114: {fileID: 11420238}
   - 114: {fileID: 11473124}
   - 114: {fileID: 11454504}
+  - 114: {fileID: 11449604}
+  - 114: {fileID: 11499584}
   m_Layer: 0
   m_Name: Main
   m_TagString: MainCamera
@@ -54,7 +57,7 @@ Camera:
   far clip plane: 1000
   field of view: 100
   orthographic: 1
-  orthographic size: 3
+  orthographic size: 5
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -81,6 +84,17 @@ Behaviour:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 152282}
   m_Enabled: 1
+--- !u!114 &11403450
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 152282}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5cf9f619b5eaf146939277611e12c17, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &11420238
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -94,12 +108,29 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 75
   scrollingSpeed: 200
-  maxCameraSize: 5
-  minCameraSize: 1
+  maxCameraSize: 9
+  minCameraSize: 3
   maxEdgeDistanceToMove: 5
   edgeMovingModifier: 0
-  minBoundPostion: {x: -10, y: 5, z: -10}
-  maxBoundPostion: {x: 20, y: 5, z: 5}
+  minBoundPostion: {x: 0, y: 5, z: -20}
+  maxBoundPostion: {x: 20, y: 5, z: 10}
+--- !u!114 &11449604
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 152282}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0e9da3f257512b459c627de21f30d4e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fireTurret: {fileID: 181816, guid: 292817361aed3b741a78cf48e9b8d383, type: 2}
+  superFireTurret: {fileID: 187066, guid: bc96ac736c21bd6439f18137d9f9e9b7, type: 2}
+  laserCannon: {fileID: 145468, guid: 6b700ffbe9c18ad4991de6971b630d13, type: 2}
+  laserBurningDevice: {fileID: 138678, guid: 109f686003c2ed1449dc41762928a2e6, type: 2}
+  superBurningDevice: {fileID: 140760, guid: 4c7a942581744c34fae522437cdb6f96, type: 2}
+  fireStormDevice: {fileID: 181204, guid: cabaedd6f9db2b145ba6fd68af073b90, type: 2}
 --- !u!114 &11454504
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -115,15 +146,29 @@ MonoBehaviour:
   spawningPoints:
   - {fileID: 0}
   enemyPath:
-  - {x: -1.5, y: 0, z: 3}
-  - {x: 14, y: 0, z: 3}
-  - {x: 14, y: 0, z: -3.5}
-  - {x: -1.5, y: 0, z: -3.5}
+  - {x: 0, y: 0, z: 4}
+  - {x: 16, y: 0, z: 4}
+  - {x: 16, y: 0, z: -10}
+  - {x: 8, y: 0, z: -10}
+  - {x: 8, y: 0, z: -2}
+  - {x: 24, y: 0, z: -2}
+  - {x: 24, y: 0, z: -16}
+  - {x: 0, y: 0, z: -16}
+  pathArrow: {fileID: 152156, guid: ba88506b76f637a46a0fdc12fe05053f, type: 2}
+  distancePerArrow: 3
   corePositions: []
   enemyPrefabs:
+  - {fileID: 153678, guid: 9b282e719e7660d47a46a78d603741bf, type: 2}
+  - {fileID: 111144, guid: 9ddece96d461796489356115bf9dbe84, type: 2}
+  - {fileID: 187170, guid: 4adeb58d8fa3db847b114465c4cb1688, type: 2}
+  - {fileID: 149434, guid: 25aa28bbf775ea54083252121b6ef407, type: 2}
+  - {fileID: 148646, guid: 41c7ad2a8a46b5e458978716fd776328, type: 2}
+  - {fileID: 103906, guid: dcaa24fa76a02e74e95f1d0a7dd0fe00, type: 2}
   - {fileID: 191606, guid: 337dadc89e61f7f4fb77ab93c0229c39, type: 2}
+  waveThresholdForTheNextTypeOfEnemy: 3
   _maxWave: 0
-  restingTimeBetweenWaves: 3
+  restingTimeBetweenWaves: 10
+  maxRemainingTimeForEachWave: 90
 --- !u!114 &11473124
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -148,10 +193,11 @@ MonoBehaviour:
   nameInputField: {fileID: 0}
   buttonTemplate: {fileID: 144014, guid: ea8b8eccec45fd14d8fa2dc5702730e7, type: 2}
   gameMode: 1
+  backgroundMusic: {fileID: 8300000, guid: a2bf208863b982f4794fdfbf3d80ed56, type: 3}
   buttonSound: {fileID: 8300000, guid: 0b69f984762f3ea40bc960be209a8071, type: 3}
   buildSound: {fileID: 8300000, guid: a1400e9e8b3e2094ebe8d3a5ea4ce9f9, type: 3}
   errorSound: {fileID: 8300000, guid: f57abb889ead7144f889feef6a0eacb2, type: 3}
-  deniedSound: {fileID: 0}
+  deniedSound: {fileID: 8300000, guid: 09055508e1a4cf34daacd04069ba95e9, type: 3}
   sellSound: {fileID: 8300000, guid: 3d01cc25c8e9da744be0c7f628a5817c, type: 3}
   researchSound: {fileID: 8300000, guid: 28b0441fc738e9a4bb8091a7fc155b85, type: 3}
   tileOriginalMaterial: {fileID: 2100000, guid: bee464de893888443865c05853b5ca1f,
@@ -166,7 +212,8 @@ MonoBehaviour:
   - {fileID: 186646, guid: 40e4f0d38a4e0ff4d8fde76e329082a7, type: 2}
   - {fileID: 188834, guid: 03a6216844f979847a81e40aa480fa31, type: 2}
   - {fileID: 130178, guid: eb0f125e45e80a04f930accea99b83d1, type: 2}
-  maxBuildingNumber: 10
+  - {fileID: 153292, guid: dbc9df9d013a3c741bb5597eb50faed9, type: 2}
+  maxBuildingNumber: 15
   buildingLayerMask:
     serializedVersion: 2
     m_Bits: 512
@@ -177,7 +224,24 @@ MonoBehaviour:
   freezingLevel1Effect: {fileID: 0}
   freezingLevel2Effect: {fileID: 0}
   freezingLevel3Effect: {fileID: 0}
-  basicmoney: 200000
+  basicmoney: 300
+--- !u!114 &11499584
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 152282}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0e9da3f257512b459c627de21f30d4e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fireTurret: {fileID: 181816, guid: 292817361aed3b741a78cf48e9b8d383, type: 2}
+  superFireTurret: {fileID: 187066, guid: bc96ac736c21bd6439f18137d9f9e9b7, type: 2}
+  laserCannon: {fileID: 145468, guid: 6b700ffbe9c18ad4991de6971b630d13, type: 2}
+  laserBurningDevice: {fileID: 138678, guid: 109f686003c2ed1449dc41762928a2e6, type: 2}
+  superBurningDevice: {fileID: 140760, guid: 4c7a942581744c34fae522437cdb6f96, type: 2}
+  fireStormDevice: {fileID: 181204, guid: cabaedd6f9db2b145ba6fd68af073b90, type: 2}
 --- !u!124 &12411282
 Behaviour:
   m_ObjectHideFlags: 1

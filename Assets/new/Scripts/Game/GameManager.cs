@@ -240,21 +240,28 @@ public class GameManager : MonoBehaviour {
   }
 
   private void GenerateEnemies() {
-    for (int i = 0; i < spawningPoints.Count && numberOfEnemiesToGenerate > 0; ++i) {
-      int indexRangeOfEnemyToGenerate = CurrentWave + 1;
-      if (waveThresholdForTheNextTypeOfEnemy > 0) {
-        indexRangeOfEnemyToGenerate /= waveThresholdForTheNextTypeOfEnemy;
-      }
-      if (indexRangeOfEnemyToGenerate > enemyPrefabs.Count) {
-        indexRangeOfEnemyToGenerate = enemyPrefabs.Count;
-      }
-      GameObject enemyPrefab = enemyPrefabs[Random.Range(0, indexRangeOfEnemyToGenerate)];
-      GameObject newEnemy = CharacterGenerator.GenerateCharacter(enemyPrefab, spawningPoints[i].position, enemyPath);
-      EnemyStatsModifier.AddRandomImprovement(newEnemy);
-      EnemyStatsModifier.ModifyStatsWithWave(newEnemy.GetComponent<CharacterStats>(), currentWave);
-      --numberOfEnemiesToGenerate;
-      ++numberOfEnemiesOnMap;
+    int indexRangeOfEnemyToGenerate = CurrentWave + 1;
+
+    if (waveThresholdForTheNextTypeOfEnemy > 0) {
+      indexRangeOfEnemyToGenerate /= waveThresholdForTheNextTypeOfEnemy;
     }
+    if (indexRangeOfEnemyToGenerate > enemyPrefabs.Count) {
+      indexRangeOfEnemyToGenerate = enemyPrefabs.Count;
+    }
+
+    GameObject enemyPrefab = enemyPrefabs[Random.Range(0, indexRangeOfEnemyToGenerate)];
+
+    int spwaningPointIndex = Random.Range(0, spawningPoints.Count);
+    Vector3 spawningPosition = spawningPoints[spwaningPointIndex].position;
+
+    GameObject newEnemy = CharacterGenerator.GenerateCharacter(enemyPrefab, spawningPosition, enemyPath);
+
+    EnemyStatsModifier.AddRandomImprovementWithWave(newEnemy, currentWave);
+    EnemyStatsModifier.ModifyStatsWithWave(newEnemy.GetComponent<CharacterStats>(), currentWave);
+
+    --numberOfEnemiesToGenerate;
+    ++numberOfEnemiesOnMap;
+
     nextGenerateEnemyTime = Time.time + timeBetweenGenerateEnemy;
   }
 
@@ -263,9 +270,9 @@ public class GameManager : MonoBehaviour {
       /* temp */
       /* temp */
       /* temp */
-    numberOfEnemiesToGenerate = currentWave * 15 * (int)Mathf.Pow(1.1f, currentWave);
+    numberOfEnemiesToGenerate = 10 + (currentWave - 1) * 5 * (int)Mathf.Pow(1.1f, currentWave);
     if ((game.GameMode == GameConstants.GameMode.SURVIVAL_NORMAL) || (game.GameMode == GameConstants.GameMode.SURVIVAL_BOSS)) {
-      remainingTimeOfCurrentWave = 30 + ((currentWave - 1) * 5);
+      remainingTimeOfCurrentWave = 45 + ((currentWave - 1) * 5);
       /* temp */
       /* temp */
       /* temp */

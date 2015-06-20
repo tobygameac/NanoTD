@@ -199,8 +199,7 @@ public class CharacterStats : MonoBehaviour {
   }
 
   void Start() {
-    CurrentHP = BasicHP * (1 + HPModifier);
-    MaxHP = BasicHP * (1 + HPModifier);
+    CurrentHP = MaxHP = BasicHP * (1 + HPModifier);
     Damage = BasicDamage * (1 + DamageModifier);
     MovingSpeed = BasicMovingSpeed * (1 + MovingSpeedModifier);
   }
