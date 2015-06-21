@@ -51,7 +51,8 @@ public class BuildingStatsDisplayer : MonoBehaviour {
       buildingStatsText.text += "<color=brown>減緩移動速度 : </color><color=blue>" + (characterStats.Damage * 100).ToString("0.00") + "%\n";
     } else if (characterStats.BuildingID == GameConstants.BuildingID.SPEEDING_DEVICE) {
       buildingStatsText.text += "<color=brown>增加移動速度 : </color><color=blue>" + (-characterStats.Damage * 100).ToString("0.00") + "%\n";
-      
+    } else if (characterStats.BuildingID == GameConstants.BuildingID.WEAKENING_DEVICE) {
+      buildingStatsText.text += "<color=brown>降低病菌最大生命 : </color><color=blue>" + (characterStats.Damage * 100).ToString("0.00") + "%\n";
     } else if (characterStats.BuildingID == GameConstants.BuildingID.FIRE_STORM_DEVICE) {
       float damageScale = building.GetComponent<FireStormDevice>().DamageScale;
       buildingStatsText.text += "<color=brown>減緩移動速度 : </color><color=blue>" + (characterStats.Damage * 100).ToString("0.00") + "%</color>";
@@ -67,6 +68,7 @@ public class BuildingStatsDisplayer : MonoBehaviour {
     if (game.HasTechnology(GameConstants.TechnologyID.SELF_LEARNING)) {
       if (characterStats.BuildingID == GameConstants.BuildingID.SLOWING_DEVICE) {
       } else if (characterStats.BuildingID == GameConstants.BuildingID.SPEEDING_DEVICE) {
+      } else if (characterStats.BuildingID == GameConstants.BuildingID.WEAKENING_DEVICE) {
       } else if (characterStats.BuildingID == GameConstants.BuildingID.FIRE_STORM_DEVICE) {
         float damageScale = building.GetComponent<FireStormDevice>().DamageScale;
         buildingStatsText.text += "<color=red>(+" + (characterStats.DamageModifier * characterStats.BasicDamage * damageScale).ToString("0.0") + ")</color>";
@@ -75,6 +77,12 @@ public class BuildingStatsDisplayer : MonoBehaviour {
       }
     }
     buildingStatsText.text += "\n";
+    if (characterStats.BuildingID == GameConstants.BuildingID.SLOWING_DEVICE) {
+    } else if (characterStats.BuildingID == GameConstants.BuildingID.SPEEDING_DEVICE) {
+    } else if (characterStats.BuildingID == GameConstants.BuildingID.WEAKENING_DEVICE) {
+    } else {
+      buildingStatsText.text += "<color=brown>攻擊速度 : </color><color=blue>" + (characterStats.AttackingSpeed).ToString("0.00") + "</color>\n";
+    }
     buildingStatsText.text += "<color=brown>攻擊範圍 : </color><color=blue>" + characterStats.AttackingRange + "</color>\n";
     buildingStatsText.text += "<color=brown>擊殺數 : </color><color=blue>" + characterStats.UnitKilled + "</color>\n";
   }

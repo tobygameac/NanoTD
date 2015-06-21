@@ -72,6 +72,7 @@ public class ScoreboardManager : MonoBehaviour {
   public static IEnumerator PostScore(GameConstants.GameMode gameMode, string name, int score, bool loadScoreboard) {
 
     name = name.Trim();
+    name = name.Replace("小雞雞", "帥哥");
     
     string postScoreUrl;
     if (gameMode == GameConstants.GameMode.SURVIVAL_NORMAL) {

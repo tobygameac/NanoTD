@@ -3,6 +3,8 @@ using System.Collections.Generic;
 
 public class MessageManager {
 
+  private static readonly int MAX_MESSAGES_COUNT = 100;
+
   private static MessageManager _instance;
   public static MessageManager Instance {
     get {
@@ -28,7 +30,10 @@ public class MessageManager {
     if (_instance == null) {
       _instance = Instance;
     }
-    _messages.Add(message); 
+    _messages.Add(message);
+    if (_messages.Count >= MAX_MESSAGES_COUNT) {
+      _messages.RemoveAt(0);
+    }
   }
 
   public static void ClearAllMessages() {

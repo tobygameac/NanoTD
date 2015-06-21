@@ -13,6 +13,7 @@ public class BurningDevice : MonoBehaviour {
   public GameObject muzzleBase;
   private Rotating muzzleBaseRotating;
 
+  private float attackingSpeed;
   private float attackingRange;
 
   private CharacterStats characterStats;
@@ -24,6 +25,7 @@ public class BurningDevice : MonoBehaviour {
   void Start() {
     characterStats = GetComponent<CharacterStats>();
 
+    attackingSpeed = characterStats.AttackingSpeed;
     attackingRange = characterStats.AttackingRange;
 
     GetComponent<SphereCollider>().radius = attackingRange;
@@ -57,7 +59,7 @@ public class BurningDevice : MonoBehaviour {
       lastAttackingTime = Time.time;
 
       CharacterStats targetCharacterStats = collider.GetComponent<CharacterStats>();
-      targetCharacterStats.CurrentHP -= characterStats.Damage * Time.deltaTime;
+      targetCharacterStats.CurrentHP -= characterStats.Damage * attackingSpeed * Time.deltaTime;
       if (targetCharacterStats.CurrentHP <= 0) {
         ++characterStats.UnitKilled;
         if (game.HasTechnology(GameConstants.TechnologyID.SELF_LEARNING)) {

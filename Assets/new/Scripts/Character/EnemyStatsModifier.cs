@@ -42,24 +42,28 @@ public class EnemyStatsModifier : MonoBehaviour {
     if (dice < GameConstants.PROBABILITY_OF_STRONGGER * probabilityScale) {
       characterStats.Cost = (int)(characterStats.Cost * GameConstants.COST_SCALE_OF_STRONGGER);
       targetCharacter.AddComponent<Strongger>();
+      return;
     }
 
     dice = Random.Range(0.0f, 1.0f);
     if (dice < GameConstants.PROBABILITY_OF_INSANE * probabilityScale) {
       characterStats.Cost = (int)(characterStats.Cost * GameConstants.COST_SCALE_OF_INSANE);
       targetCharacter.AddComponent<Insane>();
+      return;
     }
 
     dice = Random.Range(0.0f, 1.0f);
     if (dice < GameConstants.PROBABILITY_OF_SELF_HEALING * probabilityScale) {
       characterStats.Cost = (int)(characterStats.Cost * GameConstants.COST_SCALE_OF_SELF_HEALING);
       targetCharacter.AddComponent<SelfHealing>();
+      return;
     }
 
     dice = Random.Range(0.0f, 1.0f);
     if (dice < GameConstants.PROBABILITY_OF_CELL_DIVISION * probabilityScale) {
       characterStats.Cost = (int)(characterStats.Cost * GameConstants.COST_SCALE_OF_CELL_DIVISION);
       targetCharacter.AddComponent<CellDivision>();
+      return;
     }
   }
 }

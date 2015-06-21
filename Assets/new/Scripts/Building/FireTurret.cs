@@ -19,6 +19,9 @@ public class FireTurret : MonoBehaviour {
   public float warmingUpTime;
   private float nextAttackTime;
 
+  private float attackingRange;
+  private float attackingSpeed;
+
   public float stopFireTimeWhenNoTarget;
   private float noTargetTime;
 
@@ -35,7 +38,11 @@ public class FireTurret : MonoBehaviour {
     }
 
     characterStats = GetComponent<CharacterStats>();
-    GetComponent<SphereCollider>().radius = characterStats.AttackingRange;
+
+    attackingSpeed = characterStats.AttackingSpeed;
+    attackingRange = characterStats.AttackingRange;
+
+    GetComponent<SphereCollider>().radius = attackingRange;
 
     target = null;
 
@@ -84,7 +91,7 @@ public class FireTurret : MonoBehaviour {
           if (angleToEnemy <= attackingAngleForEachMuzzle / 2) {
             target = collider.transform;
             CharacterStats targetCharacterStats = collider.GetComponent<CharacterStats>();
-            targetCharacterStats.CurrentHP -= characterStats.Damage * Time.deltaTime;
+            targetCharacterStats.CurrentHP -= characterStats.Damage * attackingSpeed * Time.deltaTime;
             if (targetCharacterStats.CurrentHP <= 0) {
               ++characterStats.UnitKilled;
               if (game.HasTechnology(GameConstants.TechnologyID.SELF_LEARNING)) {

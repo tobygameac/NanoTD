@@ -32,6 +32,8 @@ public partial class Game : MonoBehaviour {
   public LayerMask placementLayerMask;
   private GameObject lastHoverTile;
 
+  public GameObject selectedBuildingHighlightObject;
+
   // Building
   public GameObject coreGameObject;
   [SerializeField]
@@ -72,8 +74,10 @@ public partial class Game : MonoBehaviour {
       _selectedBuilding = value;
       if (_selectedBuilding != null) {
         _selectedBuilding.GetComponent<CharacterStats>().RangeDisplayer.SetActive(true);
+        selectedBuildingHighlightObject.transform.position = _selectedBuilding.transform.position;
       }
       buildingStatsCanvas.SetActive(value != null);
+      selectedBuildingHighlightObject.SetActive(value != null);
     }
   }
   public GameObject SelectedBuilding {
@@ -318,24 +322,21 @@ public partial class Game : MonoBehaviour {
       }
       if (lastHoverTile == null) {
         if (playerState == GameConstants.PlayerState.VIEWING_BUILDING_LIST) {
-          playerState = GameConstants.PlayerState.IDLE;
+          ViewBuildingList();
         }
       }
       
       if (playerState == GameConstants.PlayerState.VIEWING_TECHNOLOGY_LIST) {
-        playerState = GameConstants.PlayerState.IDLE;
+        ViewTechnologyList();
       }
     }
 
     // Esc
     if (Input.GetKeyDown(KeyCode.Escape)) {
       if (playerState == GameConstants.PlayerState.VIEWING_BUILDING_LIST) {
-        playerState = GameConstants.PlayerState.IDLE;
-        viewingBuildingIndex = -1;
-        UpdateTilesMesh();
+        ViewBuildingList();
       } else if (playerState == GameConstants.PlayerState.VIEWING_TECHNOLOGY_LIST) {
-        playerState = GameConstants.PlayerState.IDLE;
-        viewingTechnologyIndex = -1;
+        ViewTechnologyList();
       } else if (selectedBuilding != null) {
         if (playerState == GameConstants.PlayerState.COMBINATING_BUILDINGS) {
           playerState = GameConstants.PlayerState.IDLE;
@@ -547,6 +548,10 @@ public partial class Game : MonoBehaviour {
       freezingLevel1Effect.GetComponent<ParticleSystem>().Stop();
       freezingLevel2Effect.GetComponent<ParticleSystem>().Stop();
       freezingLevel3Effect.GetComponent<ParticleSystem>().Play();
+    }
+
+    if (ViewingTechnology.ID == GameConstants.TechnologyID.LAST_STAND) {
+      GameConstants.ADDITIONAL_TIME_BY_LAST_STAND += GameConstants.LAST_STAND_ADDITIONAL_TIME;
     }
 
     MessageManager.AddMessage("研發完成 : " + ViewingTechnology.Name);

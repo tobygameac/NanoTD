@@ -114,7 +114,7 @@ GameObject:
   - 198: {fileID: 19865426}
   - 199: {fileID: 19944208}
   m_Layer: 0
-  m_Name: SlowingFX
+  m_Name: FX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -446,11 +446,13 @@ MonoBehaviour:
   _enemyID: 0
   _basicHP: 0
   _hPModifier: 0
-  _basicDamage: -.25
+  _basicDamage: -2.5
   _damageModifier: 0
+  _basicAttackingSpeed: 0
+  _attackingSpeedModifier: 0
   _basicMovingSpeed: 0
   _movingSpeedModifier: 0
-  _cost: 2000
+  _cost: 15000
   _attackingRange: 7
   _nextLevel: {fileID: 0}
   _path: []
@@ -555,8 +557,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79043601d32962f4c98ff47e3fdd4ffc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slowingFXObject: {fileID: 133858}
-  additionalslowingFXTime: 3
+  FXObject: {fileID: 133858}
+  additionalFXTime: 3
   deviceBase: {fileID: 125440}
 --- !u!114 &11499324
 MonoBehaviour:
@@ -6902,11 +6904,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 0}
       propertyPath: _basicDamage
-      value: -.25
+      value: -2.5
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: _cost
-      value: 2000
+      value: 15000
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: _attackingRange

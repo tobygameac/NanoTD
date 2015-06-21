@@ -8,10 +8,12 @@ public class Turret : MonoBehaviour {
   public AudioClip projectileSound;
 
   public GameObject projectilePrefab;
-  public float reloadTime;
   public float turningSpeed;
 
+  private float attackingSpeed;
   private float attackingRange;
+
+  private float reloadTime;
 
   public Transform[] muzzles;
   public Transform turretBall;
@@ -26,6 +28,15 @@ public class Turret : MonoBehaviour {
 
   void Start() {
     characterStats = GetComponent<CharacterStats>();
+
+    attackingSpeed = characterStats.AttackingSpeed;
+
+    if (attackingSpeed <= 1e-8f) {
+      attackingSpeed = 1e-8f;
+    }
+
+    reloadTime = (1 / attackingSpeed);
+
     GetComponent<SphereCollider>().radius = characterStats.AttackingRange;
 
     target = null;

@@ -5,10 +5,10 @@ using System.Collections;
 [RequireComponent (typeof(SphereCollider))]
 public class SlowingDevice : MonoBehaviour {
 
-  public GameObject slowingFXObject;
-  private ParticleSystem slowingFXParticleSystem;
+  public GameObject FXObject;
+  private ParticleSystem FXParticleSystem;
 
-  public float additionalslowingFXTime = 3.0f;
+  public float additionalFXTime = 3.0f;
 
   public GameObject deviceBase;
   private Rotating deviceBaseRotating;
@@ -27,8 +27,8 @@ public class SlowingDevice : MonoBehaviour {
     attackingRange = characterStats.AttackingRange;
 
     GetComponent<SphereCollider>().radius = attackingRange;
-    slowingFXParticleSystem = slowingFXObject.GetComponent<ParticleSystem>();
-    slowingFXParticleSystem.startSize *= attackingRange;
+    FXParticleSystem = FXObject.GetComponent<ParticleSystem>();
+    FXParticleSystem.startSize *= attackingRange;
 
     deviceBaseRotating = deviceBase.GetComponent<Rotating>();
 
@@ -36,18 +36,18 @@ public class SlowingDevice : MonoBehaviour {
       game = Camera.main.GetComponent<Game>();
     }
 
-    lastAttackingTime = Time.time - additionalslowingFXTime - 1;
+    lastAttackingTime = Time.time - additionalFXTime - 1;
   }
 
   void Update() {
-    if (Time.time - lastAttackingTime <= additionalslowingFXTime) {
-      slowingFXParticleSystem.loop = true;
-      if (slowingFXParticleSystem.isStopped) {
-        slowingFXParticleSystem.Play();
+    if (Time.time - lastAttackingTime <= additionalFXTime) {
+      if (!FXParticleSystem.isPlaying) {
+        FXParticleSystem.Play();
       }
+      FXParticleSystem.loop = true;
       deviceBaseRotating.enabled = true;
     } else {
-      slowingFXParticleSystem.loop = false;
+      FXParticleSystem.loop = false;
       deviceBaseRotating.enabled = false;
     }
   }

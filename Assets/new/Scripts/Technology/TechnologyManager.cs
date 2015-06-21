@@ -63,6 +63,8 @@ public class TechnologyManager {
                     }
     ));
 
+    technologyList.Add(new Technology(GameConstants.TechnologyID.LAST_STAND, 20000, true));
+
     UpdateAvailableTechnologyList();
   }
 

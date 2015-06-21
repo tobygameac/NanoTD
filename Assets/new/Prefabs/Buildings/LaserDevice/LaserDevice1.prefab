@@ -567,7 +567,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   laserSound: {fileID: 8300000, guid: 48abe319bdc363c459fd99fedb698782, type: 3}
   laser: {fileID: 100000, guid: ceded0f2e59790749900bf244d45a4ed, type: 2}
-  reloadTime: 2
   turningSpeed: 5
   turretBall: {fileID: 479162}
 --- !u!114 &11407322
@@ -682,10 +681,12 @@ MonoBehaviour:
   _hPModifier: 0
   _basicDamage: 100
   _damageModifier: 0
+  _basicAttackingSpeed: .5
+  _attackingSpeedModifier: 0
   _basicMovingSpeed: 0
   _movingSpeedModifier: 0
   _cost: 200
-  _attackingRange: 7
+  _attackingRange: 6
   _nextLevel: {fileID: 138672, guid: c2d0689bfa0a9c04eb529e44e849ebc4, type: 2}
   _path: []
 --- !u!114 &11494554
@@ -847,11 +848,19 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: _attackingRange
-      value: 7
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: _buildingID
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: _attackingSpeedModifier
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: _basicAttackingSpeed
+      value: .5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

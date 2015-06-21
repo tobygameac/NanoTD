@@ -16,7 +16,9 @@ public class SuperFireTurret : MonoBehaviour {
 
   public float attackingAngleForEachMuzzle;
 
+  private float attackingSpeed;
   public float turningSpeed;
+
   public float warmingUpTime;
   private float nextAttackTime;
 
@@ -36,6 +38,8 @@ public class SuperFireTurret : MonoBehaviour {
     }
 
     characterStats = GetComponent<CharacterStats>();
+
+    attackingSpeed = characterStats.AttackingSpeed;
     GetComponent<SphereCollider>().radius = characterStats.AttackingRange;
 
     muzzleBaseRotating = muzzleBase.GetComponent<Rotating>();
@@ -88,7 +92,7 @@ public class SuperFireTurret : MonoBehaviour {
           float angleFromMuzzleToEnemy = Quaternion.Angle(muzzles[i].rotation, desiredRotation);
           if (angleFromMuzzleToEnemy <= attackingAngleForEachMuzzle / 2) {
             CharacterStats targetCharacterStats = collider.GetComponent<CharacterStats>();
-            targetCharacterStats.CurrentHP -= characterStats.Damage * Time.deltaTime;
+            targetCharacterStats.CurrentHP -= characterStats.Damage * attackingSpeed * Time.deltaTime;
             if (targetCharacterStats.CurrentHP <= 0) {
               ++characterStats.UnitKilled;
               if (game.HasTechnology(GameConstants.TechnologyID.SELF_LEARNING)) {

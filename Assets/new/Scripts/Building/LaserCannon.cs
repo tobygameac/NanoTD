@@ -8,9 +8,10 @@ public class LaserCannon : MonoBehaviour {
   public AudioClip laserSound;
 
   public GameObject laser;
-  public float reloadTime;
   public float turningSpeed;
 
+  private float reloadTime;
+  private float attackingSpeed;
   private float attackingRange;
 
   public Transform[] muzzles;
@@ -26,6 +27,15 @@ public class LaserCannon : MonoBehaviour {
 
   void Start() {
     characterStats = GetComponent<CharacterStats>();
+
+    attackingSpeed = characterStats.AttackingSpeed;
+
+    if (attackingSpeed <= 1e-8f) {
+      attackingSpeed = 1e-8f;
+    }
+
+    reloadTime = (1 / attackingSpeed);
+
     GetComponent<SphereCollider>().radius = characterStats.AttackingRange;
 
     target = null;

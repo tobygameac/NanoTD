@@ -128,7 +128,37 @@ public class CharacterStats : MonoBehaviour {
     }
   }
 
-  // MovingSpeed
+  // Attacking speed
+  [SerializeField]
+  private float _basicAttackingSpeed;
+  public float BasicAttackingSpeed {
+    get {
+      return _basicAttackingSpeed;
+    }
+  }
+
+  private float _attackingSpeed;
+  public float AttackingSpeed {
+    get {
+      return _attackingSpeed;
+    }
+    set {
+      _attackingSpeed = value;
+    }
+  }
+
+  [SerializeField]
+  private float _attackingSpeedModifier;
+  public float AttackingSpeedModifier {
+    get {
+      return _attackingSpeedModifier;
+    }
+    set {
+      AttackingSpeed = BasicAttackingSpeed * (1 + _attackingSpeedModifier);
+    }
+  }
+
+  // Moving speed
   [SerializeField]
   private float _basicMovingSpeed;
   public float BasicMovingSpeed {
@@ -224,10 +254,15 @@ public class CharacterStats : MonoBehaviour {
     }
   }
 
-  void Awake() {
+  private void InitializeStats() {
     CurrentHP = MaxHP = BasicHP;
     Damage = BasicDamage * (1 + DamageModifier);
+    AttackingSpeed = BasicAttackingSpeed * (1 + MovingSpeedModifier);
     MovingSpeed = BasicMovingSpeed * (1 + MovingSpeedModifier);
+  }
+
+  void Awake() {
+    InitializeStats();
   }
 
 }

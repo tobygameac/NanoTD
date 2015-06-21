@@ -27,16 +27,25 @@ public partial class Game : MonoBehaviour {
   private List<GameObject> technologyButtons;
 
   public void OnViewBuildingListButtonClick() {
+    if (gameState == GameConstants.GameState.FINISHED || gameState == GameConstants.GameState.LOSED) {
+      return;
+    }
     AudioManager.PlayAudioClip(buttonSound);
     ViewBuildingList();
   }
 
   public void OnViewTechnologyListButtonClick() {
+    if (gameState == GameConstants.GameState.FINISHED || gameState == GameConstants.GameState.LOSED) {
+      return;
+    }
     AudioManager.PlayAudioClip(buttonSound);
     ViewTechnologyList();
   }
 
   public void OnResearchButtonClick() {
+    if (gameState == GameConstants.GameState.FINISHED || gameState == GameConstants.GameState.LOSED) {
+      return;
+    }
     int technologyCost = ViewingTechnology.Cost;
     if (money >= technologyCost) {
       AudioManager.PlayAudioClip(researchSound);
@@ -53,16 +62,25 @@ public partial class Game : MonoBehaviour {
   }
 
   public void OnUpgradeButtonClick() {
+    if (gameState == GameConstants.GameState.FINISHED || gameState == GameConstants.GameState.LOSED) {
+      return;
+    }
     //AudioManager.PlayAudioClip(researchSound);
     Upgrade();
   }
 
   public void OnCombinateButtonClick() {
+    if (gameState == GameConstants.GameState.FINISHED || gameState == GameConstants.GameState.LOSED) {
+      return;
+    }
     AudioManager.PlayAudioClip(buttonSound);
     Combinate();
   }
 
   public void OnSellButtonClick() {
+    if (gameState == GameConstants.GameState.FINISHED || gameState == GameConstants.GameState.LOSED) {
+      return;
+    }
     AudioManager.PlayAudioClip(sellSound);
     Sell();
   }
@@ -83,6 +101,9 @@ public partial class Game : MonoBehaviour {
   }
 
   public void OnBuildingListButtonClick(int i) {
+    if (gameState == GameConstants.GameState.FINISHED || gameState == GameConstants.GameState.LOSED) {
+      return;
+    }
     AudioManager.PlayAudioClip(buttonSound);
     if (viewingBuildingIndex != i) { // Message spamming
       MessageManager.AddMessage("請選擇放置區域");
@@ -91,6 +112,9 @@ public partial class Game : MonoBehaviour {
   }
 
   public void OnTechnologyListButtonClick(int i) {
+    if (gameState == GameConstants.GameState.FINISHED || gameState == GameConstants.GameState.LOSED) {
+      return;
+    }
     AudioManager.PlayAudioClip(buttonSound);
     viewingTechnologyIndex = i;
   }

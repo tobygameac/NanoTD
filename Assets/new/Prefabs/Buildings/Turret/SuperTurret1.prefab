@@ -999,8 +999,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectileSound: {fileID: 8300000, guid: fbf4d8ba676e2bc4c9e3a4fee8b3b4b6, type: 3}
   projectilePrefab: {fileID: 152236, guid: 1f9d1c1bc2b700040853533a62bc41ec, type: 2}
-  reloadTime: 1
-  turningSpeed: 10
+  turningSpeed: 15
   muzzles:
   - {fileID: 482254}
   - {fileID: 400618}
@@ -1082,6 +1081,8 @@ MonoBehaviour:
   _hPModifier: 0
   _basicDamage: 180
   _damageModifier: 0
+  _basicAttackingSpeed: 1.20000005
+  _attackingSpeedModifier: 0
   _basicMovingSpeed: 0
   _movingSpeedModifier: 0
   _cost: 2000
@@ -1232,6 +1233,14 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: _basicDamage
       value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: _basicAttackingSpeed
+      value: 1.20000005
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: turningSpeed
+      value: 15
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

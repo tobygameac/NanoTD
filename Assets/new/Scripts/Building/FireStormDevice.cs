@@ -21,6 +21,7 @@ public class FireStormDevice : MonoBehaviour {
   public GameObject deviceBase;
   private Rotating deviceBaseRotating;
 
+  private float attackingSpeed;
   private float attackingRange;
 
   private CharacterStats characterStats;
@@ -32,6 +33,7 @@ public class FireStormDevice : MonoBehaviour {
   void Start() {
     characterStats = GetComponent<CharacterStats>();
 
+    attackingSpeed = characterStats.AttackingSpeed;
     attackingRange = characterStats.AttackingRange;
 
     GetComponent<SphereCollider>().radius = attackingRange;
@@ -71,7 +73,7 @@ public class FireStormDevice : MonoBehaviour {
     if (collider.gameObject.tag == "Enemy") {
       lastAttackingTime = Time.time;
       CharacterStats targetCharacterStats = collider.GetComponent<CharacterStats>();
-      targetCharacterStats.CurrentHP -= characterStats.Damage * damageScale * Time.deltaTime;
+      targetCharacterStats.CurrentHP -= characterStats.Damage * attackingSpeed * damageScale * Time.deltaTime;
       if (targetCharacterStats.CurrentHP <= 0) {
         ++characterStats.UnitKilled;
         if (game.HasTechnology(GameConstants.TechnologyID.SELF_LEARNING)) {

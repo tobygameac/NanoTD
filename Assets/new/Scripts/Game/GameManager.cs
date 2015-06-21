@@ -101,7 +101,7 @@ public class GameManager : MonoBehaviour {
       game.gameState = value;
       if (value == GameConstants.GameState.WAIT_FOR_THE_NEXT_WAVE) {
         restedTime = 0;
-        //MessageManager.AddMessage("第 " + (currentWave + 1) + " 波病菌將於 " + (int)(restingTimeBetweenWaves) + " 秒後入侵");
+        MessageManager.AddMessage("第 " + (currentWave + 1) + " 波病菌將於 " + (int)(restingTimeBetweenWaves) + " 秒後入侵");
         if ((game.GameMode == GameConstants.GameMode.SURVIVAL_NORMAL) || (game.GameMode == GameConstants.GameMode.SURVIVAL_BOSS)) {
           if (currentWave > 0) {
             int speedBonus = (int)remainingTimeOfCurrentWave * currentWave * currentWave;
@@ -188,6 +188,8 @@ public class GameManager : MonoBehaviour {
     }
 
     if (gameState == GameConstants.GameState.MIDDLE_OF_THE_WAVE) {
+      remainingTimeOfCurrentWave += GameConstants.ADDITIONAL_TIME_BY_LAST_STAND;
+      GameConstants.ADDITIONAL_TIME_BY_LAST_STAND = 0;
       if (currentWave < maxWave || (game.GameMode == GameConstants.GameMode.SURVIVAL_NORMAL) || (game.GameMode == GameConstants.GameMode.SURVIVAL_BOSS)) {
         remainingTimeOfCurrentWave -= Time.deltaTime;
         if (remainingTimeOfCurrentWave < 0) {
@@ -271,7 +273,8 @@ public class GameManager : MonoBehaviour {
       /* temp */
     numberOfEnemiesToGenerate = 10 + (currentWave - 1) * 5 * (int)Mathf.Pow(1.1f, currentWave);
     if ((game.GameMode == GameConstants.GameMode.SURVIVAL_NORMAL) || (game.GameMode == GameConstants.GameMode.SURVIVAL_BOSS)) {
-      remainingTimeOfCurrentWave = 45 + ((currentWave - 1) * 5);
+      remainingTimeOfCurrentWave = 45 + ((currentWave - 1) * 5) + GameConstants.ADDITIONAL_TIME_BY_LAST_STAND;
+      GameConstants.ADDITIONAL_TIME_BY_LAST_STAND = 0;
       /* temp */
       /* temp */
       /* temp */

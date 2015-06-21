@@ -42,7 +42,10 @@ public static class GameConstants {
     LASER_BURNING_DEVICE,
     FIRE_STORM_DEVICE,
     SUPER_TURRET,
-    SPEEDING_DEVICE
+    SPEEDING_DEVICE,
+    ULTIMATE_TURRET,
+    WEAKENING_DEVICE,
+    SUPER_LASER_DEVICE
   }
 
   private static string[] _nameOfBuildingID;
@@ -63,6 +66,9 @@ public static class GameConstants {
         _nameOfBuildingID[(int)BuildingID.FIRE_STORM_DEVICE] = "烈焰風暴";
         _nameOfBuildingID[(int)BuildingID.SUPER_TURRET] = "高級砲塔";
         _nameOfBuildingID[(int)BuildingID.SPEEDING_DEVICE] = "加速裝置";
+        _nameOfBuildingID[(int)BuildingID.ULTIMATE_TURRET] = "究極砲塔";
+        _nameOfBuildingID[(int)BuildingID.WEAKENING_DEVICE] = "削弱裝置";
+        _nameOfBuildingID[(int)BuildingID.SUPER_LASER_DEVICE] = "超級雷射塔";
       }
       return _nameOfBuildingID;
     }
@@ -81,7 +87,8 @@ public static class GameConstants {
     ADDITIONAL_BUILDING_NUMBER,
     FREEZING_LEVEL1,
     FREEZING_LEVEL2,
-    FREEZING_LEVEL3
+    FREEZING_LEVEL3,
+    LAST_STAND
   }
 
   private static string[] _nameOfTechnologyID;
@@ -97,6 +104,7 @@ public static class GameConstants {
         _nameOfTechnologyID[(int)TechnologyID.FREEZING_LEVEL1] = "初級冷凍技術";
         _nameOfTechnologyID[(int)TechnologyID.FREEZING_LEVEL2] = "中級冷凍技術";
         _nameOfTechnologyID[(int)TechnologyID.FREEZING_LEVEL3] = "高級冷凍技術";
+        _nameOfTechnologyID[(int)TechnologyID.LAST_STAND] = "背水一戰";
       }
       return _nameOfTechnologyID;
     }
@@ -126,6 +134,9 @@ public static class GameConstants {
         _detailOfTechnologyID[(int)TechnologyID.FREEZING_LEVEL3] = "場上病菌減慢 ";
         _detailOfTechnologyID[(int)TechnologyID.FREEZING_LEVEL3] += (FREEZING_LEVEL3_MOVING_SPEED_MODIFIER * -100).ToString("0.00") + "% 移動速度，可與緩速裝置疊加效果";
 
+        _detailOfTechnologyID[(int)TechnologyID.LAST_STAND] = "延長當前波數(或下一波)的剩餘時間 ";
+        _detailOfTechnologyID[(int)TechnologyID.LAST_STAND] += LAST_STAND_ADDITIONAL_TIME.ToString("0.0") + " 秒";
+
       }
       return _detailOfTechnologyID;
     }
@@ -138,10 +149,12 @@ public static class GameConstants {
   public static readonly float FREEZING_LEVEL2_MOVING_SPEED_MODIFIER = -0.25f;
   public static readonly float FREEZING_LEVEL3_MOVING_SPEED_MODIFIER = -0.4f;
 
+  public static readonly float LAST_STAND_ADDITIONAL_TIME = 10.0f;
+
   // Enemy improvement
   public static readonly float PROBABILITY_OF_STRONGGER = 0.10f;
   public static readonly float COST_SCALE_OF_STRONGGER = 1.05f;
-  public static readonly float HP_SCALE_OF_STRONGGER = 8.0f;
+  public static readonly float HP_SCALE_OF_STRONGGER = 10.0f;
   public static readonly float SIZE_SCALE_OF_STRONGGER = 1.5f;
   public static readonly float MOVING_SPEED_MODIFIER_OF_STRONGGER = -0.25f;
 
@@ -151,7 +164,7 @@ public static class GameConstants {
 
   public static readonly float PROBABILITY_OF_SELF_HEALING = 0.10f;
   public static readonly float COST_SCALE_OF_SELF_HEALING = 1.2f;
-  public static readonly float HP_PERCENT_REGENERATING_PER_SECOND_OF_SELF_HEALING = 0.05f;
+  public static readonly float HP_PERCENT_REGENERATING_PER_SECOND_OF_SELF_HEALING = 0.15f;
 
   public static readonly float PROBABILITY_OF_CELL_DIVISION = 0.10f;
   public static readonly float COST_SCALE_OF_CELL_DIVISION = 1.2f;
@@ -173,10 +186,12 @@ public static class GameConstants {
   public static readonly float ONE_SHOT_KILL_BONUS_MODIFIER = 0.25f;
   public static readonly float SELF_LEARNING_IMPROVEMENT_PERCENT_PER_KILL = 0.001f;
 
-  public static readonly float MINIMUM_LOCAL_MOVING_SPEED_MODIFIER = -0.75f;
+  public static readonly float MINIMUM_LOCAL_MOVING_SPEED_MODIFIER = -0.85f;
 
   // Global modifier
   public static float GLOBAL_ENEMY_SPEED_MODIFIER = 0.0f;
+
+  public static float ADDITIONAL_TIME_BY_LAST_STAND = 0.0f;
 
   public static void ResetModifier() {
     GLOBAL_ENEMY_SPEED_MODIFIER = 0.0f;

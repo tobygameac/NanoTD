@@ -219,7 +219,7 @@ GameObject:
   - 198: {fileID: 19893410}
   - 199: {fileID: 19995224}
   m_Layer: 0
-  m_Name: SlowingFX
+  m_Name: FX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -459,8 +459,10 @@ MonoBehaviour:
   _enemyID: 0
   _basicHP: 0
   _hPModifier: 0
-  _basicDamage: .200000003
+  _basicDamage: .25
   _damageModifier: 0
+  _basicAttackingSpeed: 0
+  _attackingSpeedModifier: 0
   _basicMovingSpeed: 0
   _movingSpeedModifier: 0
   _cost: 1000
@@ -515,8 +517,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79043601d32962f4c98ff47e3fdd4ffc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slowingFXObject: {fileID: 191902}
-  additionalslowingFXTime: 3
+  FXObject: {fileID: 191902}
+  additionalFXTime: 3
   deviceBase: {fileID: 140666}
 --- !u!114 &11473212
 MonoBehaviour:
@@ -5768,7 +5770,7 @@ ParticleSystem:
         rgba: 174391230
       minMaxState: 2
     startSize:
-      scalar: .800000012
+      scalar: 12500
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -6914,7 +6916,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: _basicDamage
-      value: .200000003
+      value: .25
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

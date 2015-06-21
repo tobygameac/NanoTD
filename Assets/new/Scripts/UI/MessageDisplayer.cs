@@ -17,12 +17,13 @@ public class MessageDisplayer : MonoBehaviour {
     bool lastMessage = true;
     for (int i = MessageManager.Messages.Count - 1; i >= Mathf.Max(0, MessageManager.Messages.Count - maxDisplayMessageNumber); --i) {
       if (lastMessage) {
-        messageToDisplay += "<color=red>" + MessageManager.Messages[i] + "</color>\n";
+        messageToDisplay += "<color=red>" + MessageManager.Messages[i] + "</color><color=#c1da9340><i>\n";
         lastMessage = false;
       } else {
-        messageToDisplay += "<color=#c1da9340><i>" + MessageManager.Messages[i] + "</i></color>\n";
+        messageToDisplay += MessageManager.Messages[i] + "\n";
       }
     }
+    messageToDisplay += "</i></color>";
     text.text = messageToDisplay;
   }
 }
