@@ -36,11 +36,11 @@ public class ScoreboardManager : MonoBehaviour {
   private static string Md5Sum(string stringToEncrypt) {
     System.Text.UTF8Encoding ue = new System.Text.UTF8Encoding();
     byte[] bytes = ue.GetBytes(stringToEncrypt);
-   
+
     // encrypt bytes
     System.Security.Cryptography.MD5CryptoServiceProvider md5 = new System.Security.Cryptography.MD5CryptoServiceProvider();
     byte[] hashBytes = md5.ComputeHash(bytes);
-   
+
     // Convert the encrypted bytes back to a string (base 16)
     string hashString = "";
 
@@ -56,7 +56,7 @@ public class ScoreboardManager : MonoBehaviour {
 
     string scoreboardUrl;
     if (gameMode == GameConstants.GameMode.SURVIVAL_NORMAL) {
-      scoreboardUrl = "http://134.208.60.35:5631/nanoTD/SurvivalNormalScoreboard.php";
+      scoreboardUrl = "http://nanotd.tobygameac.com/SurvivalNormalScoreboard.php";
     } else {
       yield break;
     }
@@ -73,18 +73,18 @@ public class ScoreboardManager : MonoBehaviour {
 
     name = name.Trim();
     name = name.Replace("小雞雞", "帥哥");
-    
+
     string postScoreUrl;
     if (gameMode == GameConstants.GameMode.SURVIVAL_NORMAL) {
-      postScoreUrl = "http://134.208.60.35:5631/nanoTD/postSurvivalNormalScore.php";
+      postScoreUrl = "http://nanotd.tobygameac.com/postSurvivalNormalScore.php";
     } else {
       yield break;
     }
 
-    string hash = Md5Sum(name + score.ToString() + secretKey); 
- 
+    string hash = Md5Sum(name + score.ToString() + secretKey);
+
     string realPostScoreUrl = postScoreUrl + "?name=" + WWW.EscapeURL(name) + "&score=" + score.ToString() + "&hash=" + hash;
- 
+
     WWW hs_post = new WWW(realPostScoreUrl);
     yield return hs_post;
     if (hs_post.error != null) {
